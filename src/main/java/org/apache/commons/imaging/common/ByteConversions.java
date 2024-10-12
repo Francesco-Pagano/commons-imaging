@@ -212,11 +212,15 @@ public final class ByteConversions {
 
     private static void toBytes(final short value, final ByteOrder byteOrder, final byte[] result, final int offset) {
         if (byteOrder == ByteOrder.BIG_ENDIAN) {
-            result[offset + 0] = (byte) (value >> 8);
-            result[offset + 1] = (byte) (value >> 0);
+            if(result.length > 0) {
+                result[offset + 0] = (byte) (value >> 8);
+                result[offset + 1] = (byte) (value >> 0);
+            }
         } else {
-            result[offset + 1] = (byte) (value >> 8);
-            result[offset + 0] = (byte) (value >> 0);
+            if (result.length > 0) {
+                result[offset + 1] = (byte) (value >> 8);
+                result[offset + 0] = (byte) (value >> 0);
+            }
         }
     }
 
