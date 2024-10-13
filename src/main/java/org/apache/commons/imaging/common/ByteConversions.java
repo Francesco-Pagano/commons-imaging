@@ -32,23 +32,27 @@ public final class ByteConversions {
     private static void toBytes(final double value, final ByteOrder byteOrder, final byte[] result, final int offset) {
         final long bits = Double.doubleToRawLongBits(value);
         if (byteOrder == ByteOrder.LITTLE_ENDIAN) {
-            result[offset + 0] = (byte) (0xff & bits >> 0);
-            result[offset + 1] = (byte) (0xff & bits >> 8);
-            result[offset + 2] = (byte) (0xff & bits >> 16);
-            result[offset + 3] = (byte) (0xff & bits >> 24);
-            result[offset + 4] = (byte) (0xff & bits >> 32);
-            result[offset + 5] = (byte) (0xff & bits >> 40);
-            result[offset + 6] = (byte) (0xff & bits >> 48);
-            result[offset + 7] = (byte) (0xff & bits >> 56);
+            if(result.length > 0) {
+                result[offset + 0] = (byte) (0xff & bits >> 0);
+                result[offset + 1] = (byte) (0xff & bits >> 8);
+                result[offset + 2] = (byte) (0xff & bits >> 16);
+                result[offset + 3] = (byte) (0xff & bits >> 24);
+                result[offset + 4] = (byte) (0xff & bits >> 32);
+                result[offset + 5] = (byte) (0xff & bits >> 40);
+                result[offset + 6] = (byte) (0xff & bits >> 48);
+                result[offset + 7] = (byte) (0xff & bits >> 56);
+            }
         } else {
-            result[offset + 7] = (byte) (0xff & bits >> 0);
-            result[offset + 6] = (byte) (0xff & bits >> 8);
-            result[offset + 5] = (byte) (0xff & bits >> 16);
-            result[offset + 4] = (byte) (0xff & bits >> 24);
-            result[offset + 3] = (byte) (0xff & bits >> 32);
-            result[offset + 2] = (byte) (0xff & bits >> 40);
-            result[offset + 1] = (byte) (0xff & bits >> 48);
-            result[offset + 0] = (byte) (0xff & bits >> 56);
+            if(result.length > 0) {
+                result[offset + 7] = (byte) (0xff & bits >> 0);
+                result[offset + 6] = (byte) (0xff & bits >> 8);
+                result[offset + 5] = (byte) (0xff & bits >> 16);
+                result[offset + 4] = (byte) (0xff & bits >> 24);
+                result[offset + 3] = (byte) (0xff & bits >> 32);
+                result[offset + 2] = (byte) (0xff & bits >> 40);
+                result[offset + 1] = (byte) (0xff & bits >> 48);
+                result[offset + 0] = (byte) (0xff & bits >> 56);
+            }
         }
     }
 
@@ -73,15 +77,19 @@ public final class ByteConversions {
     private static void toBytes(final float value, final ByteOrder byteOrder, final byte[] result, final int offset) {
         final int bits = Float.floatToRawIntBits(value);
         if (byteOrder == ByteOrder.LITTLE_ENDIAN) {
-            result[offset + 0] = (byte) (0xff & bits >> 0);
-            result[offset + 1] = (byte) (0xff & bits >> 8);
-            result[offset + 2] = (byte) (0xff & bits >> 16);
-            result[offset + 3] = (byte) (0xff & bits >> 24);
+            if(result.length > 0) {
+                result[offset + 0] = (byte) (0xff & bits >> 0);
+                result[offset + 1] = (byte) (0xff & bits >> 8);
+                result[offset + 2] = (byte) (0xff & bits >> 16);
+                result[offset + 3] = (byte) (0xff & bits >> 24);
+            }
         } else {
-            result[offset + 3] = (byte) (0xff & bits >> 0);
-            result[offset + 2] = (byte) (0xff & bits >> 8);
-            result[offset + 1] = (byte) (0xff & bits >> 16);
-            result[offset + 0] = (byte) (0xff & bits >> 24);
+            if(result.length > 0) {
+                result[offset + 3] = (byte) (0xff & bits >> 0);
+                result[offset + 2] = (byte) (0xff & bits >> 8);
+                result[offset + 1] = (byte) (0xff & bits >> 16);
+                result[offset + 0] = (byte) (0xff & bits >> 24);
+            }
         }
     }
 
@@ -105,15 +113,19 @@ public final class ByteConversions {
 
     private static void toBytes(final int value, final ByteOrder byteOrder, final byte[] result, final int offset) {
         if (byteOrder == ByteOrder.BIG_ENDIAN) {
-            result[offset + 0] = (byte) (value >> 24);
-            result[offset + 1] = (byte) (value >> 16);
-            result[offset + 2] = (byte) (value >> 8);
-            result[offset + 3] = (byte) (value >> 0);
+            if(result.length > 0) {
+                result[offset + 0] = (byte) (value >> 24);
+                result[offset + 1] = (byte) (value >> 16);
+                result[offset + 2] = (byte) (value >> 8);
+                result[offset + 3] = (byte) (value >> 0);
+            }
         } else {
-            result[offset + 3] = (byte) (value >> 24);
-            result[offset + 2] = (byte) (value >> 16);
-            result[offset + 1] = (byte) (value >> 8);
-            result[offset + 0] = (byte) (value >> 0);
+            if (result.length > 0) {
+                result[offset + 3] = (byte) (value >> 24);
+                result[offset + 2] = (byte) (value >> 16);
+                result[offset + 1] = (byte) (value >> 8);
+                result[offset + 0] = (byte) (value >> 0);
+            }
         }
     }
 
@@ -144,23 +156,27 @@ public final class ByteConversions {
 
     private static void toBytes(final long value, final ByteOrder byteOrder, final byte[] result, final int offset) {
         if (byteOrder == ByteOrder.BIG_ENDIAN) {
-            result[offset + 0] = (byte) (value >> 56);
-            result[offset + 1] = (byte) (value >> 48);
-            result[offset + 2] = (byte) (value >> 40);
-            result[offset + 3] = (byte) (value >> 32);
-            result[offset + 4] = (byte) (value >> 24);
-            result[offset + 5] = (byte) (value >> 16);
-            result[offset + 6] = (byte) (value >> 8);
-            result[offset + 7] = (byte) value;
+            if(result.length > 0) {
+                result[offset + 0] = (byte) (value >> 56);
+                result[offset + 1] = (byte) (value >> 48);
+                result[offset + 2] = (byte) (value >> 40);
+                result[offset + 3] = (byte) (value >> 32);
+                result[offset + 4] = (byte) (value >> 24);
+                result[offset + 5] = (byte) (value >> 16);
+                result[offset + 6] = (byte) (value >> 8);
+                result[offset + 7] = (byte) value;
+            }
         } else {
-            result[offset + 7] = (byte) (value >> 56);
-            result[offset + 6] = (byte) (value >> 48);
-            result[offset + 5] = (byte) (value >> 40);
-            result[offset + 4] = (byte) (value >> 32);
-            result[offset + 3] = (byte) (value >> 24);
-            result[offset + 2] = (byte) (value >> 16);
-            result[offset + 1] = (byte) (value >> 8);
-            result[offset + 0] = (byte) value;
+            if(result.length > 0) {
+                result[offset + 7] = (byte) (value >> 56);
+                result[offset + 6] = (byte) (value >> 48);
+                result[offset + 5] = (byte) (value >> 40);
+                result[offset + 4] = (byte) (value >> 32);
+                result[offset + 3] = (byte) (value >> 24);
+                result[offset + 2] = (byte) (value >> 16);
+                result[offset + 1] = (byte) (value >> 8);
+                result[offset + 0] = (byte) value;
+            }
         }
     }
 
@@ -172,23 +188,27 @@ public final class ByteConversions {
 
     private static void toBytes(final RationalNumber value, final ByteOrder byteOrder, final byte[] result, final int offset) {
         if (byteOrder == ByteOrder.BIG_ENDIAN) {
-            result[offset + 0] = (byte) (value.numerator >> 24);
-            result[offset + 1] = (byte) (value.numerator >> 16);
-            result[offset + 2] = (byte) (value.numerator >> 8);
-            result[offset + 3] = (byte) (value.numerator >> 0);
-            result[offset + 4] = (byte) (value.divisor >> 24);
-            result[offset + 5] = (byte) (value.divisor >> 16);
-            result[offset + 6] = (byte) (value.divisor >> 8);
-            result[offset + 7] = (byte) (value.divisor >> 0);
+            if(result.length > 0) {
+                result[offset + 0] = (byte) (value.numerator >> 24);
+                result[offset + 1] = (byte) (value.numerator >> 16);
+                result[offset + 2] = (byte) (value.numerator >> 8);
+                result[offset + 3] = (byte) (value.numerator >> 0);
+                result[offset + 4] = (byte) (value.divisor >> 24);
+                result[offset + 5] = (byte) (value.divisor >> 16);
+                result[offset + 6] = (byte) (value.divisor >> 8);
+                result[offset + 7] = (byte) (value.divisor >> 0);
+            }
         } else {
-            result[offset + 3] = (byte) (value.numerator >> 24);
-            result[offset + 2] = (byte) (value.numerator >> 16);
-            result[offset + 1] = (byte) (value.numerator >> 8);
-            result[offset + 0] = (byte) (value.numerator >> 0);
-            result[offset + 7] = (byte) (value.divisor >> 24);
-            result[offset + 6] = (byte) (value.divisor >> 16);
-            result[offset + 5] = (byte) (value.divisor >> 8);
-            result[offset + 4] = (byte) (value.divisor >> 0);
+            if(result.length > 0) {
+                result[offset + 3] = (byte) (value.numerator >> 24);
+                result[offset + 2] = (byte) (value.numerator >> 16);
+                result[offset + 1] = (byte) (value.numerator >> 8);
+                result[offset + 0] = (byte) (value.numerator >> 0);
+                result[offset + 7] = (byte) (value.divisor >> 24);
+                result[offset + 6] = (byte) (value.divisor >> 16);
+                result[offset + 5] = (byte) (value.divisor >> 8);
+                result[offset + 4] = (byte) (value.divisor >> 0);
+            }
         }
     }
 

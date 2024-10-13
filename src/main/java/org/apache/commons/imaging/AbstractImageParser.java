@@ -165,7 +165,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final String dumpImageFile(final byte[] bytes) throws ImagingException, IOException {
+    public final String dumpImageFile(final byte[] bytes) throws IOException {
         return dumpImageFile(ByteSource.array(bytes));
     }
 
@@ -177,7 +177,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final String dumpImageFile(final ByteSource byteSource) throws ImagingException, IOException {
+    public final String dumpImageFile(final ByteSource byteSource) throws IOException {
         final StringWriter sw = new StringWriter();
         final PrintWriter pw = new PrintWriter(sw);
 
@@ -196,7 +196,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final String dumpImageFile(final File file) throws ImagingException, IOException {
+    public final String dumpImageFile(final File file) throws IOException {
         if (!canAcceptExtension(file)) {
             return null;
         }
@@ -217,7 +217,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         return false;
     }
 
@@ -243,7 +243,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final List<BufferedImage> getAllBufferedImages(final byte[] bytes) throws ImagingException, IOException {
+    public final List<BufferedImage> getAllBufferedImages(final byte[] bytes) throws IOException {
         return getAllBufferedImages(ByteSource.array(bytes));
     }
 
@@ -255,7 +255,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws ImagingException, IOException {
+    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws IOException {
         final BufferedImage bi = getBufferedImage(byteSource, null);
 
         final List<BufferedImage> result = new ArrayList<>();
@@ -274,7 +274,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final List<BufferedImage> getAllBufferedImages(final File file) throws ImagingException, IOException {
+    public final List<BufferedImage> getAllBufferedImages(final File file) throws IOException {
         if (!canAcceptExtension(file)) {
             return null;
         }
@@ -293,7 +293,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final BufferedImage getBufferedImage(final byte[] bytes, final T params) throws ImagingException, IOException {
+    public final BufferedImage getBufferedImage(final byte[] bytes, final T params) throws IOException {
         return getBufferedImage(ByteSource.array(bytes), params);
     }
 
@@ -308,7 +308,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public abstract BufferedImage getBufferedImage(ByteSource byteSource, T params) throws ImagingException, IOException;
+    public abstract BufferedImage getBufferedImage(ByteSource byteSource, T params) throws IOException;
 
     /**
      * Gets a buffered image specified by the indicated file (for sources that specify multiple images, choice of which image is returned is implementation
@@ -321,7 +321,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final BufferedImage getBufferedImage(final File file, final T params) throws ImagingException, IOException {
+    public final BufferedImage getBufferedImage(final File file, final T params) throws IOException {
         if (!canAcceptExtension(file)) {
             return null;
         }
@@ -373,7 +373,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException may be thrown by sub-classes
      * @throws IOException      may be thrown by sub-classes
      */
-    public final FormatCompliance getFormatCompliance(final byte[] bytes) throws ImagingException, IOException {
+    public final FormatCompliance getFormatCompliance(final byte[] bytes) throws IOException {
         return getFormatCompliance(ByteSource.array(bytes));
     }
 
@@ -385,7 +385,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException may be thrown by sub-classes
      * @throws IOException      may be thrown by sub-classes
      */
-    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws ImagingException, IOException {
+    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws IOException {
         return null;
     }
 
@@ -397,7 +397,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException may be thrown by sub-classes
      * @throws IOException      may be thrown by sub-classes
      */
-    public final FormatCompliance getFormatCompliance(final File file) throws ImagingException, IOException {
+    public final FormatCompliance getFormatCompliance(final File file) throws IOException {
         if (!canAcceptExtension(file)) {
             return null;
         }
@@ -414,7 +414,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final byte[] getIccProfileBytes(final byte[] bytes) throws ImagingException, IOException {
+    public final byte[] getIccProfileBytes(final byte[] bytes) throws IOException {
         return getIccProfileBytes(bytes, null);
     }
 
@@ -428,7 +428,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final byte[] getIccProfileBytes(final byte[] bytes, final T params) throws ImagingException, IOException {
+    public final byte[] getIccProfileBytes(final byte[] bytes, final T params) throws IOException {
         return getIccProfileBytes(ByteSource.array(bytes), params);
     }
 
@@ -442,7 +442,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public abstract byte[] getIccProfileBytes(ByteSource byteSource, T params) throws ImagingException, IOException;
+    public abstract byte[] getIccProfileBytes(ByteSource byteSource, T params) throws IOException;
 
     /**
      * Gets an array of bytes describing the International Color Consortium (ICC) specification for the color space of the image contained in the input file.
@@ -453,7 +453,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final byte[] getIccProfileBytes(final File file) throws ImagingException, IOException {
+    public final byte[] getIccProfileBytes(final File file) throws IOException {
         return getIccProfileBytes(file, null);
     }
 
@@ -467,7 +467,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final byte[] getIccProfileBytes(final File file, final T params) throws ImagingException, IOException {
+    public final byte[] getIccProfileBytes(final File file, final T params) throws IOException {
         if (!canAcceptExtension(file)) {
             return null;
         }
@@ -494,7 +494,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful data access operation.
      */
-    public final ImageInfo getImageInfo(final byte[] bytes, final T params) throws ImagingException, IOException {
+    public final ImageInfo getImageInfo(final byte[] bytes, final T params) throws IOException {
         return getImageInfo(ByteSource.array(bytes), params);
     }
 
@@ -507,7 +507,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful data access operation.
      */
-    public final ImageInfo getImageInfo(final ByteSource byteSource) throws ImagingException, IOException {
+    public final ImageInfo getImageInfo(final ByteSource byteSource) throws IOException {
         return getImageInfo(byteSource, null);
     }
 
@@ -527,7 +527,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful data access operation.
      */
-    public abstract ImageInfo getImageInfo(ByteSource byteSource, T params) throws ImagingException, IOException;
+    public abstract ImageInfo getImageInfo(ByteSource byteSource, T params) throws IOException;
 
     /**
      * Gets image information from the specified file Format-specific ImageParser implementations are expected to return a valid ImageInfo object or to throw an
@@ -544,7 +544,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful file read or access operation.
      */
-    public final ImageInfo getImageInfo(final File file, final T params) throws ImagingException, IOException {
+    public final ImageInfo getImageInfo(final File file, final T params) throws IOException {
         if (!canAcceptExtension(file)) {
             return null;
         }
@@ -560,7 +560,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final Dimension getImageSize(final byte[] bytes) throws ImagingException, IOException {
+    public final Dimension getImageSize(final byte[] bytes) throws IOException {
         return getImageSize(bytes, null);
     }
 
@@ -573,7 +573,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final Dimension getImageSize(final byte[] bytes, final T params) throws ImagingException, IOException {
+    public final Dimension getImageSize(final byte[] bytes, final T params) throws IOException {
         return getImageSize(ByteSource.array(bytes), params);
     }
 
@@ -586,7 +586,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public abstract Dimension getImageSize(ByteSource byteSource, T params) throws ImagingException, IOException;
+    public abstract Dimension getImageSize(ByteSource byteSource, T params) throws IOException;
 
     /**
      * Gets the size of the image described by the specified file.
@@ -596,7 +596,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final Dimension getImageSize(final File file) throws ImagingException, IOException {
+    public final Dimension getImageSize(final File file) throws IOException {
         return getImageSize(file, null);
     }
 
@@ -609,7 +609,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    public final Dimension getImageSize(final File file, final T params) throws ImagingException, IOException {
+    public final Dimension getImageSize(final File file, final T params) throws IOException {
 
         if (!canAcceptExtension(file)) {
             return null;
@@ -628,7 +628,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful data read operation.
      */
-    public final ImageMetadata getMetadata(final byte[] bytes) throws ImagingException, IOException {
+    public final ImageMetadata getMetadata(final byte[] bytes) throws IOException {
         return getMetadata(bytes, null);
     }
 
@@ -648,7 +648,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful data read operation.
      */
-    public final ImageMetadata getMetadata(final byte[] bytes, final T params) throws ImagingException, IOException {
+    public final ImageMetadata getMetadata(final byte[] bytes, final T params) throws IOException {
         return getMetadata(ByteSource.array(bytes), params);
     }
 
@@ -662,7 +662,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the ByteSource content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful data read operation.
      */
-    public final ImageMetadata getMetadata(final ByteSource byteSource) throws ImagingException, IOException {
+    public final ImageMetadata getMetadata(final ByteSource byteSource) throws IOException {
         return getMetadata(byteSource, null);
     }
 
@@ -683,7 +683,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the ByteSource content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful data read operation.
      */
-    public abstract ImageMetadata getMetadata(ByteSource byteSource, T params) throws ImagingException, IOException;
+    public abstract ImageMetadata getMetadata(ByteSource byteSource, T params) throws IOException;
 
     /**
      * Gets image metadata from the specified file. Format-specific ImageParser implementations are expected to return a valid IImageMetadata object or to throw
@@ -694,7 +694,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful file read or access operation.
      */
-    public final ImageMetadata getMetadata(final File file) throws ImagingException, IOException {
+    public final ImageMetadata getMetadata(final File file) throws IOException {
         return getMetadata(file, null);
     }
 
@@ -714,7 +714,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful file read or access operation.
      */
-    public final ImageMetadata getMetadata(final File file, final T params) throws ImagingException, IOException {
+    public final ImageMetadata getMetadata(final File file, final T params) throws IOException {
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest(getName() + ".getMetadata" + ": " + file.getName());
         }
@@ -747,7 +747,7 @@ public abstract class AbstractImageParser<T extends ImagingParameters<T>> extend
      * @throws ImagingException In the event that the output format cannot handle the input image or invalid params are specified.
      * @throws IOException      In the event of an write error from the output stream.
      */
-    public void writeImage(final BufferedImage src, final OutputStream os, final T params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, final T params) throws IOException {
         throw new ImagingException("This image format (" + getName() + ") cannot be written.");
     }
 }

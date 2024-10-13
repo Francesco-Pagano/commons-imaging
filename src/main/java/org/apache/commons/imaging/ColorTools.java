@@ -114,7 +114,7 @@ public class ColorTools {
         return convertToColorSpace(bi, srgbCM.getColorSpace());
     }
 
-    public BufferedImage correctImage(final BufferedImage src, final File file) throws ImagingException, IOException {
+    public BufferedImage correctImage(final BufferedImage src, final File file) throws IOException {
         final ICC_Profile icc = Imaging.getIccProfile(file);
         if (icc == null) {
             return src;
