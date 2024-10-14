@@ -107,9 +107,6 @@ public class FormatCompliance {
             return false;
         }
         for (int i = 0; i < expected.length; i++) {
-            // System.out.println("expected: "
-            // + getValueDescription(expected[i]) + ", actual: "
-            // + getValueDescription(actual[i]) + ")");
             if (expected[i] != actual[i]) {
                 addComment(
                         name + ": " + "Unexpected value: (expected: " + getValueDescription(expected[i]) + ", actual: " + getValueDescription(actual[i]) + ")");

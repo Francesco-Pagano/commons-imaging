@@ -23,16 +23,9 @@ import java.io.IOException;
 import org.apache.commons.imaging.common.BinaryOutputStream;
 
 final class BmpWriterRgb implements BmpWriter {
-    // private final boolean alpha;
-    //
-    // public BmpWriterRgb(boolean alpha)
-    // {
-    // this.alpha = alpha;
-    // }
 
     @Override
     public int getBitsPerPixel() {
-        // return alpha ? 32 : 24;
         return 24;
     }
 
@@ -42,12 +35,9 @@ final class BmpWriterRgb implements BmpWriter {
         final int height = src.getHeight();
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        // BinaryOutputStream bos = new BinaryOutputStream(baos,
-        // BYTE_ORDER_Network);
 
         int bytecount = 0;
         for (int y = height - 1; y >= 0; y--) {
-            // for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++) {
                 final int argb = src.getRGB(x, y);
                 final int rgb = 0xffffff & argb;

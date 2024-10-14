@@ -718,9 +718,6 @@ public final class Imaging {
 
             if (compareBytePair(MAGIC_NUMBERS_GIF, bytePair)) {
                 return ImageFormats.GIF;
-                // } else if (b1 == 0x00 && b2 == 0x00) // too similar to TGA
-                // {
-                // return ImageFormat.IMAGE_FORMAT_ICO;
             }
             if (compareBytePair(MAGIC_NUMBERS_PNG, bytePair)) {
                 return ImageFormats.PNG;

@@ -36,14 +36,12 @@ final class PixelParserRle extends AbstractPixelParser {
         if (bhi.bitsPerPixel == 8) {
             rgbs = new int[1];
             rgbs[0] = getColorTableRgb(data);
-            // pixels_written = 1;
         } else if (bhi.bitsPerPixel == 4) {
             rgbs = new int[2];
             final int sample1 = data >> 4;
             final int sample2 = 0x0f & data;
             rgbs[0] = getColorTableRgb(sample1);
             rgbs[1] = getColorTableRgb(sample2);
-            // pixels_written = 2;
         } else {
             throw new ImagingException("BMP RLE: bad BitsPerPixel: " + bhi.bitsPerPixel);
         }
@@ -67,12 +65,8 @@ final class PixelParserRle extends AbstractPixelParser {
         for (int i = 0; i < repeat; i++) {
 
             if (x >= 0 && x < width && y >= 0 && y < height) {
-                // int rgb = 0xff000000;
-                // rgb = getNextRGB();
                 final int rgb = rgbs[i % rgbs.length];
-                // bi.setRGB(x, y, rgb);
                 imageBuilder.setRgb(x, y, rgb);
-                // bi.setRGB(x, y, 0xff00ff00);
             } else {
                 LOGGER.fine("skipping bad pixel (" + x + "," + y + ")");
             }
@@ -125,25 +119,14 @@ final class PixelParserRle extends AbstractPixelParser {
                         size++;
                     }
 
-                    // System.out.println("b: " + b);
-                    // System.out.println("size: " + size);
-                    // System.out.println("SamplesPerByte: " + SamplesPerByte);
-
                     final byte[] bytes = BinaryFunctions.readBytes("bytes", is, size, "RLE: Absolute Mode");
 
                     int remaining = b;
 
                     for (int i = 0; remaining > 0; i++) {
-                        // for (int i = 0; i < bytes.length; i++)
                         final int[] samples = convertDataToSamples(0xff & bytes[i]);
                         final int towrite = Math.min(remaining, samplesPerByte);
-                        // System.out.println("remaining: " + remaining);
-                        // System.out.println("SamplesPerByte: "
-                        // + SamplesPerByte);
-                        // System.out.println("towrite: " + towrite);
                         final int written = processByteOfData(samples, towrite, x, y, width, height, imageBuilder);
-                        // System.out.println("written: " + written);
-                        // System.out.println("");
                         x += written;
                         remaining -= written;
                     }

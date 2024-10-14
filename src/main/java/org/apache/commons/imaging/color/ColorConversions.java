@@ -86,7 +86,6 @@ public final class ColorConversions {
                 ? Math.toDegrees(atanba) //
                 : Math.toDegrees(atanba) + 360;
 
-        // L = L;
         final double C = Math.sqrt(square(a) + square(b));
 
         return new ColorCieLch(l, C, h);
@@ -188,9 +187,6 @@ public final class ColorConversions {
     }
 
     public static ColorCieLab convertCieLchToCieLab(final double l, final double c, final double h) {
-        // Where CIE-H° = 0 ÷ 360°
-
-        // CIE-L* = CIE-L;
         final double a = Math.cos(degree2radian(h)) * c;
         final double b = Math.sin(degree2radian(h)) * c;
 
@@ -532,7 +528,6 @@ public final class ColorConversions {
         final double l = (varMax + varMin) / 2.0;
 
         double h, s;
-        // Debug.debug("del_Max", del_Max);
         if (delMax == 0) {
             // This is a gray, no chroma...
 
@@ -541,7 +536,6 @@ public final class ColorConversions {
         } else {
             // Chromatic data...
 
-            // Debug.debug("L", L);
 
             if (l < 0.5) {
                 s = delMax / (varMax + varMin);
@@ -549,7 +543,6 @@ public final class ColorConversions {
                 s = delMax / (2 - varMax - varMin);
             }
 
-            // Debug.debug("S", S);
 
             final double delR = ((varMax - varR) / 6 + delMax / 2) / delMax;
             final double delG = ((varMax - varG) / 6 + delMax / 2) / delMax;
@@ -563,16 +556,12 @@ public final class ColorConversions {
                 h = 2 / 3.0 + delG - delR;
             }
 
-            // Debug.debug("H1", H);
-
             if (h < 0) {
                 h += 1;
             }
             if (h > 1) {
                 h -= 1;
             }
-
-            // Debug.debug("H2", H);
         }
 
         return new ColorHsl(h, s, l);
@@ -687,11 +676,6 @@ public final class ColorConversions {
         final double Y = varR * 0.2126729 + varG * 0.7151522 + varB * 0.0721750;
         final double Z = varR * 0.0193339 + varG * 0.1191920 + varB * 0.9503041;
 
-        // Attention: A lot of sources do list these values with less precision. But it makes a visual difference:
-        // final double X = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805;
-        // final double Y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722;
-        // final double Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505;
-
         return new ColorXyz(X, Y, Z);
     }
 
@@ -701,21 +685,12 @@ public final class ColorConversions {
         final double varU = 4 * x / (x + 15 * y + 3 * z);
         final double varV = 9 * y / (x + 15 * y + 3 * z);
 
-        // Debug.debug("var_U", var_U);
-        // Debug.debug("var_V", var_V);
-
         double varY = y / 100.0;
-        // Debug.debug("var_Y", var_Y);
 
         varY = pivotXyz(varY);
 
-        // Debug.debug("var_Y", var_Y);
-
         final double refU = 4 * REF_X / (REF_X + 15 * REF_Y + 3 * REF_Z);
         final double refV = 9 * REF_Y / (REF_X + 15 * REF_Y + 3 * REF_Z);
-
-        // Debug.debug("ref_U", ref_U);
-        // Debug.debug("ref_V", ref_V);
 
         final double l = 116 * varY - 16;
         final double u = 13 * l * (varU - refU);
@@ -776,11 +751,6 @@ public final class ColorConversions {
         double varR = varX * 3.2404542 + varY * -1.5371385 + varZ * -0.4985314;
         double varG = varX * -0.9692660 + varY * 1.8760108 + varZ * 0.0415560;
         double varB = varX * 0.0556434 + varY * -0.2040259 + varZ * 1.0572252;
-
-        // Attention: A lot of sources do list these values with less precision. But it makes a visual difference:
-        // double var_R = var_X * 3.2406 + var_Y * -1.5372 + var_Z * -0.4986;
-        // double var_G = var_X * -0.9689 + var_Y * 1.8758 + var_Z * 0.0415;
-        // double var_B = var_X * 0.0557 + var_Y * -0.2040 + var_Z * 1.0570;
 
         varR = pivotRgb(varR);
         varG = pivotRgb(varG);

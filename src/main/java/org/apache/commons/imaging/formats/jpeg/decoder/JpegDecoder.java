@@ -451,11 +451,6 @@ public class JpegDecoder extends BinaryFileParser implements JpegUtils.Visitor {
                 raster = Raster.createPackedRaster(DataBuffer.TYPE_INT, sofnSegment.width, sofnSegment.height, new int[] { 0x00ff0000, 0x0000ff00, 0x000000ff },
                         null);
                 // FIXME: why do images come out too bright with CS_GRAY?
-                // colorModel = new ComponentColorModel(
-                // ColorSpace.getInstance(ColorSpace.CS_GRAY), false, true,
-                // Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
-                // raster = colorModel.createCompatibleWritableRaster(
-                // sofnSegment.width, sofnSegment.height);
                 break;
             default:
                 throw new ImagingException(sofnSegment.numberOfComponents + " components are invalid or unsupported");
@@ -486,9 +481,6 @@ public class JpegDecoder extends BinaryFileParser implements JpegUtils.Visitor {
                     // but special handling was added for TIFF-JPEG RGB colorspace
                     // and conditional checks were reorganized for efficiency
                     if (useTiffRgb && (scaledMCU.length == 3 || scaledMCU.length == 4)) {
-                        // The original (legacy) coding for the x2 and y2 loop was:
-                        // for(y2 = 0; y2 < vSize && y1 + y2 < sofnSegment.height; y2++)
-                        // for(x2 = 0; x2 < hSize && x1 + x2 < sofnSegment.width; x2++)
                         // Here, we pre-compute the limits of the loop to reduce the
                         // overhead for the loop conditional evaluation.
                         final int x2Limit;
@@ -570,12 +562,6 @@ public class JpegDecoder extends BinaryFileParser implements JpegUtils.Visitor {
                 }
             }
             image = new BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied(), new Properties());
-            // byte[] remainder = super.getStreamBytes(is);
-            // for (int i = 0; i < remainder.length; i++)
-            // {
-            // System.out.println("" + i + " = " +
-            // Integer.toHexString(remainder[i]));
-            // }
         } catch (final ImagingException imageReadEx) {
             imageReadException = imageReadEx;
         } catch (final IOException ioEx) {

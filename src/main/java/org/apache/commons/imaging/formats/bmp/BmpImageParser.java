@@ -123,8 +123,6 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
         final BmpImageContents ic = readImageContents(inputStream, FormatCompliance.getDefault());
 
         final BmpHeaderInfo bhi = ic.bhi;
-        // byte[] colorTable = ic.colorTable;
-        // byte[] imageData = ic.imageData;
 
         final int width = bhi.width;
         final int height = bhi.height;
@@ -198,12 +196,8 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
         final int numberOfImages = -1;
         // not accurate ... only reflects first
         final boolean progressive = false;
-        // boolean progressive = (fPNGChunkIHDR.InterlaceMethod != 0);
-        //
-        // pixels per meter
         final int physicalWidthDpi = (int) Math.round(bhi.hResolution * .0254);
         final float physicalWidthInch = (float) ((double) width / (double) physicalWidthDpi);
-        // int physicalHeightDpi = 72;
         final int physicalHeightDpi = (int) Math.round(bhi.vResolution * .0254);
         final float physicalHeightInch = (float) ((double) height / (double) physicalHeightDpi);
 
@@ -241,9 +235,6 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
 
     private byte[] getRleBytes(final InputStream is, final int rleSamplesPerByte) throws IOException {
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-        // this.setDebug(true);
-
         boolean done = false;
         while (!done) {
             final int a = 0xff & readByte("RLE a", is, "BMP: Bad RLE");
@@ -256,13 +247,9 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
                 case 0: // EOL
                     break;
                 case 1: // EOF
-                    // System.out.println("xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-                    // );
                     done = true;
                     break;
                 case 2: {
-                    // System.out.println("xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-                    // );
                     final int c = 0xff & readByte("RLE c", is, "BMP: Bad RLE");
                     baos.write(c);
                     final int d = 0xff & readByte("RLE d", is, "BMP: Bad RLE");
@@ -278,13 +265,6 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
                     if (size % 2 != 0) {
                         size++;
                     }
-
-                    // System.out.println("b: " + b);
-                    // System.out.println("size: " + size);
-                    // System.out.println("RLESamplesPerByte: " +
-                    // RLESamplesPerByte);
-                    // System.out.println("xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-                    // );
                     final byte[] bytes = readBytes("bytes", is, size, "RLE: Absolute Mode");
                     baos.write(bytes);
                 }
@@ -298,7 +278,6 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
 
     private BmpHeaderInfo readBmpHeaderInfo(final ByteSource byteSource) throws ImagingException, IOException {
         try (InputStream is = byteSource.getInputStream()) {
-            // readSignature(is);
             return readBmpHeaderInfo(is, null);
         }
     }
@@ -480,10 +459,6 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
             } else {
                 paletteLength = 0;
             }
-            // BytesPerPaletteEntry = 0;
-            // System.out.println("Compression: BI_RGBx2: " + bhi.BitsPerPixel);
-            // System.out.println("Compression: BI_RGBx2: " + (bhi.BitsPerPixel
-            // <= 16));
             break;
 
         case BI_RLE4:
@@ -492,10 +467,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
             }
             paletteLength = 4 * colorTableSize;
             rleSamplesPerByte = 2;
-            // ExtraBitsPerPixel = 4;
             rle = true;
-            // // BytesPerPixel = 2;
-            // // BytesPerPaletteEntry = 0;
             break;
         //
         case BI_RLE8:
@@ -504,10 +476,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
             }
             paletteLength = 4 * colorTableSize;
             rleSamplesPerByte = 1;
-            // ExtraBitsPerPixel = 8;
             rle = true;
-            // BytesPerPixel = 2;
-            // BytesPerPaletteEntry = 0;
             break;
         //
         case BI_BITFIELDS:
@@ -519,8 +488,6 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
             } else {
                 paletteLength = 0;
             }
-            // BytesPerPixel = 2;
-            // BytesPerPaletteEntry = 4;
             break;
 
         default:
@@ -545,18 +512,11 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
 
         if (LOGGER.isLoggable(Level.FINE)) {
             final int pixelCount = bhi.width * bhi.height;
-            // this.debugNumber("Total BitsPerPixel",
-            // (ExtraBitsPerPixel + bhi.BitsPerPixel), 4);
-            // this.debugNumber("Total Bit Per Line",
-            // ((ExtraBitsPerPixel + bhi.BitsPerPixel) * bhi.Width), 4);
-            // this.debugNumber("ExtraBitsPerPixel", ExtraBitsPerPixel, 4);
             debugNumber("bhi.Width", bhi.width, 4);
             debugNumber("bhi.Height", bhi.height, 4);
             debugNumber("ImageLineLength", imageLineLength, 4);
-            // this.debugNumber("imageDataSize", imageDataSize, 4);
             debugNumber("PixelCount", pixelCount, 4);
         }
-        // int ImageLineLength = BytesPerPixel * bhi.Width;
         while (imageLineLength % 4 != 0) {
             imageLineLength++;
         }

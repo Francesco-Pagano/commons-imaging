@@ -85,7 +85,6 @@ final class Dct {
         final float a21 = a10 - a20;
         final float a31 = a00 - a30;
         // Avoid some negations:
-        // float a41 = -a40 - a50;
         final float neg_a41 = a40 + a50;
         final float a51 = a50 + a60;
         final float a61 = a60 + a70;
@@ -206,7 +205,6 @@ final class Dct {
         // M
         final float tmp4 = C6 * (a4 + a6);
         // Eliminate the negative:
-        // float b4 = -Q*a4 - tmp4;
         final float neg_b4 = Q * a4 + tmp4;
         final float b6 = R * a6 - tmp4;
         final float b2 = a2 * C4;
@@ -225,7 +223,6 @@ final class Dct {
         final float m4 = n3 + a3;
         final float m5 = n1 - n2;
         final float m6 = n3 - a3;
-        // float m7 = n5 - n0;
         final float neg_m7 = neg_n5 + n0;
 
         // A3

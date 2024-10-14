@@ -87,15 +87,9 @@ public class GenericImageMetadata implements ImageMetadata {
             if (i > 0) {
                 result.append(NEWLINE);
             }
-            // if (null != prefix)
-            // result.append(prefix);
 
             final ImageMetadataItem item = items.get(i);
             result.append(item.toString(prefix + "\t"));
-
-            // Debug.debug("prefix", prefix);
-            // Debug.debug("item", items.get(i));
-            // Debug.debug();
         }
         return result.toString();
     }

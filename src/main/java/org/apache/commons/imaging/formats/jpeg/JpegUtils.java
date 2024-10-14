@@ -44,10 +44,6 @@ public class JpegUtils extends BinaryFileParser {
         switch (marker) {
         case JpegConstants.SOS_MARKER:
             return "SOS_MARKER";
-        // case JPEG_APP0 :
-        // return "JPEG_APP0";
-        // case JPEG_APP0_MARKER :
-        // return "JPEG_APP0_MARKER";
         case JpegConstants.JPEG_APP1_MARKER:
             return "JPEG_APP1_MARKER";
         case JpegConstants.JPEG_APP2_MARKER:

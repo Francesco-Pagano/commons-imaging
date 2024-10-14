@@ -118,7 +118,6 @@ public final class PackBits {
     }
 
     private static int findNextDuplicate(final byte[] bytes, final int start) {
-        // int last = -1;
         if (start >= bytes.length) {
             return -1;
         }

@@ -574,26 +574,6 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
     // public boolean extractImages(ByteSource byteSource, File dst_dir,
     // String dst_root, ImageParser encoder) throws ImageReadException,
     // IOException, ImageWriteException
-    // {
-    // ImageContents contents = readImage(byteSource);
-    //
-    // FileHeader fileHeader = contents.fileHeader;
-    // for (int i = 0; i < fileHeader.iconCount; i++)
-    // {
-    // IconData iconData = contents.iconDatas[i];
-    //
-    // BufferedImage image = readBufferedImage(iconData);
-    //
-    // int size = Math.max(iconData.iconInfo.Width,
-    // iconData.iconInfo.Height);
-    // File file = new File(dst_dir, dst_root + "_" + size + "_"
-    // + iconData.iconInfo.BitCount
-    // + encoder.getDefaultExtension());
-    // encoder.writeImage(image, new FileOutputStream(file), null);
-    // }
-    //
-    // return true;
-    // }
 
     @Override
     public void writeImage(final BufferedImage src, final OutputStream os, IcoImagingParameters params) throws ImagingException, IOException {

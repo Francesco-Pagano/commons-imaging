@@ -155,7 +155,6 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
                 final AbstractSegment abstractSegment = abstractSegments.get(d);
 
                 final NumberFormat nf = NumberFormat.getIntegerInstance();
-                // this.debugNumber("found, marker: ", marker, 4);
                 pw.println(d + ": marker: " + Integer.toHexString(abstractSegment.marker) + ", " + abstractSegment.getDescription() + " (length: "
                         + nf.format(abstractSegment.length) + ")");
                 abstractSegment.dump(pw);
@@ -245,9 +244,6 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
             LOGGER.finest("exifSegments.size()" + ": " + exifSegments.size());
         }
 
-        // Debug.debug("segments", segments);
-        // Debug.debug("exifSegments", exifSegments);
-
         // TODO: concatenate if multiple segments, need example.
         if (exifSegments.isEmpty()) {
             return null;
@@ -259,10 +255,6 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
 
         final GenericSegment segment = (GenericSegment) exifSegments.get(0);
         final byte[] bytes = segment.getSegmentData();
-
-        // byte[] head = readBytearray("exif head", bytes, 0, 6);
-        //
-        // Debug.debug("head", head);
 
         return remainingBytes("trimmed exif bytes", bytes, 6);
     }
@@ -297,7 +289,6 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
 
     @Override
     public ImageInfo getImageInfo(final ByteSource byteSource, final JpegImagingParameters params) throws ImagingException, IOException {
-        // List allSegments = readSegments(byteSource, null, false);
 
         final List<AbstractSegment> SOF_segments = readSegments(byteSource, new int[] {
                 // kJFIFMarker,
@@ -312,15 +303,9 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
             throw new ImagingException("No SOFN Data Found.");
         }
 
-        // if (SOF_segments.size() != 1)
-        // System.out.println("Incoherent SOFN Data Found: "
-        // + SOF_segments.size());
-
         final List<AbstractSegment> jfifSegments = readSegments(byteSource, new int[] { JpegConstants.JFIF_MARKER, }, true);
 
         final SofnSegment fSOFNSegment = (SofnSegment) SOF_segments.get(0);
-        // SofnSegment fSOFNSegment = (SofnSegment) findSegment(segments,
-        // SOFNmarkers);
 
         if (fSOFNSegment == null) {
             throw new ImagingException("No SOFN Data Found.");
@@ -341,22 +326,15 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
             app14Segment = (App14Segment) app14Segments.get(0);
         }
 
-        // JfifSegment fTheJFIFSegment = (JfifSegment) findSegment(segments,
-        // kJFIFMarker);
-
         double xDensity = -1.0;
         double yDensity = -1.0;
         double unitsPerInch = -1.0;
-        // int JFIF_major_version;
-        // int JFIF_minor_version;
         String formatDetails;
 
         if (jfifSegment != null) {
             xDensity = jfifSegment.xDensity;
             yDensity = jfifSegment.yDensity;
             final int densityUnits = jfifSegment.densityUnits;
-            // JFIF_major_version = fTheJFIFSegment.JFIF_major_version;
-            // JFIF_minor_version = fTheJFIFSegment.JFIF_minor_version;
 
             formatDetails = "Jpeg/JFIF v." + jfifSegment.jfifMajorVersion + "." + jfifSegment.jfifMinorVersion;
 
@@ -883,19 +861,12 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
                     return false;
                 }
 
-                // Debug.debug("visitSegment marker", marker);
-                // // Debug.debug("visitSegment keepMarker(marker, markers)",
-                // keepMarker(marker, markers));
-                // Debug.debug("visitSegment keepMarker(marker, markers)",
-                // keepMarker(marker, markers));
-
                 if (!keepMarker(marker, markers)) {
                     return true;
                 }
 
                 switch (marker) {
                 case JpegConstants.JPEG_APP13_MARKER:
-                    // Debug.debug("app 13 segment data", segmentData.length);
                     result.add(new App13Segment(marker, segmentData));
                     break;
                 case JpegConstants.JPEG_APP14_MARKER:

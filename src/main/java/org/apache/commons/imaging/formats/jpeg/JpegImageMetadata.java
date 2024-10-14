@@ -85,7 +85,6 @@ public class JpegImageMetadata implements ImageMetadata {
         final List<? extends ImageMetadataItem> dirs = exif.getDirectories();
         for (final ImageMetadataItem d : dirs) {
             final TiffImageMetadata.Directory dir = (TiffImageMetadata.Directory) d;
-            // Debug.debug("dir", dir);
             BufferedImage image = dir.getThumbnail();
             if (null != image) {
                 return image;
@@ -185,7 +184,6 @@ public class JpegImageMetadata implements ImageMetadata {
         final List<? extends ImageMetadataItem> dirs = exif.getDirectories();
         for (final ImageMetadataItem d : dirs) {
             final TiffImageMetadata.Directory dir = (TiffImageMetadata.Directory) d;
-            // Debug.debug("dir", dir);
             final AbstractTiffImageData rawImageData = dir.getTiffImageData();
             if (null != rawImageData) {
                 return rawImageData;
@@ -217,7 +215,6 @@ public class JpegImageMetadata implements ImageMetadata {
             result.append(exif.toString("\t"));
         }
 
-        // if (null != exif && null != photoshop)
         result.append(NEWLINE);
 
         result.append(prefix);

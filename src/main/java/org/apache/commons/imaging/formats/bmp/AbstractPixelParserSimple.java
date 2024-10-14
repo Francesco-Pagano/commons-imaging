@@ -37,7 +37,6 @@ abstract class AbstractPixelParserSimple extends AbstractPixelParser {
                 final int rgb = getNextRgb();
 
                 imageBuilder.setRgb(x, y, rgb);
-                // db.setElem(y * bhi.width + x, rgb);
             }
             newline();
         }

@@ -556,8 +556,6 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
             case IMAGE_SEPARATOR:
                 final ImageDescriptor id = readImageDescriptor(ghi, code, is, stopBeforeImageData, formatCompliance);
                 result.add(id);
-                // if (stopBeforeImageData)
-                // return result;
 
                 break;
 
@@ -854,8 +852,6 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
         final int maxColors = hasAlpha ? 255 : 256;
 
         Palette palette2 = new PaletteFactory().makeExactRgbPaletteSimple(src, maxColors);
-        // int[] palette = new PaletteFactory().makePaletteSimple(src, 256);
-        // Map palette_map = paletteToMap(palette);
 
         if (palette2 == null) {
             palette2 = new PaletteFactory().makeQuantizedRgbPalette(src, maxColors);
@@ -905,18 +901,11 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
                 bos.write(pixelAspectRatio);
             }
 
-            // {
-            // write Global Color Table.
-
-            // }
-
             { // ALWAYS write GraphicControlExtension
                 bos.write(EXTENSION_CODE);
                 bos.write((byte) 0xf9);
-                // bos.write(0xff & (kGraphicControlExtension >> 8));
-                // bos.write(0xff & (kGraphicControlExtension >> 0));
 
-                bos.write((byte) 4); // block size;
+                bos.write((byte) 4);
                 final int packedFields = hasAlpha ? 1 : 0; // transparency flag
                 bos.write((byte) packedFields);
                 bos.write((byte) 0); // Delay Time
@@ -955,12 +944,9 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
 
                 {
                     final boolean localColorTableFlag = true;
-                    // boolean LocalColorTableFlag = false;
                     final boolean interlaceFlag = false;
                     final boolean sortFlag = false;
                     final int sizeOfLocalColorTable = colorTableScaleLessOne;
-
-                    // int SizeOfLocalColorTable = 0;
 
                     final int packedFields;
                     if (localColorTableFlag) {
@@ -994,10 +980,8 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
             }
 
             { // get Image Data.
-//            int image_data_total = 0;
 
                 int lzwMinimumCodeSize = colorTableScaleLessOne + 1;
-                // LZWMinimumCodeSize = Math.max(8, LZWMinimumCodeSize);
                 if (lzwMinimumCodeSize < 2) {
                     lzwMinimumCodeSize = 2;
                 }
@@ -1010,7 +994,6 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
                 bos.write(lzwMinimumCodeSize);
 
                 final MyLzwCompressor compressor = new MyLzwCompressor(lzwMinimumCodeSize, ByteOrder.LITTLE_ENDIAN, false); // GIF
-                // Mode);
 
                 final byte[] imageData = Allocator.byteArray(width * height);
                 for (int y = 0; y < height; y++) {
@@ -1030,20 +1013,13 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
                         } else {
                             index = palette2.getPaletteIndex(rgb);
                         }
-
                         imageData[y * width + x] = (byte) index;
                     }
                 }
-
                 final byte[] compressed = compressor.compress(imageData);
                 writeAsSubBlocks(bos, compressed);
-//            image_data_total += compressed.length;
             }
-
-            // palette2.dump();
-
             bos.write(TERMINATOR_BYTE);
-
         }
         os.close();
     }

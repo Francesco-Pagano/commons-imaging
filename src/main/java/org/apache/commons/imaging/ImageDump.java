@@ -34,8 +34,6 @@ public class ImageDump {
     private static final Logger LOGGER = Logger.getLogger(ImageDump.class.getName());
 
     private String colorSpaceTypeToName(final ColorSpace cs) {
-        // System.out.println(prefix + ": " + "type: "
-        // + cs.getType() );
         switch (cs.getType()) {
         case ColorSpace.TYPE_CMYK:
             return "TYPE_CMYK";
