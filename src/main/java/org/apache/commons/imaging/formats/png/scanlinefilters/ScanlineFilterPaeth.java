@@ -57,21 +57,15 @@ public class ScanlineFilterPaeth implements ScanlineFilter {
             if (up != null) {
                 above = up[i];
             }
-            // above = 255;
 
             int upperLeft = 0;
             if (prevIndex >= 0 && up != null) {
                 upperLeft = up[prevIndex];
             }
-            // upperLeft = 255;
 
             final int paethPredictor = paethPredictor(0xff & left, 0xff & above, 0xff & upperLeft);
 
             dst[i] = (byte) ((src[i] + paethPredictor) % 256);
-            // dst[i] = (byte) ((src[i] + paethPredictor) );
-            // dst[i] = src[i];
-
-            // dst[i] = (byte) 0;
         }
     }
 }

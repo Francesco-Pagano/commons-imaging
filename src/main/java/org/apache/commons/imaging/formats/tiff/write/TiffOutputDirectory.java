@@ -495,7 +495,6 @@ public final class TiffOutputDirectory extends AbstractTiffOutputItem implements
 
             final AbstractTiffElement.DataElement[] imageData = abstractTiffImageData.getImageData();
 
-            // TiffOutputField imageDataOffsetsField = null;
 
             final int[] imageDataOffsets = Allocator.intArray(imageData.length);
             final int[] imageDataByteCounts = Allocator.intArray(imageData.length);
@@ -524,7 +523,6 @@ public final class TiffOutputDirectory extends AbstractTiffOutputItem implements
 
             final AbstractTiffOutputItem item = field.getSeperateValue();
             result.add(item);
-            // outputSummary.add(item, field);
         }
 
         if (null != imageDataInfo) {
@@ -610,11 +608,6 @@ public final class TiffOutputDirectory extends AbstractTiffOutputItem implements
         // Write Fields
         for (final TiffOutputField field : fields) {
             field.writeField(bos);
-
-            // Debug.debug("\t" + "writing field (" + field.tag + ", 0x" +
-            // Integer.toHexString(field.tag) + ")", field.tagInfo);
-            // if (field.tagInfo.isOffset())
-            // Debug.debug("\t\tOFFSET!", field.bytes);
         }
 
         long nextDirectoryOffset = 0;

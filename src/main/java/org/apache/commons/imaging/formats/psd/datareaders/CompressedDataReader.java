@@ -48,14 +48,11 @@ public class CompressedDataReader implements DataReader {
         final int width = header.columns;
         final int height = header.rows;
 
-        // this.setDebug(true);
         final int scanlineCount = height * header.channels;
         final int[] scanlineByteCounts = Allocator.intArray(scanlineCount);
         for (int i = 0; i < scanlineCount; i++) {
             scanlineByteCounts[i] = BinaryFunctions.read2Bytes("scanlineByteCounts[" + i + "]", is, "PSD: bad Image Data", bfp.getByteOrder());
         }
-        // System.out.println("fImageContents.Compression: "
-        // + imageContents.Compression);
 
         final int depth = header.depth;
 

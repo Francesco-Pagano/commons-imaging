@@ -84,10 +84,6 @@ public class PhotometricInterpreterLogLuv extends PhotometricInterpreter {
             varB = 12.92f * varB;
         }
 
-        // var_R = ((var_R + 0.16561039f) / (3.0152583f + 0.16561039f));
-        // var_G = ((var_G + 0.06561642f) / (3.0239854f + 0.06561642f));
-        // var_B = ((var_B + 0.19393992f) / (3.1043448f + 0.19393992f));
-
         final RgbValues values = new RgbValues();
         values.r = (int) (varR * 255f);
         values.g = (int) (varG * 255f);
@@ -167,10 +163,6 @@ public class PhotometricInterpreterLogLuv extends PhotometricInterpreter {
         // ref_Z = 108.883
 
         final RgbValues rgbValues = getRgbValues(tristimulusValues);
-
-        // float R = 1.910f * X - 0.532f * Y - 0.288f * Z;
-        // float G = -0.985f * X + 1.999f * Y - 0.028f * Z;
-        // float B = 0.058f * X - 0.118f * Y + 0.898f * Z;
 
         final int red = Math.min(255, Math.max(0, rgbValues.r));
         final int green = Math.min(255, Math.max(0, rgbValues.g));

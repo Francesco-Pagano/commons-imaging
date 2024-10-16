@@ -206,7 +206,6 @@ public abstract class ImageDataReader {
 
         switch (compression) {
         case TiffConstants.COMPRESSION_UNCOMPRESSED:
-            // None;
             return compressedOrdered;
         case TiffConstants.COMPRESSION_CCITT_1D:
             // CCITT Group 3 1-Dimensional Modified Huffman run-length encoding.

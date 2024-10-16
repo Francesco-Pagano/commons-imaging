@@ -40,21 +40,15 @@ public abstract class IptcBaseTest extends AbstractImagingTest {
     }
 
     protected static boolean hasIptcData(final File file) {
-        // Debug.debug("hasIptcData file", file.getAbsoluteFile());
 
         if (!file.getName().toLowerCase().endsWith(".jpg")) {
             return false;
-            // ImageFormat format = Imaging.guessFormat(file);
-            // if (format != ImageFormat.IMAGE_FORMAT_JPEG)
-            // return false;
         }
 
         try {
             final ByteSource byteSource = ByteSource.file(file);
             return new JpegImageParser().hasIptcSegment(byteSource);
         } catch (final Exception e) {
-            // Debug.debug("Error file", file.getAbsoluteFile());
-            // Debug.debug(e, 4);
             return false;
         }
     }

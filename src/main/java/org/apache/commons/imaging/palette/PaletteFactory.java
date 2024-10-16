@@ -36,12 +36,10 @@ import org.apache.commons.imaging.common.Allocator;
 public class PaletteFactory {
 
     private static final class DivisionCandidate {
-        // private final ColorSpaceSubset src;
         private final ColorSpaceSubset dstA;
         private final ColorSpaceSubset dstB;
 
         DivisionCandidate(final ColorSpaceSubset dstA, final ColorSpaceSubset dstB) {
-            // this.src = src;
             this.dstA = dstA;
             this.dstB = dstB;
         }
@@ -70,7 +68,7 @@ public class PaletteFactory {
                     if (first < 0) {
                         first = rgb;
                     } else if (rgb != first) {
-                        return 2; // more than one transparent color;
+                        return 2;
                     }
                 }
             }
@@ -91,7 +89,7 @@ public class PaletteFactory {
                 if (first < 0) {
                     first = rgb;
                 } else if (rgb != first) {
-                    return 2; // more than one transparent color;
+                    return 2;
                 }
             }
         }
@@ -241,8 +239,6 @@ public class PaletteFactory {
             LOGGER.finest("total: " + total);
             LOGGER.finest("first total: " + sum);
             LOGGER.finest("second total: " + (total - sum));
-            // System.out.println("start: " + start);
-            // System.out.println("end: " + end);
             LOGGER.finest("slice: " + slice);
 
         }
@@ -385,7 +381,6 @@ public class PaletteFactory {
      * @return the complete palette of {@code max} or less colors, or {@code null} if more than {@code max} colors are necessary
      */
     public SimplePalette makeExactRgbPaletteSimple(final BufferedImage src, final int max) {
-        // This is not efficient for large values of max, say, max > 256;
         final Set<Integer> rgbs = new HashSet<>();
 
         final int width = src.getWidth();

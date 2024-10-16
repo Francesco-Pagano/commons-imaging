@@ -41,15 +41,9 @@ public class PngWriteForceTrueColorText extends AbstractPngTest {
                 }
 
                 Debug.debug("imageFile", imageFile);
-                // Debug.debug();
-
-                // params.put(ImagingConstants.PARAM_KEY_VERBOSE,
-                // Boolean.TRUE);
 
                 final BufferedImage image = pngImageParser.getBufferedImage(imageFile, new PngImagingParameters());
                 assertNotNull(image);
-
-                // Debug.debug("outFile", outFile);
 
                 final PngImagingParameters params = new PngImagingParameters();
                 byte[] outFile;

@@ -33,7 +33,6 @@ public class DataParserBitmap extends DataParser {
         } else {
             sample = 0;
         }
-        // sample = 255- sample;
         final int alpha = 0xff;
 
         return (0xff & alpha) << 24 | (0xff & sample) << 16 | (0xff & sample) << 8 | (0xff & sample) << 0;

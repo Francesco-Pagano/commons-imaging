@@ -215,8 +215,6 @@ public abstract class AbstractTiffImageWriter {
         for (final TiffOutputDirectory directory : outputSet) {
             final int dirType = directory.getType();
             directoryTypeMap.put(dirType, directory);
-            // Debug.debug("validating dirType", dirType + " ("
-            // + directory.getFields().size() + " fields)");
 
             if (dirType < 0) {
                 switch (dirType) {
@@ -351,8 +349,6 @@ public abstract class AbstractTiffImageWriter {
         }
 
         return result;
-
-        // Debug.debug();
     }
 
     public abstract void write(OutputStream os, TiffOutputSet outputSet) throws IOException, ImagingException;
@@ -424,12 +420,6 @@ public abstract class AbstractTiffImageWriter {
         rowsPerStrip = Math.max(1, rowsPerStrip); // must have at least one.
 
         final byte[][] strips = getStrips(src, samplesPerPixel, bitsPerSample, rowsPerStrip);
-
-        // System.out.println("width: " + width);
-        // System.out.println("height: " + height);
-        // System.out.println("fRowsPerStrip: " + fRowsPerStrip);
-        // System.out.println("fSamplesPerPixel: " + fSamplesPerPixel);
-        // System.out.println("stripCount: " + stripCount);
 
         int t4Options = 0;
         int t6Options = 0;
@@ -512,8 +502,6 @@ public abstract class AbstractTiffImageWriter {
         final TiffOutputSet outputSet = new TiffOutputSet(byteOrder);
         final TiffOutputDirectory directory = outputSet.addRootDirectory();
 
-        // WriteField stripOffsetsField;
-
         directory.add(TiffTagConstants.TIFF_TAG_IMAGE_WIDTH, width);
         directory.add(TiffTagConstants.TIFF_TAG_IMAGE_LENGTH, height);
         directory.add(TiffTagConstants.TIFF_TAG_PHOTOMETRIC_INTERPRETATION, (short) photometricInterpretation);
@@ -535,19 +523,7 @@ public abstract class AbstractTiffImageWriter {
         default:
             break;
         }
-        // {
-        // stripOffsetsField = new WriteField(TIFF_TAG_STRIP_OFFSETS,
-        // FIELD_TYPE_LONG, stripOffsets.length, FIELD_TYPE_LONG
-        // .writeData(stripOffsets, byteOrder));
-        // directory.add(stripOffsetsField);
-        // }
-        // {
-        // WriteField field = new WriteField(TIFF_TAG_STRIP_BYTE_COUNTS,
-        // FIELD_TYPE_LONG, stripByteCounts.length,
-        // FIELD_TYPE_LONG.writeData(stripByteCounts,
-        // WRITE_BYTE_ORDER));
-        // directory.add(field);
-        // }
+
         directory.add(TiffTagConstants.TIFF_TAG_ROWS_PER_STRIP, rowsPerStrip);
         if (pixelDensity.isUnitless()) {
             directory.add(TiffTagConstants.TIFF_TAG_RESOLUTION_UNIT, (short) 0);

@@ -25,7 +25,6 @@ public abstract class AbstractSegment extends BinaryFileParser {
     public final int length;
 
     public AbstractSegment(final int marker, final int length) {
-        // super();
 
         this.marker = marker;
         this.length = length;
@@ -110,16 +109,10 @@ public abstract class AbstractSegment extends BinaryFileParser {
             return "Define hierarchical progression";
         case 0xffdf:
             return "Expand reference component(s)";
-        // case 0xffd8 :
-        // return "Reserved for application segments";
-        // case 0xffd8 :
-        // return "Reserved for JPEG extensions";
         case 0xfffe:
             return "Comment";
         case 0xff01:
             return "For temporary private use in arithmetic coding";
-        // case 0xffd8 :
-        // return "Reserved";
 
         default:
         }

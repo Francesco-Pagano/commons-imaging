@@ -83,7 +83,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
 
         pw.println("blocks.size(): " + blocks.size());
 
-        // System.out.println("gif.blocks: " + blocks.blocks.size());
         for (int i = 0; i < blocks.size(); i++) {
             final ImageResourceBlock block = blocks.get(i);
             pw.println("\t" + i + " (" + Integer.toHexString(block.id) + ", " + "'" + new String(block.nameData, StandardCharsets.ISO_8859_1) + "' ("
@@ -112,20 +111,11 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     @Override
     public BufferedImage getBufferedImage(final ByteSource byteSource, final PsdImagingParameters params) throws ImagingException, IOException {
         final PsdImageContents imageContents = readImageContents(byteSource);
-        // ImageContents imageContents = readImage(byteSource, false);
 
         final PsdHeaderInfo header = imageContents.header;
         if (header == null) {
             throw new ImagingException("PSD: Couldn't read Header");
         }
-
-        // ImageDescriptor id = (ImageDescriptor)
-        // findBlock(fImageContents.blocks,
-        // kImageSeperator);
-        // if (id == null)
-        // throw new ImageReadException("PSD: Couldn't read Image Descriptor");
-        // GraphicControlExtension gce = (GraphicControlExtension) findBlock(
-        // fImageContents.blocks, kGraphicControlExtension);
 
         readImageResourceBlocks(byteSource,
                 // fImageContents.ImageResources,
@@ -133,11 +123,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
 
         final int width = header.columns;
         final int height = header.rows;
-        // int height = header.Columns;
-
-        // int transfer_type;
-
-        // transfer_type = DataBuffer.TYPE_BYTE;
 
         final boolean hasAlpha = false;
         final BufferedImage result = getBufferedImageFactory(params).getColorBufferedImage(width, height, hasAlpha);
@@ -148,7 +133,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             dataParser = new DataParserBitmap();
             break;
         case 1:
-        case 8: // Duotone=8;
+        case 8:
             dataParser = new DataParserGrayscale();
             break;
         case 3:
@@ -161,25 +146,12 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             dataParser = new DataParserLab();
             break;
         case COLOR_MODE_INDEXED: {
-            // case 2 : // Indexed=2;
             final byte[] ColorModeData = getData(byteSource, PSD_SECTION_COLOR_MODE);
-
-            // ImageResourceBlock block = findImageResourceBlock(blocks,
-            // 0x03EB);
-            // if (block == null)
-            // throw new ImageReadException(
-            // "Missing: Indexed Color Image Resource Block");
 
             dataParser = new DataParserIndexed(ColorModeData);
             break;
         }
-        case 7: // Multichannel=7;
-            // fDataParser = new DataParserStub();
-            // break;
-
-            // case 1 :
-            // fDataReader = new CompressedDataReader();
-            // break;
+        case 7:
         default:
             throw new ImagingException("Unknown Mode: " + imageContents.header.mode);
         }
@@ -197,10 +169,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
 
         try (InputStream is = getInputStream(byteSource, PSD_SECTION_IMAGE_DATA)) {
             fDataReader.readData(is, result, imageContents, this);
-
-            // is.
-            // ImageContents imageContents = readImageContents(is);
-            // return imageContents;
         }
 
         return result;
@@ -233,7 +201,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
 
     private byte[] getData(final ByteSource byteSource, final int section) throws ImagingException, IOException {
         try (InputStream is = byteSource.getInputStream()) {
-            // PsdHeaderInfo header = readHeader(is);
             if (section == PSD_SECTION_HEADER) {
                 return BinaryFunctions.readBytes("Header", is, PSD_HEADER_LENGTH, "Not a Valid PSD File");
             }
@@ -246,8 +213,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             }
 
             BinaryFunctions.skipBytes(is, colorModeDataLength);
-            // byte[] ColorModeData = readByteArray("ColorModeData",
-            // ColorModeDataLength, is, "Not a Valid PSD File");
 
             final int imageResourcesLength = BinaryFunctions.read4Bytes("ImageResourcesLength", is, "Not a Valid PSD File", getByteOrder());
 
@@ -256,8 +221,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             }
 
             BinaryFunctions.skipBytes(is, imageResourcesLength);
-            // byte[] ImageResources = readByteArray("ImageResources",
-            // ImageResourcesLength, is, "Not a Valid PSD File");
 
             final int layerAndMaskDataLength = BinaryFunctions.read4Bytes("LayerAndMaskDataLength", is, "Not a Valid PSD File", getByteOrder());
 
@@ -266,18 +229,8 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             }
 
             BinaryFunctions.skipBytes(is, layerAndMaskDataLength);
-            // byte[] LayerAndMaskData = readByteArray("LayerAndMaskData",
-            // LayerAndMaskDataLength, is, "Not a Valid PSD File");
 
             BinaryFunctions.read2Bytes("Compression", is, "Not a Valid PSD File", getByteOrder());
-
-            // byte[] ImageData = readByteArray("ImageData",
-            // LayerAndMaskDataLength, is, "Not a Valid PSD File");
-
-            // if (section == kPSD_SECTION_IMAGE_DATA)
-            // return readByteArray("LayerAndMaskData", LayerAndMaskDataLength,
-            // is,
-            // "Not a Valid PSD File");
         }
         throw new ImagingException("getInputStream: Unknown Section: " + section);
     }
@@ -311,7 +264,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     @Override
     public ImageInfo getImageInfo(final ByteSource byteSource, final PsdImagingParameters params) throws ImagingException, IOException {
         final PsdImageContents imageContents = readImageContents(byteSource);
-        // ImageContents imageContents = readImage(byteSource, false);
 
         final PsdHeaderInfo header = imageContents.header;
         if (header == null) {
@@ -325,10 +277,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
         // TODO: comments...
 
         int bitsPerPixel = header.depth * getChannelsPerMode(header.mode);
-        // System.out.println("header.Depth: " + header.Depth);
-        // System.out.println("header.Mode: " + header.Mode);
-        // System.out.println("getChannelsPerMode(header.Mode): " +
-        // getChannelsPerMode(header.Mode));
         if (bitsPerPixel < 0) {
             bitsPerPixel = 0;
         }
@@ -386,7 +334,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             }
 
             BinaryFunctions.skipBytes(is, PSD_HEADER_LENGTH);
-            // is.skip(kHeaderLength);
 
             final int colorModeDataLength = BinaryFunctions.read4Bytes("ColorModeDataLength", is, "Not a Valid PSD File", getByteOrder());
 
@@ -395,8 +342,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             }
 
             BinaryFunctions.skipBytes(is, colorModeDataLength);
-            // byte[] ColorModeData = readByteArray("ColorModeData",
-            // ColorModeDataLength, is, "Not a Valid PSD File");
 
             final int imageResourcesLength = BinaryFunctions.read4Bytes("ImageResourcesLength", is, "Not a Valid PSD File", getByteOrder());
 
@@ -405,8 +350,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             }
 
             BinaryFunctions.skipBytes(is, imageResourcesLength);
-            // byte[] ImageResources = readByteArray("ImageResources",
-            // ImageResourcesLength, is, "Not a Valid PSD File");
 
             final int layerAndMaskDataLength = BinaryFunctions.read4Bytes("LayerAndMaskDataLength", is, "Not a Valid PSD File", getByteOrder());
 
@@ -415,13 +358,9 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
             }
 
             BinaryFunctions.skipBytes(is, layerAndMaskDataLength);
-            // byte[] LayerAndMaskData = readByteArray("LayerAndMaskData",
-            // LayerAndMaskDataLength, is, "Not a Valid PSD File");
 
             BinaryFunctions.read2Bytes("Compression", is, "Not a Valid PSD File", getByteOrder());
 
-            // byte[] ImageData = readByteArray("ImageData",
-            // LayerAndMaskDataLength, is, "Not a Valid PSD File");
 
             if (section == PSD_SECTION_IMAGE_DATA) {
                 return is;
@@ -527,29 +466,14 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
 
         final int colorModeDataLength = BinaryFunctions.read4Bytes("ColorModeDataLength", is, "Not a Valid PSD File", getByteOrder());
         BinaryFunctions.skipBytes(is, colorModeDataLength);
-        // is.skip(ColorModeDataLength);
-        // byte[] ColorModeData = readByteArray("ColorModeData",
-        // ColorModeDataLength, is, "Not a Valid PSD File");
 
         final int imageResourcesLength = BinaryFunctions.read4Bytes("ImageResourcesLength", is, "Not a Valid PSD File", getByteOrder());
         BinaryFunctions.skipBytes(is, imageResourcesLength);
-        // long skipped = is.skip(ImageResourcesLength);
-        // byte[] ImageResources = readByteArray("ImageResources",
-        // ImageResourcesLength, is, "Not a Valid PSD File");
 
         final int layerAndMaskDataLength = BinaryFunctions.read4Bytes("LayerAndMaskDataLength", is, "Not a Valid PSD File", getByteOrder());
         BinaryFunctions.skipBytes(is, layerAndMaskDataLength);
-        // is.skip(LayerAndMaskDataLength);
-        // byte[] LayerAndMaskData = readByteArray("LayerAndMaskData",
-        // LayerAndMaskDataLength, is, "Not a Valid PSD File");
 
         final int compression = BinaryFunctions.read2Bytes("Compression", is, "Not a Valid PSD File", getByteOrder());
-
-        // skip_bytes(is, LayerAndMaskDataLength);
-        // byte[] ImageData = readByteArray("ImageData", LayerAndMaskDataLength,
-        // is, "Not a Valid PSD File");
-
-        // System.out.println("Compression: " + Compression);
 
         return new PsdImageContents(header, colorModeDataLength,
                 // ColorModeData,
@@ -597,7 +521,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
                 BinaryFunctions.readByte("NameDiscard", is, "Not a Valid PSD File");
                 available -= 1;
             }
-            // String Name = readPString("Name", 6, is, "Not a Valid PSD File");
             final int dataSize = BinaryFunctions.read4Bytes("Size", is, "Not a Valid PSD File", getByteOrder());
             available -= 4;
             // int ActualDataSize = ((DataSize % 2) == 0)
@@ -620,8 +543,6 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
                     return result;
                 }
             }
-            // debugNumber("ID", ID, 2);
-
         }
 
         return result;

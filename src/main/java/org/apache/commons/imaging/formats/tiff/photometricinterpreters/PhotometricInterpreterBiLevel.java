@@ -24,14 +24,11 @@ import org.apache.commons.imaging.common.ImageBuilder;
 public class PhotometricInterpreterBiLevel extends PhotometricInterpreter {
     private final boolean invert;
 
-    // private final int bitsPerPixel;
-
     public PhotometricInterpreterBiLevel(final int samplesPerPixel, final int[] bitsPerSample, final int predictor, final int width, final int height,
             final boolean invert) {
         super(samplesPerPixel, bitsPerSample, predictor, width, height);
 
         this.invert = invert;
-        // this.bitsPerPixel = fBitsPerPixel;
     }
 
     @Override

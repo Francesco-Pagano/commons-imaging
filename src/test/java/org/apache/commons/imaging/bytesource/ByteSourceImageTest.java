@@ -114,8 +114,6 @@ public class ByteSourceImageTest extends AbstractByteSourceTest {
             }
             if (method2.getName().equals("getClass")) {
                 continue;
-                // if (method.getGenericParameterTypes().length > 0)
-                // continue;
             }
 
             final Object valueFile = method2.invoke(imageInfoFile, (Object[]) null);
@@ -139,8 +137,6 @@ public class ByteSourceImageTest extends AbstractByteSourceTest {
         assertNotNull(imageInfoFile.getMimeType());
 
         // TODO: not all adapters count images yet.
-        // assertTrue(imageInfoFile.getNumberOfImages() > 0);
-
     }
 
     public void checkGetImageSize(final File imageFile, final byte[] imageFileBytes) throws Exception {
@@ -160,12 +156,10 @@ public class ByteSourceImageTest extends AbstractByteSourceTest {
         final ImageFormat imageFormatFile = Imaging.guessFormat(imageFile);
         assertNotNull(imageFormatFile);
         assertNotSame(imageFormatFile, ImageFormats.UNKNOWN);
-        // Debug.debug("imageFormatFile", imageFormatFile);
 
         final ImageFormat imageFormatBytes = Imaging.guessFormat(imageFileBytes);
         assertNotNull(imageFormatBytes);
         assertNotSame(imageFormatBytes, ImageFormats.UNKNOWN);
-        // Debug.debug("imageFormatBytes", imageFormatBytes);
 
         assertSame(imageFormatBytes, imageFormatFile);
     }

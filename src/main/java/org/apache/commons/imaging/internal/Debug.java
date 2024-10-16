@@ -38,7 +38,6 @@ public final class Debug {
 
     private static final Logger LOGGER = Logger.getLogger(Debug.class.getName());
 
-    // public static String newline = System.getProperty("line.separator");
     private static final String NEWLINE = "\r\n";
     private static long counter;
 
@@ -52,7 +51,7 @@ public final class Debug {
         final char c2 = (char) b2;
         final char c3 = (char) b3;
         final char c4 = (char) b4;
-        // return new String(new char[] { c1, c2, c3, c4 });
+
         final StringBuilder buffer = new StringBuilder(31);
         buffer.append(new String(new char[] { c1, c2, c3, c4 }));
         buffer.append(" byteQuad: ");
@@ -273,7 +272,6 @@ public final class Debug {
 
         result.append("Caught here:" + NEWLINE);
         result.append(getStackTrace(new Exception(), max, 1));
-        // Debug.dumpStack();
         result.append(NEWLINE);
         return result.toString();
     }
@@ -298,8 +296,6 @@ public final class Debug {
                     result.append("\t..." + NEWLINE);
                 }
             }
-
-            // e.printStackTrace(System.out);
             result.append(NEWLINE);
         }
 

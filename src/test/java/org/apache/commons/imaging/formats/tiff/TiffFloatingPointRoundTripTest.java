@@ -236,11 +236,6 @@ public class TiffFloatingPointRoundTripTest extends TiffBaseTest {
             }
             final float meanValue = pi.getMeanFound();
             assertEquals(0.5, meanValue, 1.0e-5, "Invalid numeric values in " + name);
-            // To write out an image file for inspection, use the following
-            // (with appropriate adjustments for path and OS)
-            // File imFile = new File("C:/Users/public", testFile[i].getName() + ".png");
-            // ImageIO.write(bImage, "PNG", imFile);
-
         }
     }
 

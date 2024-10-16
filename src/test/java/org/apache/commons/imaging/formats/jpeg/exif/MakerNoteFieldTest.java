@@ -41,7 +41,6 @@ public class MakerNoteFieldTest extends AbstractSpecificExifTagTest {
         Debug.debug("field: " + field.getTagInfo());
         Debug.debug("length: " + field.getCount());
         Debug.debug("fieldType: " + field.getFieldType());
-        // Debug.debug("field", Debug.getType(field));
         Debug.debug();
 
         // TODO assert something

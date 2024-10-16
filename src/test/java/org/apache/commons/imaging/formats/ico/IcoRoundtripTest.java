@@ -451,9 +451,6 @@ public class IcoRoundtripTest extends AbstractIcoTest {
 
     private void writeAndReadImageData(final String description, final byte[] rawData, final int foreground, final int background)
             throws IOException, ImagingException {
-        // Uncomment to generate ICO files that can be tested with Windows:
-        // File exportFile = new File("/tmp/" + description + ".ico");
-        // IoUtils.writeToFile(rawData, exportFile);
 
         final File tempFile = Files.createTempFile("temp", ".ico").toFile();
         FileUtils.writeByteArrayToFile(tempFile, rawData);

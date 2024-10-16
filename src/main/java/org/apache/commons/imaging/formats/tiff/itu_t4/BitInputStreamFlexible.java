@@ -58,7 +58,6 @@ final class BitInputStreamFlexible extends FilterInputStream {
         if (count <= 32) {
             // catch-all
             int result = 0;
-            // int done = 0;
 
             if (cacheBitsRemaining > 0) {
                 if (count >= cacheBitsRemaining) {
@@ -66,7 +65,6 @@ final class BitInputStreamFlexible extends FilterInputStream {
                     count -= cacheBitsRemaining;
                     cacheBitsRemaining = 0;
                 } else {
-                    // cache >>= count;
                     cacheBitsRemaining -= count;
                     result = (1 << count) - 1 & cache >> cacheBitsRemaining;
                     count = 0;
@@ -77,9 +75,6 @@ final class BitInputStreamFlexible extends FilterInputStream {
                 if (cache < 0) {
                     throw new ImagingException("Couldn't read bits");
                 }
-                // System.out.println("cache 1: " + cache + " ("
-                // + Integer.toHexString(cache) + ", "
-                // + Integer.toBinaryString(cache) + ")");
                 bytesRead++;
                 result = result << 8 | 0xff & cache;
                 count -= 8;
@@ -89,9 +84,6 @@ final class BitInputStreamFlexible extends FilterInputStream {
                 if (cache < 0) {
                     throw new ImagingException("Couldn't read bits");
                 }
-                // System.out.println("cache 2: " + cache + " ("
-                // + Integer.toHexString(cache) + ", "
-                // + Integer.toBinaryString(cache) + ")");
                 bytesRead++;
                 cacheBitsRemaining = 8 - count;
                 result = result << count | (1 << count) - 1 & cache >> cacheBitsRemaining;

@@ -23,9 +23,7 @@ import org.apache.commons.imaging.ImagingException;
 
 final class ColorGroup {
 
-    // final ColorGroup parent;
     ColorGroupCut cut;
-    // final List children = new ArrayList();
     int paletteIndex = -1;
 
     private final List<ColorCount> colorCounts;

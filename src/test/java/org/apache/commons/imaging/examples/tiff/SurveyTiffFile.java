@@ -95,7 +95,7 @@ public class SurveyTiffFile {
         }
         final int compression = 0xffff & compressionFieldValue;
         switch (compression) {
-        case COMPRESSION_UNCOMPRESSED: // None;
+        case COMPRESSION_UNCOMPRESSED:
             return "None";
         case COMPRESSION_CCITT_1D: // CCITT Group 3 1-Dimensional Modified
             // Huffman run-length encoding.
@@ -341,9 +341,7 @@ public class SurveyTiffFile {
                     rowsPerStrip = rowsPerStripField.getIntValue();
                 } else {
                     final TiffField imageHeight = directory.findField(TiffTagConstants.TIFF_TAG_IMAGE_LENGTH);
-                    /*
-                     * if rows per strip not present then rowsPerStrip is equal to imageLength or an infinity value;
-                     */
+
                     if (imageHeight != null) {
                         rowsPerStrip = imageHeight.getIntValue();
                     }

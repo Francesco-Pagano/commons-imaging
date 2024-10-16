@@ -79,8 +79,6 @@ public final class WebPChunkVp8 extends WebPChunk {
          */
 
         final int b0 = bytes[0] & 0xFF;
-        // int b1 = bytes[1] & 0xFF;
-        // int b2 = bytes[2] & 0xFF;
 
         if ((b0 & 0b1) != 0) {
             throw new ImagingException("Invalid VP8 chunk: should be key frame");
@@ -90,8 +88,6 @@ public final class WebPChunkVp8 extends WebPChunk {
         if ((b0 & 0b0001_0000) == 0) {
             throw new ImagingException("Invalid VP8 chunk: frame should to be display");
         }
-
-        // int firstDataPartitionSize = (b0 >>> 5) + (b1 << 3) + (b2 << 11);
 
         /*
          * Key Frame:

@@ -33,16 +33,9 @@ public class ScanlineFilterSub implements ScanlineFilter {
             final int prevIndex = i - bytesPerPixel;
             if (prevIndex >= 0) {
                 dst[i] = (byte) ((src[i] + dst[prevIndex]) % 256);
-                // dst[i] = 0xff & (src[i] + src[prevIndex]);
             } else {
                 dst[i] = src[i];
             }
-
-            // if (i<10)
-            // System.out.println("\t" + i + ": " + dst[i] + " (" + src[i] +
-            // ", " + prevIndex + ")");
-
-            // dst[i] = src[i];
         }
     }
 }

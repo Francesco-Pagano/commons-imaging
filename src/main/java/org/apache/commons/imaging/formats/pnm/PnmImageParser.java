@@ -160,8 +160,6 @@ public class PnmImageParser extends AbstractImageParser<PnmImagingParameters> {
         final int numberOfImages = 1;
         final boolean progressive = false;
 
-        // boolean progressive = (fPNGChunkIHDR.InterlaceMethod != 0);
-        //
         final int physicalWidthDpi = DPI;
         final float physicalWidthInch = (float) ((double) info.width / (double) physicalWidthDpi);
         final int physicalHeightDpi = DPI;

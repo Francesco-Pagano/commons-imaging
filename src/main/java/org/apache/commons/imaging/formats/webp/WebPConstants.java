@@ -25,10 +25,6 @@ import org.apache.commons.imaging.common.BinaryConstant;
  */
 public final class WebPConstants {
 
-    /*
-     * WebP_File_Header { uint8_t riff_signature[4]; // "RIFF" uint32_t file_size; uint8_t webp_signature[4]; // "WEBP" }
-     */
-
     /**
      * The RIFF signature.
      */

@@ -75,8 +75,6 @@ final class PngCrc {
             makeCrcTable();
         }
         for (n = 0; n < buf.length; n++) {
-            // Debug.debug("crc[" + n + "]", c + " (" + Long.toHexString(c) +
-            // ")");
 
             c = crcTable[(int) ((c ^ buf[n]) & 0xff)] ^ c >> 8;
         }

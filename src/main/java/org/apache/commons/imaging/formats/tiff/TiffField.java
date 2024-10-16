@@ -150,8 +150,6 @@ public class TiffField {
 
     public double[] getDoubleArrayValue() throws ImagingException {
         final Object o = getValue();
-        // if (o == null)
-        // return null;
 
         if (o instanceof Number) {
             return new double[] { ((Number) o).doubleValue() };
@@ -186,7 +184,6 @@ public class TiffField {
         }
 
         throw new ImagingException("Unknown value: " + o + " for: " + getTagInfo().getDescription());
-        // return null;
     }
 
     public double getDoubleValue() throws ImagingException {
@@ -213,8 +210,6 @@ public class TiffField {
 
     public int[] getIntArrayValue() throws ImagingException {
         final Object o = getValue();
-        // if (o == null)
-        // return null;
 
         if (o instanceof Number) {
             return new int[] { ((Number) o).intValue() };
@@ -245,7 +240,6 @@ public class TiffField {
         }
 
         throw new ImagingException("Unknown value: " + o + " for: " + getTagInfo().getDescription());
-        // return null;
     }
 
     public int getIntValue() throws ImagingException {
@@ -259,8 +253,6 @@ public class TiffField {
 
     public int getIntValueOrArraySum() throws ImagingException {
         final Object o = getValue();
-        // if (o == null)
-        // return -1;
 
         if (o instanceof Number) {
             return ((Number) o).intValue();
@@ -291,7 +283,6 @@ public class TiffField {
         }
 
         throw new ImagingException("Unknown value: " + o + " for: " + getTagInfo().getDescription());
-        // return -1;
     }
 
     /**
@@ -398,7 +389,6 @@ public class TiffField {
     }
 
     public Object getValue() throws ImagingException {
-        // System.out.print("getValue");
         return getTagInfo().getValue(this);
     }
 
@@ -442,21 +432,6 @@ public class TiffField {
                 result.append(object.toString());
             }
             return result.toString();
-            // } else if (o instanceof Number[])
-            // {
-            // Number[] numbers = (Number[]) o;
-            // StringBuilder result = new StringBuilder();
-            //
-            // for (int i = 0; i < numbers.length; i++)
-            // {
-            // Number number = numbers[i];
-            //
-            // if (i > 0)
-            // result.append(", ");
-            // result.append("" + number);
-            // }
-            // return result.toString();
-            // }
         }
         if (o instanceof short[]) {
             final short[] values = (short[]) o;
@@ -584,22 +559,6 @@ public class TiffField {
             }
             return result.toString();
         }
-        // else if (o instanceof short[])
-        // {
-        // short[] numbers = (short[]) o;
-        // StringBuilder result = new StringBuilder();
-        //
-        // for (int i = 0; i < numbers.length; i++)
-        // {
-        // short number = numbers[i];
-        //
-        // if (i > 0)
-        // result.append(", ");
-        // result.append("" + number);
-        // }
-        // return result.toString();
-        // }
-
         return "Unknown: " + o.getClass().getName();
     }
 

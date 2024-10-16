@@ -298,7 +298,6 @@ public final class TiffTagConstants {
     public static final TagInfoBytes TIFF_TAG_XMP = new TagInfoBytes("XMP", 0x2BC, -1, TiffDirectoryType.TIFF_DIRECTORY_ROOT);
 
     // TODO:
-    // public static final TagInfo2 TIFF_TAG_UNKNOWN = null;
     public static final TagInfoUnknowns TIFF_TAG_UNKNOWN = new TagInfoUnknowns("Unknown Tag", -1, TagInfo.LENGTH_UNKNOWN,
             TiffDirectoryType.EXIF_DIRECTORY_UNKNOWN);
 

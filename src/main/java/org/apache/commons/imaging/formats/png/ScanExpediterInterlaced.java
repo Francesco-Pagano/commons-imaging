@@ -29,8 +29,6 @@ final class ScanExpediterInterlaced extends AbstractScanExpediter {
     private static final int[] STARTING_COL = { 0, 4, 0, 2, 0, 1, 0 };
     private static final int[] ROW_INCREMENT = { 8, 8, 8, 4, 4, 2, 2 };
     private static final int[] COL_INCREMENT = { 8, 8, 4, 4, 2, 2, 1 };
-//    private static final int[] Block_Height = { 8, 8, 4, 4, 2, 2, 1 };
-//    private static final int[] Block_Width = { 8, 4, 4, 2, 2, 1, 1 };
 
     ScanExpediterInterlaced(final int width, final int height, final InputStream is, final BufferedImage bi, final PngColorType pngColorType,
             final int bitDepth, final int bitsPerPixel, final PngChunkPlte pngChunkPLTE, final GammaCorrection gammaCorrection,
@@ -46,8 +44,7 @@ final class ScanExpediterInterlaced extends AbstractScanExpediter {
             byte[] prev = null;
 
             int y = STARTING_ROW[pass - 1];
-            // int y_stride = ROW_INCREMENT[pass - 1];
-            // final boolean rows_in_pass = (y < height);
+
             while (y < height) {
                 int x = STARTING_COL[pass - 1];
                 int pixelIndexInScanline = 0;

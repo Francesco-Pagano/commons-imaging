@@ -61,20 +61,13 @@ public class SosSegment extends AbstractSegment {
             LOGGER.finest("SosSegment markerLength: " + markerLength);
         }
 
-        // Debug.debug("SOS", marker_length);
-
         numberOfComponents = readByte("numberOfComponents", is, "Not a Valid JPEG File");
-        // Debug.debug("number_of_components_in_scan",
-        // numberOfComponents);
 
         components = Allocator.array(numberOfComponents, Component[]::new, Component.SHALLOW_SIZE);
         for (int i = 0; i < numberOfComponents; i++) {
             final int scanComponentSelector = readByte("scanComponentSelector", is, "Not a Valid JPEG File");
-            // Debug.debug("scanComponentSelector", scanComponentSelector);
 
             final int acDcEntropyCodingTableSelector = readByte("acDcEntropyCodingTableSelector", is, "Not a Valid JPEG File");
-            // Debug.debug("ac_dc_entrooy_coding_table_selector",
-            // acDcEntropyCodingTableSelector);
 
             final int dcCodingTableSelector = acDcEntropyCodingTableSelector >> 4 & 0xf;
             final int acCodingTableSelector = acDcEntropyCodingTableSelector & 0xf;
@@ -82,12 +75,8 @@ public class SosSegment extends AbstractSegment {
         }
 
         startOfSpectralSelection = readByte("startOfSpectralSelection", is, "Not a Valid JPEG File");
-        // Debug.debug("start_of_spectral_selection", startOfSpectralSelection);
         endOfSpectralSelection = readByte("endOfSpectralSelection", is, "Not a Valid JPEG File");
-        // Debug.debug("end_of_spectral_selection", endOfSpectralSelection);
         final int successiveApproximationBitPosition = readByte("successiveApproximationBitPosition", is, "Not a Valid JPEG File");
-        // Debug.debug("successive_approximation_bit_position",
-        // successive_approximation_bit_position);
         successiveApproximationBitHigh = successiveApproximationBitPosition >> 4 & 0xf;
         successiveApproximationBitLow = successiveApproximationBitPosition & 0xf;
     }

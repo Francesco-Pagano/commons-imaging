@@ -86,11 +86,6 @@ abstract class AbstractFileInfo {
     }
 
     void readImage(final ImageBuilder imageBuilder, final InputStream is) throws IOException {
-        // is = new BufferedInputStream(is);
-        // int count = 0;
-        //
-        // try
-        // {
 
         if (!rawBits) {
             final WhiteSpaceReader wsr = new WhiteSpaceReader(is);
@@ -100,26 +95,17 @@ abstract class AbstractFileInfo {
                     final int rgb = getRgb(wsr);
 
                     imageBuilder.setRgb(x, y, rgb);
-                    // count++;
                 }
                 newline();
             }
         } else {
             for (int y = 0; y < height; y++) {
-                // System.out.println("y: " + y);
                 for (int x = 0; x < width; x++) {
                     final int rgb = getRgb(is);
                     imageBuilder.setRgb(x, y, rgb);
-                    // count++;
                 }
                 newline();
             }
         }
-        // }
-        // finally
-        // {
-        // System.out.println("count: " + count);
-        // dump();
-        // }
     }
 }

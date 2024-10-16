@@ -85,7 +85,7 @@ public class WriteExifMetadataExample {
                 // exists in this directory, or you may end up with duplicate
                 // tags. See above.
                 //
-                // Certain fields/tags are expected in certain Exif directories;
+
                 // Others can occur in more than one directory (and often have a
                 // different meaning in different directories).
                 //
@@ -109,9 +109,6 @@ public class WriteExifMetadataExample {
 
                 outputSet.setGpsInDegrees(longitude, latitude);
             }
-
-            // printTagValue(jpegMetadata, TiffConstants.TIFF_TAG_DATE_TIME);
-
             new ExifRewriter().updateExifMetadataLossless(jpegImageFile, os, outputSet);
         }
     }

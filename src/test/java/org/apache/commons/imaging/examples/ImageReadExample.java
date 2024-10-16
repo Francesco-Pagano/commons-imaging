@@ -52,8 +52,6 @@ public class ImageReadExample {
         // set optional parameters if you like
         params.setBufferedImageFactory(new ManagedImageBufferedImageFactory());
 
-        // params.setStrict(Boolean.TRUE);
-
         // read and return the TIFF image
         return new TiffImageParser().getBufferedImage(file, params);
     }

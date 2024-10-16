@@ -34,30 +34,15 @@ public abstract class AbstractJpegXmpTest extends AbstractImagingTest {
         return getTestImages(HAS_JPEG_XMP_IMAGE_FILTER);
     }
 
-    // private static final ImageFilter JPEG_IMAGE_FILTER = new ImageFilter()
-    // {
-    // public boolean accept(File file) throws IOException, ImageReadException
-    // {
-    // return file.getName().toLowerCase().endsWith(".jpg");
-    // }
-    // };
-
     protected static boolean hasJpegXmpData(final File file) {
         if (!file.getName().toLowerCase().endsWith(".jpg")) {
             return false;
-            // ImageFormat format = Imaging.guessFormat(file);
-            // if (format != ImageFormat.IMAGE_FORMAT_JPEG)
-            // return false;
         }
-
-        // Debug.debug("possible file", file);
 
         try {
             final ByteSource byteSource = ByteSource.file(file);
             return new JpegImageParser().hasXmpSegment(byteSource);
         } catch (final Exception e) {
-            // Debug.debug("Error file", file.getAbsoluteFile());
-            // Debug.debug(e, 4);
             return false;
         }
     }
@@ -69,21 +54,4 @@ public abstract class AbstractJpegXmpTest extends AbstractImagingTest {
     protected File getImageWithXmpData() throws IOException, ImagingException {
         return getTestImage(HAS_JPEG_XMP_IMAGE_FILTER);
     }
-
-    // protected File getJpegImage() throws IOException, ImageReadException
-    // {
-    // return getTestImage(JPEG_IMAGE_FILTER);
-    // }
-    //
-    // protected List getJpegImages() throws IOException, ImageReadException
-    // {
-    // return getTestImages(JPEG_IMAGE_FILTER);
-    // }
-    //
-    // protected List getJpegImages(int max) throws IOException,
-    // ImageReadException
-    // {
-    // return getTestImages(JPEG_IMAGE_FILTER, max);
-    // }
-
 }

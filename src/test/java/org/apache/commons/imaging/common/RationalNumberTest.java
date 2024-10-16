@@ -116,7 +116,6 @@ public class RationalNumberTest extends AbstractImagingTest {
         nf.setMaximumFractionDigits(15);
 
         // TODO assert something here, the following will fail for some values. Do we have a bug?
-        // assertEquals(0.0, difference, 0.0d);
         Debug.debug("value: " + nf.format(testValue));
         Debug.debug("rational: " + rational);
         Debug.debug("difference: " + difference);

@@ -139,9 +139,6 @@ public class ReadAndRenderFloatingPoint {
         final float maxValue = pi.getMaxFound();
         final float minValue = pi.getMinFound();
 
-        // System.out.format("Image size %dx%d%n", bImage.getWidth(), bImage.getHeight());
-        // System.out.format("Range of values in TIFF: %f %f%n", minValue, maxValue);
-
         if (optionalImageWritingEnabled) {
             final File output = new File(outputPath);
             // create a new photometric interpreter based on the range

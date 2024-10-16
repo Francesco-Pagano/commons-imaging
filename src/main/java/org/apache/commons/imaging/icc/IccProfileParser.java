@@ -58,11 +58,8 @@ public class IccProfileParser extends BinaryFileParser {
         //
         for (final IccTag tag : result.getTags()) {
             final byte[] bytes = byteSource.getByteArray(tag.offset, tag.length);
-            // Debug.debug("bytes: " + bytes.length);
             tag.setData(bytes);
-            // tag.dump("\t" + i + ": ");
         }
-        // result.fillInTagData(byteSource);
         return result;
     }
 
@@ -97,18 +94,9 @@ public class IccProfileParser extends BinaryFileParser {
     }
 
     public boolean isSrgb(final ByteSource byteSource) throws IOException {
-        // setDebug(true);
-
-        // long length = byteSource.getLength();
-        //
-        // if (LOGGER.isLoggable(Level.FINEST))
-        // Debug.debug("length: " + length);
 
         try (InputStream is = byteSource.getInputStream()) {
             read4Bytes("ProfileSize", is, "Not a Valid ICC Profile", getByteOrder());
-
-            // if (length != ProfileSize)
-            // return null;
 
             skipBytes(is, (long) 4 * 5);
 
@@ -142,23 +130,7 @@ public class IccProfileParser extends BinaryFileParser {
         final CachingInputStream cis = new CachingInputStream(is);
         is = cis;
 
-        // setDebug(true);
-
-        // if (LOGGER.isLoggable(Level.FINEST))
-        // Debug.debug("length: " + length);
-
         final int profileSize = read4Bytes("ProfileSize", is, "Not a Valid ICC Profile", getByteOrder());
-
-        // if (length != ProfileSize)
-        // {
-        // // Debug.debug("Unexpected Length data expected: " +
-        // Integer.toHexString((int) length)
-        // // + ", encoded: " + Integer.toHexString(ProfileSize));
-        // // Debug.debug("Unexpected Length data: " + length
-        // // + ", length: " + ProfileSize);
-        // // throw new Error("asd");
-        // return null;
-        // }
 
         final int cmmTypeSignature = read4Bytes("Signature", is, "Not a Valid ICC Profile", getByteOrder());
         if (LOGGER.isLoggable(Level.FINEST)) {
@@ -224,45 +196,21 @@ public class IccProfileParser extends BinaryFileParser {
         }
 
         skipBytes(is, 16, "Not a Valid ICC Profile");
-        // readByteArray("ProfileID", 16, is,
-        // "Not a Valid ICC Profile");
-        // if (LOGGER.isLoggable(Level.FINEST))
-        // System.out
-        // .println("ProfileID: '" + new String(ProfileID) + "'");
-
         skipBytes(is, 28, "Not a Valid ICC Profile");
 
-        // this.setDebug(true);
 
         final int tagCount = read4Bytes("TagCount", is, "Not a Valid ICC Profile", getByteOrder());
 
-        // List tags = new ArrayList();
         final IccTag[] tags = Allocator.array(tagCount, IccTag[]::new, IccTag.SHALLOW_SIZE);
 
         for (int i = 0; i < tagCount; i++) {
             final int tagSignature = read4Bytes("TagSignature[" + i + "]", is, "Not a Valid ICC Profile", getByteOrder());
-            // Debug.debug("TagSignature t "
-            // + Integer.toHexString(TagSignature));
-
-            // this.printCharQuad("TagSignature", TagSignature);
             final int offsetToData = read4Bytes("OffsetToData[" + i + "]", is, "Not a Valid ICC Profile", getByteOrder());
             final int elementSize = read4Bytes("ElementSize[" + i + "]", is, "Not a Valid ICC Profile", getByteOrder());
 
             final IccTagType fIccTagType = getIccTagType(tagSignature);
-            // if (fIccTagType == null)
-            // throw new Error("oops.");
-
-            // System.out
-            // .println("\t["
-            // + i
-            // + "]: "
-            // + ((fIccTagType == null)
-            // ? "unknown"
-            // : fIccTagType.name));
-            // Debug.debug();
 
             final IccTag tag = new IccTag(tagSignature, offsetToData, elementSize, fIccTagType);
-            // tag.dump("\t" + i + ": ");
             tags[i] = tag;
             // tags .add(tag);
         }

@@ -89,22 +89,15 @@ public class TiffOutputField {
      * @throws ImagingException if the length of the bytes array do not match.
      */
     public void setData(final byte[] bytes) throws ImagingException {
-        // if (tagInfo.isUnknown())
-        // Debug.debug("unknown tag(0x" + Integer.toHexString(tag)
-        // + ") setData", bytes);
 
         if (this.bytes.length != bytes.length) {
             throw new ImagingException("Cannot change size of value.");
         }
 
-        // boolean wasLocalValue = isLocalValue();
         this.bytes = bytes;
         if (separateValueItem != null) {
             separateValueItem.updateValue(bytes);
         }
-        // if (isLocalValue() != wasLocalValue)
-        // throw new Error("Bug. Locality disrupted! "
-        // + tagInfo.getDescription());
     }
 
     public void setSortHint(final int sortHint) {

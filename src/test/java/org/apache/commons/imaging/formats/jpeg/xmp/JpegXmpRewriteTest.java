@@ -54,9 +54,6 @@ public class JpegXmpRewriteTest extends AbstractJpegXmpTest {
                 noXmpFile = os.toByteArray();
             }
 
-            // Debug.debug("Source Segments:");
-            // new JpegUtils().dumpJFIF(ByteSource.file(noXmpFile));
-
             final String outXmp = new JpegImageParser().getXmpXml(ByteSource.array(noXmpFile, "test.jpg"), params);
             assertNull(outXmp);
         }
@@ -70,9 +67,6 @@ public class JpegXmpRewriteTest extends AbstractJpegXmpTest {
                 new JpegXmpRewriter().updateXmpXml(byteSource, os, newXmpXml);
                 updated = os.toByteArray();
             }
-
-            // Debug.debug("Source Segments:");
-            // new JpegUtils().dumpJFIF(ByteSource.file(updated));
 
             final String outXmp = new JpegImageParser().getXmpXml(ByteSource.array(updated, "test.jpg"), params);
             assertNotNull(outXmp);
@@ -88,9 +82,6 @@ public class JpegXmpRewriteTest extends AbstractJpegXmpTest {
                 new JpegXmpRewriter().updateXmpXml(ByteSource.array(noXmpFile, "test.jpg"), os, newXmpXml);
                 updated = os.toByteArray();
             }
-
-            // Debug.debug("Source Segments:");
-            // new JpegUtils().dumpJFIF(ByteSource.file(updated));
 
             final String outXmp = new JpegImageParser().getXmpXml(ByteSource.array(updated, "test.jpg"), params);
             assertNotNull(outXmp);

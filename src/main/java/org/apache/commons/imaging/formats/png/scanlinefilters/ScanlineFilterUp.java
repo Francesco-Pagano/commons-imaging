@@ -25,19 +25,12 @@ public class ScanlineFilterUp implements ScanlineFilter {
     @Override
     public void unfilter(final byte[] src, final byte[] dst, final byte[] up) throws ImagingException, IOException {
         for (int i = 0; i < src.length; i++) {
-            // byte b;
 
             if (up != null) {
                 dst[i] = (byte) ((src[i] + up[i]) % 256);
             } else {
                 dst[i] = src[i];
             }
-
-            // if (i<10)
-            // System.out.println("\t" + i + ": " + dst[i]);
-            // dst[i] = b;
-            // dst[i] = src[i];
-            // dst[i] = (byte) 0;
         }
     }
 }

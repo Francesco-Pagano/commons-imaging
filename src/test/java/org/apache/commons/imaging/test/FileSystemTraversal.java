@@ -64,7 +64,6 @@ public class FileSystemTraversal {
                         if (name.equalsIgnoreCase("automount") || name.equalsIgnoreCase("private") || name.equalsIgnoreCase("Network")
                                 || name.equalsIgnoreCase("Volumes")) {
                             continue;
-                            // return true;
                         }
                     }
 

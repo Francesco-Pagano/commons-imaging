@@ -142,8 +142,6 @@ public class PngImageParser extends AbstractImageParser<PngImagingParameters> im
         };
     }
 
-    // private final static int tRNS = CharsToQuad('t', 'R', 'N', 's');
-
     @Override
     public BufferedImage getBufferedImage(final ByteSource byteSource, final PngImagingParameters params) throws ImagingException, IOException {
 
@@ -180,7 +178,6 @@ public class PngImageParser extends AbstractImageParser<PngImagingParameters> im
         for (final PngChunk IDAT : IDATs) {
             final PngChunkIdat pngChunkIDAT = (PngChunkIdat) IDAT;
             final byte[] bytes = pngChunkIDAT.getBytes();
-            // System.out.println(i + ": bytes: " + bytes.length);
             baos.write(bytes);
         }
 
@@ -234,8 +231,6 @@ public class PngImageParser extends AbstractImageParser<PngImagingParameters> im
                 final PngChunkGama pngChunkgAMA = (PngChunkGama) gAMAs.get(0);
                 final double gamma = pngChunkgAMA.getGamma();
 
-                // charles: what is the correct target value here?
-                // double targetGamma = 2.2;
                 final double targetGamma = 1.0;
                 final double diff = Math.abs(targetGamma - gamma);
                 if (diff >= 0.5) {
@@ -440,15 +435,6 @@ public class PngImageParser extends AbstractImageParser<PngImagingParameters> im
         int physicalWidthDpi = -1;
         float physicalWidthInch = -1;
 
-        // if (pngChunkpHYs != null)
-        // {
-        // System.out.println("\t" + "pngChunkpHYs.UnitSpecifier: " +
-        // pngChunkpHYs.UnitSpecifier );
-        // System.out.println("\t" + "pngChunkpHYs.PixelsPerUnitYAxis: " +
-        // pngChunkpHYs.PixelsPerUnitYAxis );
-        // System.out.println("\t" + "pngChunkpHYs.PixelsPerUnitXAxis: " +
-        // pngChunkpHYs.PixelsPerUnitXAxis );
-        // }
         if (pngChunkpHYs != null && pngChunkpHYs.getUnitSpecifier() == 1) { // meters
             final double metersPerInch = 0.0254;
 
@@ -536,7 +522,7 @@ public class PngImageParser extends AbstractImageParser<PngImagingParameters> im
             return new TransparencyFilterGrayscale(pngChunktRNS.getBytes());
         case TRUE_COLOR: // 8,16 Each pixel is an R,G,B triple.
             return new TransparencyFilterTrueColor(pngChunktRNS.getBytes());
-        case INDEXED_COLOR: // 1,2,4,8 Each pixel is a palette index;
+        case INDEXED_COLOR:
             return new TransparencyFilterIndexedColor(pngChunktRNS.getBytes());
         case GREYSCALE_WITH_ALPHA: // 8,16 Each pixel is a grayscale sample,
         case TRUE_COLOR_WITH_ALPHA: // 8,16 Each pixel is an R,G,B triple,
@@ -587,7 +573,6 @@ public class PngImageParser extends AbstractImageParser<PngImagingParameters> im
     }
 
     private boolean keepChunk(final int chunkType, final ChunkType[] chunkTypes) {
-        // System.out.println("keepChunk: ");
         if (chunkTypes == null) {
             return true;
         }

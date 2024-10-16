@@ -209,7 +209,7 @@ public class SurveyTiffFolder {
             } catch (final IOException ex) {
                 sBuilder.append(ex.getMessage());
                 badFiles.add(sBuilder.toString());
-                continue; // result = ex.getMessage();
+                continue;
             }
             sBuilder.append(result);
             ps.println(sBuilder.toString());

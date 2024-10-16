@@ -126,8 +126,6 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
                 for (int d = 0; d < directories.size(); d++) {
                     final TiffDirectory directory = directories.get(d);
 
-                    // Debug.debug("directory offset", directory.offset);
-
                     for (final TiffField field : directory) {
                         field.dump(pw, Integer.toString(d));
                     }
@@ -135,12 +133,6 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
 
                 pw.println("");
             }
-            // catch (Exception e)
-            // {
-            // Debug.debug(e);
-            // pw.println("");
-            // return false;
-            // }
 
             return true;
         } finally {
@@ -277,16 +269,8 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
             bitsPerPixel = bitsPerSampleField.getIntValueOrArraySum();
         }
 
-        // int bitsPerPixel = getTagAsValueOrArraySum(entries,
-        // TIFF_TAG_BITS_PER_SAMPLE);
-
         int predictor = -1;
         {
-            // dumpOptionalNumberTag(entries, TIFF_TAG_FILL_ORDER);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_FREE_BYTE_COUNTS);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_FREE_OFFSETS);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_ORIENTATION);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_PLANAR_CONFIGURATION);
             final TiffField predictorField = directory.findField(TiffTagConstants.TIFF_TAG_PREDICTOR);
             if (null != predictorField) {
                 predictor = predictorField.getIntValueOrArraySum();
@@ -453,7 +437,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
             bitsPerSample = bitsPerSampleField.getIntValueOrArraySum();
         }
 
-        final int bitsPerPixel = bitsPerSample; // assume grayscale;
+        final int bitsPerPixel = bitsPerSample;
         // dunno if this handles colormapped images correctly.
 
         final List<String> comments = Allocator.arrayList(directory.size());
@@ -651,21 +635,6 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
         case 5: // CMYK
             return new PhotometricInterpreterCmyk(samplesPerPixel, bitsPerSample, predictor, width, height);
         case 6: {
-//            final double[] yCbCrCoefficients = directory.findField(
-//                    TiffTagConstants.TIFF_TAG_YCBCR_COEFFICIENTS, true)
-//                    .getDoubleArrayValue();
-//
-//            final int[] yCbCrPositioning = directory.findField(
-//                    TiffTagConstants.TIFF_TAG_YCBCR_POSITIONING, true)
-//                    .getIntArrayValue();
-//            final int[] yCbCrSubSampling = directory.findField(
-//                    TiffTagConstants.TIFF_TAG_YCBCR_SUB_SAMPLING, true)
-//                    .getIntArrayValue();
-//
-//            final double[] referenceBlackWhite = directory.findField(
-//                    TiffTagConstants.TIFF_TAG_REFERENCE_BLACK_WHITE, true)
-//                    .getDoubleArrayValue();
-
             return new PhotometricInterpreterYCbCr(samplesPerPixel, bitsPerSample, predictor, width, height);
         }
 
@@ -674,7 +643,6 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
 
         case 32844:
         case 32845: {
-//            final boolean yonly = (photometricInterpretation == 32844);
             return new PhotometricInterpreterLogLuv(samplesPerPixel, bitsPerSample, predictor, width, height);
         }
 
@@ -775,15 +743,8 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
             }
         }
 
-        // int bitsPerPixel = getTagAsValueOrArraySum(entries,
-        // TIFF_TAG_BITS_PER_SAMPLE);
         int predictor = -1;
         {
-            // dumpOptionalNumberTag(entries, TIFF_TAG_FILL_ORDER);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_FREE_BYTE_COUNTS);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_FREE_OFFSETS);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_ORIENTATION);
-            // dumpOptionalNumberTag(entries, TIFF_TAG_PLANAR_CONFIGURATION);
             final TiffField predictorField = directory.findField(TiffTagConstants.TIFF_TAG_PREDICTOR);
             if (null != predictorField) {
                 predictor = predictorField.getIntValueOrArraySum();

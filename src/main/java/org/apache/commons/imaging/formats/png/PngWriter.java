@@ -174,11 +174,9 @@ public class PngWriter {
         final int length = palette.length();
         final byte[] bytes = Allocator.byteArray(length * 3);
 
-        // Debug.debug("length", length);
         for (int i = 0; i < length; i++) {
             final int rgb = palette.getEntry(i);
             final int index = i * 3;
-            // Debug.debug("index", index);
             bytes[index + 0] = (byte) (0xff & rgb >> 16);
             bytes[index + 1] = (byte) (0xff & rgb >> 8);
             bytes[index + 2] = (byte) (0xff & rgb >> 0);
@@ -311,7 +309,6 @@ public class PngWriter {
 
         final boolean hasAlpha = paletteFactory.hasTransparency(src);
         Debug.debug("hasAlpha: " + hasAlpha);
-        // int transparency = paletteFactory.getTransparency(src);
 
         boolean isGrayscale = paletteFactory.isGrayscale(src);
         Debug.debug("isGrayscale: " + isGrayscale);
@@ -360,13 +357,6 @@ public class PngWriter {
 
             writeChunkIHDR(os, imageHeader);
         }
-
-        // {
-        // sRGB No Before PLTE and IDAT. If the sRGB chunk is present, the
-        // iCCP chunk should not be present.
-
-        // charles
-        // }
 
         Palette palette = null;
         if (pngColorType == PngColorType.INDEXED_COLOR) {
@@ -421,7 +411,6 @@ public class PngWriter {
         }
 
         {
-            // Debug.debug("writing IDAT");
 
             // IDAT Yes Multiple IDAT chunks shall be consecutive
 
@@ -439,7 +428,6 @@ public class PngWriter {
 
                 final int[] row = Allocator.intArray(width);
                 for (int y = 0; y < height; y++) {
-                    // Debug.debug("y", y + "/" + height);
                     src.getRGB(0, y, width, 1, row, 0, width);
 
                     baos.write(FilterType.NONE.ordinal());
@@ -457,18 +445,6 @@ public class PngWriter {
 
                             if (isGrayscale) {
                                 final int gray = (red + green + blue) / 3;
-                                // if (y == 0)
-                                // {
-                                // Debug.debug("gray: " + x + ", " + y +
-                                // " argb: 0x"
-                                // + Integer.toHexString(argb) + " gray: 0x"
-                                // + Integer.toHexString(gray));
-                                // // Debug.debug(x + ", " + y + " gray", gray);
-                                // // Debug.debug(x + ", " + y + " gray", gray);
-                                // Debug.debug(x + ", " + y + " gray", gray +
-                                // " " + Integer.toHexString(gray));
-                                // Debug.debug();
-                                // }
                                 baos.write(gray);
                             } else {
                                 baos.write(red);
@@ -489,7 +465,6 @@ public class PngWriter {
 
                 final int[] row = Allocator.intArray(width);
                 for (int y = 0; y < height; y++) {
-                    // Debug.debug("y", y + "/" + height);
                     src.getRGB(0, y, width, 1, row, 0, width);
 
                     int priorA = 0;
@@ -520,8 +495,6 @@ public class PngWriter {
                 uncompressed = baos.toByteArray();
             }
 
-            // Debug.debug("uncompressed", uncompressed.length);
-
             final ByteArrayOutputStream baos = new ByteArrayOutputStream();
             final int chunkSize = 256 * 1024;
             final Deflater deflater = new Deflater(compressionLevel);
@@ -538,7 +511,6 @@ public class PngWriter {
                 final byte[] compressed = baos.toByteArray();
                 baos.reset();
                 if (compressed.length > 0) {
-                    // Debug.debug("compressed", compressed.length);
                     writeChunkIDAT(os, compressed);
                 }
 
@@ -547,7 +519,6 @@ public class PngWriter {
                 dos.finish();
                 final byte[] compressed = baos.toByteArray();
                 if (compressed.length > 0) {
-                    // Debug.debug("compressed final", compressed.length);
                     writeChunkIDAT(os, compressed);
                 }
             }

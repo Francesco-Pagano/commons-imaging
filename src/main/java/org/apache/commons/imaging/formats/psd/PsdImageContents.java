@@ -62,11 +62,6 @@ public class PsdImageContents {
         pw.println("ColorModeDataLength: " + colorModeDataLength + " (" + Integer.toHexString(colorModeDataLength) + ")");
         pw.println("ImageResourcesLength: " + imageResourcesLength + " (" + Integer.toHexString(imageResourcesLength) + ")");
         pw.println("LayerAndMaskDataLength: " + layerAndMaskDataLength + " (" + Integer.toHexString(layerAndMaskDataLength) + ")");
-        // System.out.println("Depth: " + Depth + " ("
-        // + Integer.toHexString(Depth) + ")");
-        // System.out.println("Mode: " + Mode + " (" + Integer.toHexString(Mode)
-        // + ")");
-        // System.out.println("Reserved: " + Reserved.length);
         pw.println("");
         pw.flush();
 

@@ -195,16 +195,6 @@ public class ApacheImagingSpeedAndMemoryTest {
         for (int i = 0; i < 10; i++) {
             try {
                 ByteSource byteSource = ByteSource.file(target);
-                // This test code allows you to test cases where the
-                // input is processed using Apache Imaging's
-                // InputStreamByteSource rather than the ByteSourceFile.
-                // You might also want to experiment with ByteSourceArray.
-                // FileInputStream fins = new FileInputStream(target);
-                // BufferedInputStream bins = new BufferedInputStream(fins);
-                // InputStreamByteSource byteSource =
-                // ByteSource.inputStream(bins, target.getName());
-                // ready the parser (you may modify this code block
-                // to use your parser of choice)
                 TiffImagingParameters params = new TiffImagingParameters();
                 TiffImageParser tiffImageParser = new TiffImageParser();
                 // load the file and record time needed to do so

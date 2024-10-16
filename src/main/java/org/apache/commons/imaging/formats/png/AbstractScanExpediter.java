@@ -136,7 +136,6 @@ abstract class AbstractScanExpediter {
         }
         //
         case INDEXED_COLOR: {
-            // 1,2,4,8 Each pixel is a palette index;
             // a PLTE chunk must appear.
             if (pngChunkPlte == null) {
                 throw new ImagingException("A PLTE chunk is required for an indexed color type.");

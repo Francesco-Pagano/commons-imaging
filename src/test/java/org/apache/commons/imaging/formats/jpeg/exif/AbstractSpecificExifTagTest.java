@@ -41,7 +41,6 @@ public abstract class AbstractSpecificExifTagTest extends AbstractExifTest {
     protected abstract void checkField(File imageFile, TiffField field) throws IOException, ImagingException, ImagingException;
 
     private void checkImage(final File imageFile) throws IOException, ImagingException, ImagingException {
-        // Debug.debug("imageFile", imageFile.getAbsoluteFile());
 
         final JpegImagingParameters params = new JpegImagingParameters();
 

@@ -59,12 +59,6 @@ public class GammaCorrection {
     }
 
     private int correctSample(final int sample, final double srcGamma, final double dstGamma) {
-        // if (kUseAdobeGammaMethod && val <= 32)
-        // {
-        // double slope = Math.round(255.0d * Math.pow((32.0 / 255.0d),
-        // src_gamma / dst_gamma)) / 32.d;
-        // return (int) (sample * slope);
-        // }
 
         return (int) Math.round(255.0d * Math.pow(sample / 255.0d, srcGamma / dstGamma));
     }

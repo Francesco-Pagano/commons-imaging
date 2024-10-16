@@ -53,7 +53,6 @@ public class App2Segment extends AppnSegment implements Comparable<App2Segment> 
 
             iccBytes = readBytes("App2 Data", is, markerLength, "Invalid App2 Segment: insufficient data");
         } else {
-            // debugByteArray("Unknown APP2 Segment Type", bytes);
             curMarker = -1;
             numMarkers = -1;
             iccBytes = null;

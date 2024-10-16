@@ -49,7 +49,6 @@ public class JpegReadTest extends JpegBaseTest {
         final JpegImageParser jpegImageParser = new JpegImageParser();
         final ImageMetadata metadata = jpegImageParser.getExifMetadata(ByteSource.file(imageFile), new TiffImagingParameters());
         // TODO only run this tests with images that have metadata...
-        // assertNotNull(metadata);
         Debug.debug("metadata", metadata);
 
         Debug.debug("ICC profile", Imaging.getIccProfile(imageFile));

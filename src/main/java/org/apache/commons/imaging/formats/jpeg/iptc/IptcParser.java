@@ -115,8 +115,6 @@ public class IptcParser extends BinaryFileParser {
                 throw new ImagingException("Not a Photoshop App13 Segment");
             }
 
-            // int index = PHOTOSHOP_IDENTIFICATION_STRING.length;
-
             while (true) {
                 final int imageResourceBlockSignature;
                 try {
@@ -200,7 +198,6 @@ public class IptcParser extends BinaryFileParser {
         final List<IptcRecord> elements = new ArrayList<>();
 
         int index = 0;
-        // Integer recordVersion = null;
         while (index + 1 < bytes.length) {
             final int tagMarker = 0xff & bytes[index++];
             Debug.debug("tagMarker: " + tagMarker + " (0x" + Integer.toHexString(tagMarker) + ")");
@@ -214,24 +211,6 @@ public class IptcParser extends BinaryFileParser {
 
             final int recordNumber = 0xff & bytes[index++];
             Debug.debug("recordNumber: " + recordNumber + " (0x" + Integer.toHexString(recordNumber) + ")");
-
-            // int recordPrefix = convertByteArrayToShort("recordPrefix", index,
-            // bytes);
-            // if (verbose)
-            // Debug.debug("recordPrefix", recordPrefix + " (0x"
-            // + Integer.toHexString(recordPrefix) + ")");
-            // index += 2;
-            //
-            // if (recordPrefix != IPTC_RECORD_PREFIX)
-            // {
-            // if (verbose)
-            // System.out
-            // .println("Unexpected record prefix in IPTC data!");
-            // return elements;
-            // }
-
-            // throw new ImageReadException(
-            // "Unexpected record prefix in IPTC data.");
 
             final int recordType = 0xff & bytes[index];
             Debug.debug("recordType: " + recordType + " (0x" + Integer.toHexString(recordType) + ")");
@@ -253,9 +232,6 @@ public class IptcParser extends BinaryFileParser {
             final byte[] recordData = BinaryFunctions.slice(bytes, index, recordSize);
             index += recordSize;
 
-            // Debug.debug("recordSize", recordSize + " (0x"
-            // + Integer.toHexString(recordSize) + ")");
-
             if (recordNumber == IptcConstants.IPTC_ENVELOPE_RECORD_NUMBER && recordType == ENV_TAG_CODED_CHARACTER_SET) {
                 charset = findCharset(recordData);
                 continue;
@@ -269,47 +245,12 @@ public class IptcParser extends BinaryFileParser {
                 if (LOGGER.isLoggable(Level.FINE)) {
                     LOGGER.fine("ignore record version record! " + elements.size());
                 }
-                // ignore "record version" record;
                 continue;
             }
-            // if (recordVersion == null)
-            // {
-            // // The first record in a JPEG/Photoshop IPTC block must be
-            // // the record version.
-            // if (recordType != 0)
-            // throw new ImageReadException("Missing record version: "
-            // + recordType);
-            // recordVersion = new Integer(convertByteArrayToShort(
-            // "recordNumber", recordData));
-            //
-            // if (recordSize != 2)
-            // throw new ImageReadException(
-            // "Invalid record version record size: " + recordSize);
-            //
-            // // JPEG/Photoshop IPTC metadata is always in Record version
-            // // 2
-            // if (recordVersion.intValue() != 2)
-            // throw new ImageReadException(
-            // "Invalid IPTC record version: " + recordVersion);
-            //
-            // // Debug.debug("recordVersion", recordVersion);
-            // continue;
-            // }
 
             final String value = new String(recordData, charset);
 
             final IptcType iptcType = IptcTypeLookup.getIptcType(recordType);
-
-            // Debug.debug("iptcType", iptcType);
-            // debugByteArray("iptcData", iptcData);
-            // Debug.debug();
-
-            // if (recordType == IPTC_TYPE_CREDIT.type
-            // || recordType == IPTC_TYPE_OBJECT_NAME.type)
-            // {
-            // this.debugByteArray("recordData", recordData);
-            // Debug.debug("index", IPTC_TYPE_CREDIT.name);
-            // }
 
             final IptcRecord element = new IptcRecord(iptcType, value);
             elements.add(element);
@@ -421,10 +362,6 @@ public class IptcParser extends BinaryFileParser {
                 bos.write(element.iptcType.getType());
 
                 final byte[] recordData = element.getValue().getBytes(charset);
-                /*
-                 * if (!new String(recordData, charset).equals(element.getValue())) { throw new ImageWriteException( "Invalid record value, not " +
-                 * charset.name()); }
-                 */
 
                 bos.write2Bytes(recordData.length);
                 bos.write(recordData);

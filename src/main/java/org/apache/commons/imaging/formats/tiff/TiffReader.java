@@ -180,10 +180,7 @@ public class TiffReader extends BinaryFileParser {
                 rowsPerStrip = rowsPerStripField.getIntValue();
             } else {
                 final TiffField imageHeight = directory.findField(TiffTagConstants.TIFF_TAG_IMAGE_LENGTH);
-                //
-                // if rows per strip not present then rowsPerStrip is equal to
-                // imageLength or an infinity value;
-                //
+
                 if (imageHeight != null) {
                     rowsPerStrip = imageHeight.getIntValue();
                 }
@@ -231,26 +228,6 @@ public class TiffReader extends BinaryFileParser {
         }
         return contents;
     }
-
-//    NOT USED
-//    private static final class DirectoryCollector extends Collector {
-//        private final boolean readImageData;
-//
-//        public DirectoryCollector(final boolean readImageData) {
-//            this.readImageData = readImageData;
-//        }
-//
-//        @Override
-//        public boolean addDirectory(final TiffDirectory directory) {
-//            super.addDirectory(directory);
-//            return false;
-//        }
-//
-//        @Override
-//        public boolean readImageData() {
-//            return readImageData;
-//        }
-//    }
 
     private void readDirectories(final ByteSource byteSource, final FormatCompliance formatCompliance, final Listener listener)
             throws ImagingException, IOException {
@@ -404,7 +381,6 @@ public class TiffReader extends BinaryFileParser {
             }
 
             if (!ignoreNextDirectory && directory.getNextDirectoryOffset() > 0) {
-                // Debug.debug("next dir", directory.nextDirectoryOffset );
                 readDirectory(byteSource, directory.getNextDirectoryOffset(), dirType + 1, formatCompliance, listener, visited);
             }
 

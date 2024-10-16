@@ -42,8 +42,6 @@ public class IccTag {
     private IccTagDataType itdt;
     private int dataTypeSignature;
 
-    // public final byte[] data;
-
     public IccTag(final int signature, final int offset, final int length, final IccTagType fIccTagType) {
         this.signature = signature;
         this.offset = offset;
@@ -106,10 +104,6 @@ public class IccTag {
             dataTypeSignature = BinaryFunctions.read4Bytes("data type signature", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);
 
             itdt = getIccTagDataType(dataTypeSignature);
-            // if (itdt != null)
-            // {
-            // System.out.println("\t\t\t" + "itdt: " + itdt.name);
-            // }
         }
     }
 }

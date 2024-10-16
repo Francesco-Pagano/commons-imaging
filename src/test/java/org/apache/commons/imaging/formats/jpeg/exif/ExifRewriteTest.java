@@ -50,10 +50,6 @@ import org.apache.commons.imaging.internal.Debug;
 import org.junit.jupiter.api.Test;
 
 public class ExifRewriteTest extends AbstractExifTest {
-    // public ExifRewriteTest(String name)
-    // {
-    // super(name);
-    // }
 
     private interface Rewriter {
         void rewrite(ByteSource byteSource, OutputStream os, TiffOutputSet outputSet) throws ImagingException, IOException, ImagingException;
@@ -79,8 +75,6 @@ public class ExifRewriteTest extends AbstractExifTest {
         assertEquals(oldDirectoryTypes, newDirectoryTypes);
 
         for (final Integer dirType : oldDirectoryTypes) {
-
-            // Debug.debug("dirType", dirType);
 
             final TiffImageMetadata.Directory oldDirectory = oldDirectoryMap.get(dirType);
             final TiffImageMetadata.Directory newDirectory = newDirectoryMap.get(dirType);
@@ -219,11 +213,7 @@ public class ExifRewriteTest extends AbstractExifTest {
                 assertNotNull(oldExifMetadata);
                 oldMetadata.dump();
 
-                // TiffImageMetadata tiffImageMetadata = metadata.getExif();
-                // Photoshop photoshop = metadata.getPhotoshop();
-
                 final TiffOutputSet outputSet = oldExifMetadata.getOutputSet();
-                // outputSet.dump();
 
                 final ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 rewriter.rewrite(byteSource, baos, outputSet);
@@ -232,13 +222,10 @@ public class ExifRewriteTest extends AbstractExifTest {
                 Debug.debug("Output Segments:");
                 new JpegUtils().dumpJfif(ByteSource.array(bytes));
 
-                // assertTrue(!hasExifData(tempFile));
-
                 final JpegImageMetadata newMetadata = (JpegImageMetadata) Imaging.getMetadata(new ByteArrayInputStream(bytes), name + ".jpg");
                 assertNotNull(newMetadata);
                 final TiffImageMetadata newExifMetadata = newMetadata.getExif();
                 assertNotNull(newExifMetadata);
-                // newMetadata.dump();
 
                 compare(imageFile, oldExifMetadata, newExifMetadata);
             } catch (final IOException e) {
@@ -287,7 +274,6 @@ public class ExifRewriteTest extends AbstractExifTest {
 
             {
                 final TiffOutputSet outputSet = oldExifMetadata.getOutputSet();
-                // outputSet.dump();
 
                 final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -298,13 +284,10 @@ public class ExifRewriteTest extends AbstractExifTest {
                 Debug.debug("Output Segments:");
                 new JpegUtils().dumpJfif(ByteSource.array(bytes));
 
-                // assertTrue(!hasExifData(tempFile));
-
                 final JpegImageMetadata newMetadata = (JpegImageMetadata) Imaging.getMetadata(new ByteArrayInputStream(bytes), "inserted.jpg");
                 assertNotNull(newMetadata);
                 final TiffImageMetadata newExifMetadata = newMetadata.getExif();
                 assertNotNull(newExifMetadata);
-                // newMetadata.dump();
 
                 compare(imageFile, oldExifMetadata, newExifMetadata);
             }

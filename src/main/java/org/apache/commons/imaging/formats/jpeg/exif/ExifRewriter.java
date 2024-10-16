@@ -165,13 +165,6 @@ public class ExifRewriter extends BinaryFileParser {
 
         new JpegUtils().traverseJfif(byteSource, visitor);
 
-        // GenericSegment exifSegment = exifSegmentArray[0];
-        // if (exifSegments.size() < 1)
-        // {
-        // // TODO: add support for adding, not just replacing.
-        // throw new ImageReadException("No APP1 EXIF segment found.");
-        // }
-
         return new JFIFPieces(pieces, exifPieces);
     }
 
@@ -201,12 +194,6 @@ public class ExifRewriter extends BinaryFileParser {
     public void removeExifMetadata(final ByteSource byteSource, final OutputStream os) throws ImagingException, IOException, ImagingException {
         final JFIFPieces jfifPieces = analyzeJfif(byteSource);
         final List<JFIFPiece> pieces = jfifPieces.pieces;
-
-        // Debug.debug("pieces", pieces);
-
-        // pieces.removeAll(jfifPieces.exifSegments);
-
-        // Debug.debug("pieces", pieces);
 
         writeSegmentsReplacingExif(os, pieces, null);
     }
@@ -285,7 +272,6 @@ public class ExifRewriter extends BinaryFileParser {
      */
     public void updateExifMetadataLossless(final ByteSource byteSource, final OutputStream os, final TiffOutputSet outputSet)
             throws ImagingException, IOException, ImagingException {
-        // List outputDirectories = outputSet.getDirectories();
         final JFIFPieces jfifPieces = analyzeJfif(byteSource);
         final List<JFIFPiece> pieces = jfifPieces.pieces;
 

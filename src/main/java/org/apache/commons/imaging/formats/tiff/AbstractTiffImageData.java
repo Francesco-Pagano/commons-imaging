@@ -45,7 +45,6 @@ public abstract class AbstractTiffImageData {
     public static class Strips extends AbstractTiffImageData {
 
         private final AbstractTiffElement.DataElement[] strips;
-        // public final byte strips[][];
         public final int rowsPerStrip;
 
         public Strips(final AbstractTiffElement.DataElement[] strips, final int rowsPerStrip) {
@@ -86,7 +85,6 @@ public abstract class AbstractTiffImageData {
 
         public final AbstractTiffElement.DataElement[] tiles;
 
-        // public final byte tiles[][];
         private final int tileWidth;
         private final int tileLength;
 
@@ -134,11 +132,6 @@ public abstract class AbstractTiffImageData {
         public boolean stripsNotTiles() {
             return false;
         }
-
-        // public TiffElement[] getElements()
-        // {
-        // return tiles;
-        // }
     }
 
     private static int extractSampleFormat(final TiffDirectory directory) throws ImagingException {

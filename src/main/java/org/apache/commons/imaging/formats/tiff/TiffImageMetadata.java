@@ -49,7 +49,6 @@ import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 
 public class TiffImageMetadata extends GenericImageMetadata {
     public static class Directory extends GenericImageMetadata implements ImageMetadataItem {
-        // private BufferedImage thumbnail;
 
         public final int type;
 
@@ -98,21 +97,8 @@ public class TiffImageMetadata extends GenericImageMetadata {
 
                     final TagInfo tagInfo = srcField.getTagInfo();
                     final AbstractFieldType abstractFieldType = srcField.getFieldType();
-                    // byte[] bytes = srcField.fieldType.getRawBytes(srcField);
-
-                    // Debug.debug("tagInfo", tagInfo);
-
                     final Object value = srcField.getValue();
-
-                    // Debug.debug("value", Debug.getType(value));
-
                     final byte[] bytes = tagInfo.encodeValue(abstractFieldType, value, byteOrder);
-
-                    // if (tagInfo.isUnknown())
-                    // Debug.debug(
-                    // "\t" + "unknown tag(0x"
-                    // + Integer.toHexString(srcField.tag)
-                    // + ") bytes", bytes);
 
                     final int count = bytes.length / abstractFieldType.getSize();
                     final TiffOutputField dstField = new TiffOutputField(srcField.getTag(), tagInfo, abstractFieldType, count, bytes);

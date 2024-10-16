@@ -66,7 +66,6 @@ final class BitInputStream extends FilterInputStream {
                 throw new ImagingException("BitInputStream: can't read bit fields across bytes");
             }
 
-            // int bits_to_shift = cache_bits_remaining - count;
             cacheBitsRemaining -= count;
             final int bits = cache >> cacheBitsRemaining;
 

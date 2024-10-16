@@ -18,17 +18,7 @@ package org.apache.commons.imaging.icc;
 
 public enum IccTagTypes implements IccTagType {
     A_TO_B0_TAG("AToB0Tag", "lut8Type or lut16Type or lutAtoBType", 0x41324230
-    // "This tag defines a color transform from Device to PCS using lookup table tag element structures. The processing mechanisms are described in lut8Type or
-    // lut16Type or lutAtoBType.");
     ),
-
-    // public static final IccTagType AToB0Tag = new IccTagType(
-    // "AToB0Tag",
-    // "lut8Type or lut16Type or lutAtoBType",
-    // "�A2B0� (41324230h)",
-    // "This tag defines a color transform from Device to PCS using lookup table tag element structures. The processing",
-    // "mechanisms are described in lut8Type or lut16Type or lutAtoBType.",
-    // );
 
     A_TO_B1_TAG("AToB1Tag", "lut8Type or lut16Type or lutAtoBType", 0x41324231
     // "This tag defines a color transform from Device to PCS using lookup table tag element structures. The processing",

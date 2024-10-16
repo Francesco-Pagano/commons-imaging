@@ -44,8 +44,6 @@ public class ScanlineFilterAverage implements ScanlineFilter {
             final int average = ((0xff & raw) + (0xff & prior)) / 2;
 
             dst[i] = (byte) ((src[i] + average) % 256);
-            // dst[i] = src[i];
-            // dst[i] = (byte) 255;
         }
     }
 }
