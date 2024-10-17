@@ -252,7 +252,7 @@ public class PngWriter {
         writeChunk(os, ChunkType.iTXt, baos.toByteArray());
     }
 
-    private void writeChunkzTXt(final OutputStream os, final AbstractPngText.Ztxt text) throws IOException, ImagingException {
+    private void writeChunkzTXt(final OutputStream os, final AbstractPngText.Ztxt text) throws IOException {
         if (!isValidISO_8859_1(text.keyword)) {
             throw new ImagingException("PNG zTXt chunk keyword is not ISO-8859-1: " + text.keyword);
         }
