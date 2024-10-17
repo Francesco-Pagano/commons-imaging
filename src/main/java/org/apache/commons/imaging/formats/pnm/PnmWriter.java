@@ -20,7 +20,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.apache.commons.imaging.ImagingException;
+
 
 interface PnmWriter {
 

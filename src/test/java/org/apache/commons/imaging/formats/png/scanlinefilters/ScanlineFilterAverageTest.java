@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.IOException;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.junit.jupiter.api.Test;
 
 public class ScanlineFilterAverageTest {

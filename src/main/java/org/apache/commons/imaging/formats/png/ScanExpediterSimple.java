@@ -20,7 +20,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.formats.png.chunks.PngChunkPlte;
 import org.apache.commons.imaging.formats.png.transparencyfilters.AbstractTransparencyFilter;
 

@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.BinaryFunctions;
 
 public class IccTag {

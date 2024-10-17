@@ -20,7 +20,7 @@ package org.apache.commons.imaging.formats.jpeg.exif;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.formats.tiff.TiffField;
 import org.apache.commons.imaging.formats.tiff.constants.ExifTagConstants;
 import org.apache.commons.imaging.internal.Debug;

@@ -18,7 +18,7 @@ package org.apache.commons.imaging.formats.png.transparencyfilters;
 
 import java.io.IOException;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.BinaryFileParser;
 
 public abstract class AbstractTransparencyFilter extends BinaryFileParser {

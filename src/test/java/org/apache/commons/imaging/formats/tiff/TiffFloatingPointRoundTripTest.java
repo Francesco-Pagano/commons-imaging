@@ -28,7 +28,7 @@ import java.nio.ByteOrder;
 import java.nio.file.Path;
 
 import org.apache.commons.imaging.FormatCompliance;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.bytesource.ByteSource;
 import org.apache.commons.imaging.common.ImageBuilder;
 import org.apache.commons.imaging.formats.tiff.constants.TiffTagConstants;

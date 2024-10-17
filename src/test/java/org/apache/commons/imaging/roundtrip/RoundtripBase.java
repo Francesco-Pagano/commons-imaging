@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.stream.Stream;
 
 import org.apache.commons.imaging.AbstractImageParser;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.ImagingParameters;
 import org.apache.commons.imaging.common.RgbBufferedImageFactory;
 import org.apache.commons.imaging.internal.ImageParserFactory;

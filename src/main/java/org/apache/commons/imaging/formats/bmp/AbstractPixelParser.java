@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.ImageBuilder;
 
 abstract class AbstractPixelParser {

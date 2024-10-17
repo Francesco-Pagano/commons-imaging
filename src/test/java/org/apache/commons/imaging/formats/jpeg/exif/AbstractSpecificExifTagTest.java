@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImagingParameters;

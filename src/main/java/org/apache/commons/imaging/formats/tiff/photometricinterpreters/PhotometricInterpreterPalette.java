@@ -19,7 +19,7 @@ package org.apache.commons.imaging.formats.tiff.photometricinterpreters;
 import java.io.IOException;
 import java.util.Arrays;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.ImagingFormatException;
 import org.apache.commons.imaging.common.AllocationRequestException;
 import org.apache.commons.imaging.common.Allocator;

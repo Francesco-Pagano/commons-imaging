@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.IOException;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.junit.jupiter.api.Test;
 
 /**

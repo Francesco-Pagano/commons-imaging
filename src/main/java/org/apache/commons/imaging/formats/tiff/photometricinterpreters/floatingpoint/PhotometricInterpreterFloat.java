@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.ImageBuilder;
 import org.apache.commons.imaging.formats.tiff.photometricinterpreters.PhotometricInterpreter;
 

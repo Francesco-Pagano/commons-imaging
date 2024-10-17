@@ -25,7 +25,7 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
-import org.apache.commons.imaging.ImagingException;
+
 
 public enum IccTagDataTypes implements IccTagDataType {
     DESC_TYPE("descType", 0x64657363) {

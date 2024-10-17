@@ -26,7 +26,7 @@ import java.util.Random;
 
 import org.apache.commons.imaging.ImageFormats;
 import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.internal.Debug;
 import org.junit.jupiter.api.Test;
 

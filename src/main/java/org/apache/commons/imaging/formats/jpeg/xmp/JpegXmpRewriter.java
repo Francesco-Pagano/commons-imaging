@@ -105,7 +105,7 @@ public class JpegXmpRewriter extends JpegRewriter {
      * @throws IOException      if it fails to read or write the data from the segments
      * @throws ImagingException if it fails to write the JFIF segments
      */
-    public void updateXmpXml(final byte[] src, final OutputStream os, final String xmpXml) throws IOException, ImagingException {
+    public void updateXmpXml(final byte[] src, final OutputStream os, final String xmpXml) throws IOException {
         final ByteSource byteSource = ByteSource.array(src);
         updateXmpXml(byteSource, os, xmpXml);
     }
@@ -120,7 +120,7 @@ public class JpegXmpRewriter extends JpegRewriter {
      * @throws IOException      if it fails to read or write the data from the segments
      * @throws ImagingException if it fails to write the JFIF segments
      */
-    public void updateXmpXml(final ByteSource byteSource, final OutputStream os, final String xmpXml) throws IOException, ImagingException {
+    public void updateXmpXml(final ByteSource byteSource, final OutputStream os, final String xmpXml) throws IOException {
         final JFIFPieces jfifPieces = analyzeJfif(byteSource);
         List<JFIFPiece> pieces = jfifPieces.pieces;
         pieces = removeXmpSegments(pieces);
@@ -150,7 +150,7 @@ public class JpegXmpRewriter extends JpegRewriter {
      * @throws IOException      if it fails to read or write the data from the segments
      * @throws ImagingException if it fails to write the JFIF segments
      */
-    public void updateXmpXml(final File src, final OutputStream os, final String xmpXml) throws IOException, ImagingException {
+    public void updateXmpXml(final File src, final OutputStream os, final String xmpXml) throws IOException {
         final ByteSource byteSource = ByteSource.file(src);
         updateXmpXml(byteSource, os, xmpXml);
     }
@@ -165,7 +165,7 @@ public class JpegXmpRewriter extends JpegRewriter {
      * @throws IOException      if it fails to read or write the data from the segments
      * @throws ImagingException if it fails to write the JFIF segments
      */
-    public void updateXmpXml(final InputStream src, final OutputStream os, final String xmpXml) throws IOException, ImagingException {
+    public void updateXmpXml(final InputStream src, final OutputStream os, final String xmpXml) throws IOException {
         final ByteSource byteSource = ByteSource.inputStream(src, null);
         updateXmpXml(byteSource, os, xmpXml);
     }

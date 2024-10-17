@@ -25,7 +25,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.ImagingTestConstants;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.Test;

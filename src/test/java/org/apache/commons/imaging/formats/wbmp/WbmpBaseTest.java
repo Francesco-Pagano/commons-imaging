@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.imaging.AbstractImagingTest;
-import org.apache.commons.imaging.ImagingException;
+
 
 public abstract class WbmpBaseTest extends AbstractImagingTest {
     private static final ImageFilter IMAGE_FILTER = WbmpBaseTest::isWbmp;

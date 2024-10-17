@@ -38,7 +38,7 @@ import org.apache.commons.imaging.ImageFormat;
 import org.apache.commons.imaging.ImageFormats;
 import org.apache.commons.imaging.ImageInfo;
 import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.ImagingParameters;
 import org.apache.commons.imaging.formats.jpeg.JpegImagingParameters;
 import org.apache.commons.imaging.formats.tiff.TiffImagingParameters;

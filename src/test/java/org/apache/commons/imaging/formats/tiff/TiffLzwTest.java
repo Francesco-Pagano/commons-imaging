@@ -27,7 +27,7 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.bytesource.ByteSource;
 import org.apache.commons.imaging.internal.Debug;
 import org.apache.commons.imaging.mylzw.MyLzwCompressor;

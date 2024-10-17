@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.common.ImageMetadata.ImageMetadataItem;
 import org.apache.commons.imaging.common.RationalNumber;

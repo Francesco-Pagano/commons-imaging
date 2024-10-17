@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.logging.Logger;
 
-import org.apache.commons.imaging.ImagingException;
+
 
 public class IccProfileInfo {
 

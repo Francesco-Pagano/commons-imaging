@@ -18,7 +18,7 @@ package org.apache.commons.imaging.formats.png.scanlinefilters;
 
 import java.io.IOException;
 
-import org.apache.commons.imaging.ImagingException;
+
 
 public interface ScanlineFilter {
 

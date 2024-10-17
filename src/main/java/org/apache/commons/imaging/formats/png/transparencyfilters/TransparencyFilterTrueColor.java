@@ -21,7 +21,7 @@ import static org.apache.commons.imaging.common.BinaryFunctions.read2Bytes;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-import org.apache.commons.imaging.ImagingException;
+
 
 public class TransparencyFilterTrueColor extends AbstractTransparencyFilter {
     private final int transparentColor;

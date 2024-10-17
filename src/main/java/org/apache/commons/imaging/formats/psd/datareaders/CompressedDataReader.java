@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteOrder;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.Allocator;
 import org.apache.commons.imaging.common.BinaryFileParser;
 import org.apache.commons.imaging.common.BinaryFunctions;

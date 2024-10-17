@@ -22,7 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.apache.commons.imaging.FormatCompliance;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.bytesource.ByteSource;
 import org.apache.commons.imaging.common.RationalNumber;
 import org.apache.commons.imaging.formats.tiff.constants.ExifTagConstants;

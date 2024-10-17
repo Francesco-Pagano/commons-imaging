@@ -32,7 +32,7 @@ import java.util.Random;
 import org.apache.commons.imaging.AbstractImagingTest;
 import org.apache.commons.imaging.ImageFormats;
 import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.GenericImageMetadata;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.junit.jupiter.api.Test;

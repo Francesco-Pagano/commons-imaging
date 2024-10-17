@@ -18,7 +18,7 @@ package org.apache.commons.imaging.formats.tiff.photometricinterpreters;
 
 import java.io.IOException;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.ImageBuilder;
 
 public class PhotometricInterpreterRgb extends PhotometricInterpreter {

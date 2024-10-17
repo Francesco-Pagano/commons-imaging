@@ -23,7 +23,7 @@ import java.io.OutputStream;
 import java.nio.ByteOrder;
 import java.util.List;
 
-import org.apache.commons.imaging.ImagingException;
+
 import org.apache.commons.imaging.common.BinaryOutputStream;
 
 public class TiffImageWriterLossy extends AbstractTiffImageWriter {

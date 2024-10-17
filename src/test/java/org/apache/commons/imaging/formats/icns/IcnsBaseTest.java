@@ -25,7 +25,7 @@ import org.apache.commons.imaging.AbstractImagingTest;
 import org.apache.commons.imaging.ImageFormat;
 import org.apache.commons.imaging.ImageFormats;
 import org.apache.commons.imaging.Imaging;
-import org.apache.commons.imaging.ImagingException;
+
 
 public abstract class IcnsBaseTest extends AbstractImagingTest {
 
