@@ -84,7 +84,7 @@ public class ByteSourceImageTest extends AbstractByteSourceTest {
     }
 
     public void checkGetImageInfo(final File imageFile, final byte[] imageFileBytes)
-            throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ImagingException {
+            throws IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         final boolean ignoreImageData = isPhilHarveyTestImage(imageFile);
         final ImageFormat imageFormat = Imaging.guessFormat(imageFile);
         ImagingParameters params = null;

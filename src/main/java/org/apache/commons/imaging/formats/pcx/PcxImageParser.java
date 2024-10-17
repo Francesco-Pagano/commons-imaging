@@ -156,7 +156,7 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         readPcxHeader(byteSource).dump(pw);
         return true;
     }
@@ -173,7 +173,7 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
     }
 
     @Override
-    public final BufferedImage getBufferedImage(final ByteSource byteSource, PcxImagingParameters params) throws ImagingException, IOException {
+    public final BufferedImage getBufferedImage(final ByteSource byteSource, PcxImagingParameters params) throws IOException {
         if (params == null) {
             params = new PcxImagingParameters();
         }
@@ -194,12 +194,12 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final PcxImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final PcxImagingParameters params) throws IOException {
         return null;
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final PcxImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final PcxImagingParameters params) throws IOException {
         final PcxHeader pcxHeader = readPcxHeader(byteSource);
         final Dimension size = getImageSize(byteSource, params);
         return new ImageInfo("PCX", pcxHeader.nPlanes * pcxHeader.bitsPerPixel, new ArrayList<>(), ImageFormats.PCX, "ZSoft PCX Image", size.height,
@@ -209,7 +209,7 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final PcxImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final PcxImagingParameters params) throws IOException {
         final PcxHeader pcxHeader = readPcxHeader(byteSource);
         final int xSize = pcxHeader.xMax - pcxHeader.xMin + 1;
         if (xSize < 0) {
@@ -223,7 +223,7 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
     }
 
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, final PcxImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, final PcxImagingParameters params) throws IOException {
         return null;
     }
 
@@ -252,7 +252,7 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
         }
     }
 
-    private BufferedImage readImage(final PcxHeader pcxHeader, final InputStream is, final ByteSource byteSource) throws ImagingException, IOException {
+    private BufferedImage readImage(final PcxHeader pcxHeader, final InputStream is, final ByteSource byteSource) throws IOException {
         final int xSize = pcxHeader.xMax - pcxHeader.xMin + 1;
         if (xSize < 0) {
             throw new ImagingException("Image width is negative");
@@ -376,13 +376,13 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
         return new BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied(), new Properties());
     }
 
-    private PcxHeader readPcxHeader(final ByteSource byteSource) throws ImagingException, IOException {
+    private PcxHeader readPcxHeader(final ByteSource byteSource) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             return readPcxHeader(is, false);
         }
     }
 
-    private PcxHeader readPcxHeader(final InputStream is, final boolean isStrict) throws ImagingException, IOException {
+    private PcxHeader readPcxHeader(final InputStream is, final boolean isStrict) throws IOException {
         final byte[] pcxHeaderBytes = readBytes("PcxHeader", is, 128, "Not a Valid PCX File");
         final int manufacturer = 0xff & pcxHeaderBytes[0];
         final int version = 0xff & pcxHeaderBytes[1];
@@ -418,7 +418,7 @@ public class PcxImageParser extends AbstractImageParser<PcxImagingParameters> {
     }
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, final PcxImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, final PcxImagingParameters params) throws IOException {
         new PcxWriter(params).writeImage(src, os);
     }
 }

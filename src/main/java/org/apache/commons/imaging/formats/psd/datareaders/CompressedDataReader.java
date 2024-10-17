@@ -43,7 +43,7 @@ public class CompressedDataReader implements DataReader {
 
     @Override
     public void readData(final InputStream is, final BufferedImage bi, final PsdImageContents imageContents, final BinaryFileParser bfp)
-            throws ImagingException, IOException {
+            throws IOException {
         final PsdHeaderInfo header = imageContents.header;
         final int width = header.columns;
         final int height = header.rows;

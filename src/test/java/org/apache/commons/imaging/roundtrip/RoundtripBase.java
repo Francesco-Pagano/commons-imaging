@@ -38,7 +38,7 @@ public class RoundtripBase {
     }
 
     protected void roundtrip(final FormatInfo formatInfo, final BufferedImage testImage, final String tempPrefix, final boolean imageExact)
-            throws IOException, ImagingException, ImagingException {
+            throws IOException {
 
         final AbstractImageParser abstractImageParser = ImageParserFactory.getImageParser(formatInfo.format);
 

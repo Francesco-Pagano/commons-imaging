@@ -242,7 +242,7 @@ public class TiffFloatingPointMultivariableTest extends TiffBaseTest {
     }
 
     private File writeFile(final ByteOrder byteOrder, final boolean useTiles, final boolean usePredictorForTiles,
-            final TiffPlanarConfiguration planarConfiguration) throws IOException, ImagingException {
+            final TiffPlanarConfiguration planarConfiguration) throws IOException {
 
         final String name = String.format("FpMultiVarRoundTrip_%s_%s%s.tiff", planarConfiguration == TiffPlanarConfiguration.CHUNKY ? "Chunky" : "Planar",
                 useTiles ? "Tiles" : "Strips", usePredictorForTiles ? "_Predictor" : "");

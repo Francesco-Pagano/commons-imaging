@@ -27,7 +27,7 @@ public class TransparencyFilterIndexedColor extends AbstractTransparencyFilter {
     }
 
     @Override
-    public int filter(final int rgb, final int index) throws ImagingException, IOException {
+    public int filter(final int rgb, final int index) throws IOException {
         final int length = getLength();
         if (index >= length) { // TODO see below - is this check correct?
             return rgb;

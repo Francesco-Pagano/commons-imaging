@@ -61,11 +61,11 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
 
         final int fileSize;
 
-        ChunksReader(final ByteSource byteSource) throws IOException, ImagingException {
+        ChunksReader(final ByteSource byteSource) throws IOException {
             this(byteSource, (WebPChunkType[]) null);
         }
 
-        ChunksReader(final ByteSource byteSource, final WebPChunkType... chunkTypes) throws ImagingException, IOException {
+        ChunksReader(final ByteSource byteSource, final WebPChunkType... chunkTypes) throws IOException {
             this.is = byteSource.getInputStream();
             this.chunkTypes = chunkTypes;
             this.fileSize = readFileHeader(is);
@@ -80,7 +80,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
             return SafeOperations.add(sizeCount, 8); // File Header
         }
 
-        WebPChunk readChunk() throws ImagingException, IOException {
+        WebPChunk readChunk() throws IOException {
             while (sizeCount < fileSize) {
                 final int type = read4Bytes("Chunk Type", is, "Not a valid WebP file", ByteOrder.LITTLE_ENDIAN);
                 final int payloadSize = read4Bytes("Chunk Size", is, "Not a valid WebP file", ByteOrder.LITTLE_ENDIAN);
@@ -138,7 +138,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
      *
      * @return file size in file header (including the WebP signature, excluding the TIFF signature and the file size field).
      */
-    private static int readFileHeader(final InputStream is) throws IOException, ImagingException {
+    private static int readFileHeader(final InputStream is) throws IOException {
         final byte[] buffer = new byte[4];
         if (is.read(buffer) < 4 || !WebPConstants.RIFF_SIGNATURE.equals(buffer)) {
             throw new ImagingException("Not a valid WebP file");
@@ -157,7 +157,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         pw.println("webp.dumpImageFile");
         try (ChunksReader reader = new ChunksReader(byteSource)) {
             int offset = reader.getOffset();
@@ -191,7 +191,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
     }
 
     @Override
-    public BufferedImage getBufferedImage(final ByteSource byteSource, final WebPImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getBufferedImage(final ByteSource byteSource, final WebPImagingParameters params) throws IOException {
         throw new ImagingException("Reading WebP files is currently not supported");
     }
 
@@ -206,7 +206,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final WebPImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final WebPImagingParameters params) throws IOException {
         try (ChunksReader reader = new ChunksReader(byteSource, WebPChunkType.ICCP)) {
             final WebPChunk chunk = reader.readChunk();
             return chunk == null ? null : chunk.getBytes();
@@ -214,7 +214,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final WebPImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final WebPImagingParameters params) throws IOException {
         try (ChunksReader reader = new ChunksReader(byteSource, WebPChunkType.VP8, WebPChunkType.VP8L, WebPChunkType.VP8X, WebPChunkType.ANMF)) {
             String formatDetails;
             int width;
@@ -286,7 +286,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final WebPImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final WebPImagingParameters params) throws IOException {
         try (ChunksReader reader = new ChunksReader(byteSource)) {
             final WebPChunk chunk = reader.readChunk();
             if (chunk instanceof WebPChunkVp8) {
@@ -306,7 +306,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
     }
 
     @Override
-    public WebPImageMetadata getMetadata(final ByteSource byteSource, final WebPImagingParameters params) throws ImagingException, IOException {
+    public WebPImageMetadata getMetadata(final ByteSource byteSource, final WebPImagingParameters params) throws IOException {
         try (ChunksReader reader = new ChunksReader(byteSource, WebPChunkType.EXIF)) {
             final WebPChunk chunk = reader.readChunk();
             return chunk == null ? null : new WebPImageMetadata((TiffImageMetadata) new TiffImageParser().getMetadata(chunk.getBytes()));
@@ -319,7 +319,7 @@ public class WebPImageParser extends AbstractImageParser<WebPImagingParameters> 
     }
 
     @Override
-    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters<WebPImagingParameters> params) throws ImagingException, IOException {
+    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters<WebPImagingParameters> params) throws IOException {
         try (ChunksReader reader = new ChunksReader(byteSource, WebPChunkType.XMP)) {
             final WebPChunkXml chunk = (WebPChunkXml) reader.readChunk();
             return chunk == null ? null : chunk.getXml();

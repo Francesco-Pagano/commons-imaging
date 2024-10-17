@@ -36,7 +36,7 @@ public abstract class TiffBaseTest extends AbstractImagingTest {
         return format == ImageFormats.TIFF;
     }
 
-    protected List<File> getTiffImages() throws IOException, ImagingException {
+    protected List<File> getTiffImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

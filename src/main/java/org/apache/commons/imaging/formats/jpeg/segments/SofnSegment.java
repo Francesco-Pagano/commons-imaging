@@ -54,11 +54,11 @@ public class SofnSegment extends AbstractSegment {
 
     private final Component[] components;
 
-    public SofnSegment(final int marker, final byte[] segmentData) throws IOException, ImagingException {
+    public SofnSegment(final int marker, final byte[] segmentData) throws IOException {
         this(marker, segmentData.length, new ByteArrayInputStream(segmentData));
     }
 
-    public SofnSegment(final int marker, final int markerLength, final InputStream is) throws IOException, ImagingException {
+    public SofnSegment(final int marker, final int markerLength, final InputStream is) throws IOException {
         super(marker, markerLength);
 
         if (LOGGER.isLoggable(Level.FINEST)) {

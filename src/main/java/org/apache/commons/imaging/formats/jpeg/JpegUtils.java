@@ -35,7 +35,7 @@ public class JpegUtils extends BinaryFileParser {
 
         // return false to exit traversal.
         boolean visitSegment(int marker, byte[] markerBytes, int segmentLength, byte[] segmentLengthBytes, byte[] segmentData)
-                throws ImagingException, IOException;
+                throws IOException;
 
         void visitSos(int marker, byte[] markerBytes, byte[] imageData);
     }
@@ -117,7 +117,7 @@ public class JpegUtils extends BinaryFileParser {
         super(ByteOrder.BIG_ENDIAN);
     }
 
-    public void dumpJfif(final ByteSource byteSource) throws ImagingException, IOException {
+    public void dumpJfif(final ByteSource byteSource) throws IOException {
         final Visitor visitor = new Visitor() {
             // return false to exit before reading image data.
             @Override
@@ -144,7 +144,7 @@ public class JpegUtils extends BinaryFileParser {
         traverseJfif(byteSource, visitor);
     }
 
-    public void traverseJfif(final ByteSource byteSource, final Visitor visitor) throws ImagingException, IOException {
+    public void traverseJfif(final ByteSource byteSource, final Visitor visitor) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             BinaryFunctions.readAndVerifyBytes(is, JpegConstants.SOI, "Not a Valid JPEG File: doesn't begin with 0xffd8");
 

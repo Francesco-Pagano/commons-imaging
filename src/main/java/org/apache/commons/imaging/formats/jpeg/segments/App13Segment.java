@@ -40,7 +40,7 @@ public class App13Segment extends AppnSegment {
         return new IptcParser().isPhotoshopJpegSegment(getSegmentData());
     }
 
-    public PhotoshopApp13Data parsePhotoshopSegment(final ImagingParameters<JpegImagingParameters> params) throws ImagingException, IOException {
+    public PhotoshopApp13Data parsePhotoshopSegment(final ImagingParameters<JpegImagingParameters> params) throws IOException {
         /*
          * In practice, App13 segments are only used for Photoshop/IPTC metadata. However, we should not treat App13 signatures without Photoshop's signature as
          * Photoshop/IPTC segments.

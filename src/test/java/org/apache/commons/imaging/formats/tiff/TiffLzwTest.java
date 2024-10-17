@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 
 public class TiffLzwTest extends TiffBaseTest {
 
-    private void compressRoundtripAndValidate(final byte[] src) throws IOException, ImagingException {
+    private void compressRoundtripAndValidate(final byte[] src) throws IOException {
         final boolean DEBUG = false;
 
         if (DEBUG) {
@@ -117,7 +117,7 @@ public class TiffLzwTest extends TiffBaseTest {
         }
     }
 
-    private void decompressRoundtripAndValidate(final byte[] src) throws IOException, ImagingException {
+    private void decompressRoundtripAndValidate(final byte[] src) throws IOException {
         Debug.debug();
         Debug.debug("roundtripAndValidate: " + src.length);
         Debug.debug();
@@ -216,7 +216,7 @@ public class TiffLzwTest extends TiffBaseTest {
 
     @Disabled // FIXME fails with java.io.IOException: Bad Code: -1 codes: 258 code_size: 9, table: 4096
     @Test
-    public void testTiffImageData() throws IOException, ImagingException {
+    public void testTiffImageData() throws IOException {
         final List<File> images = getTiffImages();
         for (final File image : images) {
 

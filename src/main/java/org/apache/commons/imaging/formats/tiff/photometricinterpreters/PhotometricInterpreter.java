@@ -48,5 +48,5 @@ public abstract class PhotometricInterpreter {
         return bitsPerSample[offset];
     }
 
-    public abstract void interpretPixel(ImageBuilder imageBuilder, int[] samples, int x, int y) throws ImagingException, IOException;
+    public abstract void interpretPixel(ImageBuilder imageBuilder, int[] samples, int x, int y) throws IOException;
 }

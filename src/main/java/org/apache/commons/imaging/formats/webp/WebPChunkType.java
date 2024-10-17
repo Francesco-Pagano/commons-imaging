@@ -85,7 +85,7 @@ public enum WebPChunkType {
     XMP(WebPChunkXml::new);
 
     private interface ChunkConstructor {
-        WebPChunk make(int type, int size, byte[] bytes) throws IOException, ImagingException;
+        WebPChunk make(int type, int size, byte[] bytes) throws IOException;
     }
 
     private static final WebPChunkType[] types = values();
@@ -99,7 +99,7 @@ public enum WebPChunkType {
         return null;
     }
 
-    static WebPChunk makeChunk(final int chunkType, final int size, final byte[] bytes) throws IOException, ImagingException {
+    static WebPChunk makeChunk(final int chunkType, final int size, final byte[] bytes) throws IOException {
         final WebPChunkType type = findType(chunkType);
         return type != null ? type.constructor.make(chunkType, size, bytes) : new WebPChunkXyzw(chunkType, size, bytes);
     }

@@ -37,7 +37,7 @@ public class PnmImageParserTest {
     private static final Charset US_ASCII = StandardCharsets.US_ASCII;
 
     @Test
-    public void testGetImageInfo_happyCase() throws ImagingException, IOException {
+    public void testGetImageInfo_happyCase() throws IOException {
         final byte[] bytes = "P1\n3 2\n0 1 0\n1 0 1\n".getBytes(US_ASCII);
         final PnmImagingParameters params = new PnmImagingParameters();
         final PnmImageParser underTest = new PnmImageParser();
@@ -76,7 +76,7 @@ public class PnmImageParserTest {
     }
 
     @Test
-    public void testWriteImageRaw_happyCase() throws ImagingException, ImagingException, IOException {
+    public void testWriteImageRaw_happyCase() throws IOException {
         final BufferedImage srcImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 
         final byte[] dstBytes = Imaging.writeImageToBytes(srcImage, ImageFormats.PNM);

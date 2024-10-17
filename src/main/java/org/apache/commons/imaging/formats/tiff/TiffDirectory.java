@@ -624,7 +624,7 @@ public class TiffDirectory extends AbstractTiffElement implements Iterable<TiffF
      * @throws ImagingException in the event of incompatible or malformed data
      * @throws IOException      in the event of an I/O error
      */
-    public TiffRasterData getRasterData(final TiffImagingParameters params) throws ImagingException, IOException {
+    public TiffRasterData getRasterData(final TiffImagingParameters params) throws IOException {
 
         final TiffImageParser parser = new TiffImageParser();
         return parser.getRasterData(this, headerByteOrder, params);
@@ -668,7 +668,7 @@ public class TiffDirectory extends AbstractTiffElement implements Iterable<TiffF
      * @throws ImagingException in the event of an invalid or incompatible data format.
      * @throws IOException      in the event of an I/O error.
      */
-    public BufferedImage getTiffImage() throws ImagingException, IOException {
+    public BufferedImage getTiffImage() throws IOException {
         if (null == abstractTiffImageData) {
             return null;
         }
@@ -687,7 +687,7 @@ public class TiffDirectory extends AbstractTiffElement implements Iterable<TiffF
      * @throws ImagingException in the event of an invalid or incompatible data format.
      * @throws IOException      in the event of an I/O error.
      */
-    public BufferedImage getTiffImage(final ByteOrder byteOrder) throws ImagingException, IOException {
+    public BufferedImage getTiffImage(final ByteOrder byteOrder) throws IOException {
         return getTiffImage(byteOrder, new TiffImagingParameters());
     }
 
@@ -703,7 +703,7 @@ public class TiffDirectory extends AbstractTiffElement implements Iterable<TiffF
      * @throws ImagingException in the event of an invalid or incompatible data format.
      * @throws IOException      in the event of an I/O error.
      */
-    public BufferedImage getTiffImage(final ByteOrder byteOrder, final TiffImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getTiffImage(final ByteOrder byteOrder, final TiffImagingParameters params) throws IOException {
         if (null == abstractTiffImageData) {
             return null;
         }
@@ -722,7 +722,7 @@ public class TiffDirectory extends AbstractTiffElement implements Iterable<TiffF
      * @throws ImagingException in the event of an invalid or incompatible data format.
      * @throws IOException      in the event of an I/O error.
      */
-    public BufferedImage getTiffImage(final TiffImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getTiffImage(final TiffImagingParameters params) throws IOException {
         if (null == abstractTiffImageData) {
             return null;
         }

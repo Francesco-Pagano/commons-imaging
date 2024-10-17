@@ -22,7 +22,7 @@ import org.apache.commons.imaging.ImagingException;
 
 interface IccTagDataType {
 
-    void dump(String prefix, byte[] bytes) throws ImagingException, IOException;
+    void dump(String prefix, byte[] bytes) throws IOException;
 
     String getName();
 

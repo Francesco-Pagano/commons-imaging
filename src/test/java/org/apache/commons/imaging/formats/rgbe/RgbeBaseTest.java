@@ -35,7 +35,7 @@ public abstract class RgbeBaseTest extends AbstractImagingTest {
         return format == ImageFormats.RGBE;
     }
 
-    protected List<File> getRgbeImages() throws IOException, ImagingException {
+    protected List<File> getRgbeImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 }

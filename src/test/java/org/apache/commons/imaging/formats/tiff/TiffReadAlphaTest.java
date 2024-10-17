@@ -52,7 +52,7 @@ public class TiffReadAlphaTest {
     }
 
     @Test
-    public void test() throws ImagingException, IOException {
+    public void test() throws IOException {
         for (final String name : names) {
             final File subject = getTiffFile(name);
             final BufferedImage overlay = Imaging.getBufferedImage(subject);

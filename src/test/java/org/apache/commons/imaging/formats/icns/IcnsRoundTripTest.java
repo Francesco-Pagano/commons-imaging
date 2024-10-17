@@ -408,7 +408,7 @@ public class IcnsRoundTripTest extends IcnsBaseTest {
     }
 
     private void writeAndReadImageData(final String description, final byte[] rawData, final int foreground, final int background)
-            throws IOException, ImagingException {
+            throws IOException {
         final BufferedImage dstImage = Imaging.getBufferedImage(new ByteArrayInputStream(rawData), "description.icns");
 
         assertNotNull(dstImage);

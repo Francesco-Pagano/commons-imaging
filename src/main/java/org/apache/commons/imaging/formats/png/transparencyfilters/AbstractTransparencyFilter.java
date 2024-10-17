@@ -34,7 +34,7 @@ public abstract class AbstractTransparencyFilter extends BinaryFileParser {
         this.bytes = bytes.clone();
     }
 
-    public abstract int filter(int rgb, int index) throws ImagingException, IOException;
+    public abstract int filter(int rgb, int index) throws IOException;
 
     /**
      * Gets the byte at the given offset.

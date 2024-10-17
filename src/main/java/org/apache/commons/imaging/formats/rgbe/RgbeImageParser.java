@@ -53,7 +53,7 @@ public class RgbeImageParser extends AbstractImageParser<RgbeImagingParameters> 
     }
 
     @Override
-    public BufferedImage getBufferedImage(final ByteSource byteSource, final RgbeImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getBufferedImage(final ByteSource byteSource, final RgbeImagingParameters params) throws IOException {
         try (RgbeInfo info = new RgbeInfo(byteSource)) {
             // It is necessary to create our own BufferedImage here as the
             // org.apache.commons.imaging.common.IBufferedImageFactory interface does
@@ -78,12 +78,12 @@ public class RgbeImageParser extends AbstractImageParser<RgbeImagingParameters> 
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final RgbeImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final RgbeImagingParameters params) throws IOException {
         return null;
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final RgbeImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final RgbeImagingParameters params) throws IOException {
         try (RgbeInfo info = new RgbeInfo(byteSource)) {
             return new ImageInfo(getName(), 32, // todo may be 64 if double?
                     new ArrayList<>(), ImageFormats.RGBE, getName(), info.getHeight(), "image/vnd.radiance", 1, -1, -1, -1, -1, info.getWidth(), false, false,
@@ -92,14 +92,14 @@ public class RgbeImageParser extends AbstractImageParser<RgbeImagingParameters> 
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final RgbeImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final RgbeImagingParameters params) throws IOException {
         try (RgbeInfo info = new RgbeInfo(byteSource)) {
             return new Dimension(info.getWidth(), info.getHeight());
         }
     }
 
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, final RgbeImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, final RgbeImagingParameters params) throws IOException {
         try (RgbeInfo info = new RgbeInfo(byteSource)) {
             return info.getMetadata();
         }

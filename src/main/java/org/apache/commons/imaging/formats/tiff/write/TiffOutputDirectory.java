@@ -601,7 +601,7 @@ public final class TiffOutputDirectory extends AbstractTiffOutputItem implements
     }
 
     @Override
-    public void writeItem(final BinaryOutputStream bos) throws IOException, ImagingException {
+    public void writeItem(final BinaryOutputStream bos) throws IOException {
         // Write Directory Field Count
         bos.write2Bytes(fields.size()); // DirectoryFieldCount
 

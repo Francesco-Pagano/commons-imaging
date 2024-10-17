@@ -39,6 +39,6 @@ public interface XmpEmbeddable<E extends XmpImagingParameters<E>> {
      * @throws ImagingException In the event that the specified content does not conform to the format of the specific parser implementation.
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
-    String getXmpXml(ByteSource byteSource, XmpImagingParameters<E> params) throws ImagingException, IOException;
+    String getXmpXml(ByteSource byteSource, XmpImagingParameters<E> params) throws IOException;
 
 }

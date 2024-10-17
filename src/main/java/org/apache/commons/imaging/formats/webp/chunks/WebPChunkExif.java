@@ -56,7 +56,7 @@ public final class WebPChunkExif extends WebPChunk {
     }
 
     @Override
-    public void dump(final PrintWriter pw, final int offset) throws ImagingException, IOException {
+    public void dump(final PrintWriter pw, final int offset) throws IOException {
         super.dump(pw, offset);
         final TiffImageMetadata metadata = (TiffImageMetadata) new TiffImageParser().getMetadata(bytes);
         for (final ImageMetadata.ImageMetadataItem item : metadata.getItems()) {

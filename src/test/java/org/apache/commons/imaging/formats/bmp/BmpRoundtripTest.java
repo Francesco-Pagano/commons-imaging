@@ -152,7 +152,7 @@ public class BmpRoundtripTest extends AbstractBmpTest {
         writeAndReadImageData(smallRedPixels);
     }
 
-    private void writeAndReadImageData(final int[][] rawData) throws IOException, ImagingException, ImagingException {
+    private void writeAndReadImageData(final int[][] rawData) throws IOException {
         final BufferedImage srcImage = imageDataToBufferedImage(rawData);
 
         final byte[] bytes = Imaging.writeImageToBytes(srcImage, ImageFormats.BMP);

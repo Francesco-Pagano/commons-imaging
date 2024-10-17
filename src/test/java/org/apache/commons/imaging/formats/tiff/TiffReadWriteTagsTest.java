@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
 public class TiffReadWriteTagsTest extends TiffBaseTest {
 
     @Test
-    public void testReadWriteTags() throws ImagingException, ImagingException, IOException {
+    public void testReadWriteTags() throws IOException {
         final String description = "A pretty picture";
         final short page = 1;
         final RationalNumber twoThirds = new RationalNumber(2, 3);

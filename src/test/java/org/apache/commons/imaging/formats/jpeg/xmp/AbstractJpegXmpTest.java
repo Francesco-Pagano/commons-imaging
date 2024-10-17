@@ -30,7 +30,7 @@ public abstract class AbstractJpegXmpTest extends AbstractImagingTest {
 
     private static final ImageFilter HAS_JPEG_XMP_IMAGE_FILTER = AbstractJpegXmpTest::hasJpegXmpData;
 
-    protected static List<File> getImagesWithXmpData() throws IOException, ImagingException {
+    protected static List<File> getImagesWithXmpData() throws IOException {
         return getTestImages(HAS_JPEG_XMP_IMAGE_FILTER);
     }
 
@@ -47,11 +47,11 @@ public abstract class AbstractJpegXmpTest extends AbstractImagingTest {
         }
     }
 
-    protected List<File> getImagesWithXmpData(final int max) throws IOException, ImagingException {
+    protected List<File> getImagesWithXmpData(final int max) throws IOException {
         return getTestImages(HAS_JPEG_XMP_IMAGE_FILTER, max);
     }
 
-    protected File getImageWithXmpData() throws IOException, ImagingException {
+    protected File getImageWithXmpData() throws IOException {
         return getTestImage(HAS_JPEG_XMP_IMAGE_FILTER);
     }
 }

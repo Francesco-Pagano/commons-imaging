@@ -38,7 +38,7 @@ final class RgbeInfo implements Closeable {
 
     private static final byte[] TWO_TWO = { 0x2, 0x2 };
 
-    private static void decompress(final InputStream in, final byte[] out) throws IOException, ImagingException {
+    private static void decompress(final InputStream in, final byte[] out) throws IOException {
         int position = 0;
         final int total = out.length;
 
@@ -78,7 +78,7 @@ final class RgbeInfo implements Closeable {
         in.close();
     }
 
-    int getHeight() throws IOException, ImagingException {
+    int getHeight() throws IOException {
         if (-1 == height) {
             readDimensions();
         }
@@ -86,7 +86,7 @@ final class RgbeInfo implements Closeable {
         return height;
     }
 
-    ImageMetadata getMetadata() throws IOException, ImagingException {
+    ImageMetadata getMetadata() throws IOException {
         if (null == metadata) {
             readMetadata();
         }
@@ -94,7 +94,7 @@ final class RgbeInfo implements Closeable {
         return metadata;
     }
 
-    public float[][] getPixelData() throws IOException, ImagingException {
+    public float[][] getPixelData() throws IOException {
         // Read into local variables to ensure that we have seeked into the file
         // far enough
         final int ht = getHeight();
@@ -135,7 +135,7 @@ final class RgbeInfo implements Closeable {
         return out;
     }
 
-    int getWidth() throws IOException, ImagingException {
+    int getWidth() throws IOException {
         if (-1 == width) {
             readDimensions();
         }
@@ -143,7 +143,7 @@ final class RgbeInfo implements Closeable {
         return width;
     }
 
-    private void readDimensions() throws IOException, ImagingException {
+    private void readDimensions() throws IOException {
         getMetadata(); // Ensure we've read past this
 
         final InfoHeaderReader reader = new InfoHeaderReader(in);
@@ -158,7 +158,7 @@ final class RgbeInfo implements Closeable {
         width = Integer.parseInt(matcher.group(2));
     }
 
-    private void readMetadata() throws IOException, ImagingException {
+    private void readMetadata() throws IOException {
         BinaryFunctions.readAndVerifyBytes(in, HEADER, "Not a valid HDR: Incorrect Header");
 
         final InfoHeaderReader reader = new InfoHeaderReader(in);

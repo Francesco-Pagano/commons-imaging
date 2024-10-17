@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 public class RgbeReadTest extends RgbeBaseTest {
 
     @Test
-    public void test() throws IOException, ImagingException {
+    public void test() throws IOException {
         Debug.debug("start");
 
         final List<File> images = getRgbeImages();

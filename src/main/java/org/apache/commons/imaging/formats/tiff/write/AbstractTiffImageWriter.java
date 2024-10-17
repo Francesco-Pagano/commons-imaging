@@ -351,9 +351,9 @@ public abstract class AbstractTiffImageWriter {
         return result;
     }
 
-    public abstract void write(OutputStream os, TiffOutputSet outputSet) throws IOException, ImagingException;
+    public abstract void write(OutputStream os, TiffOutputSet outputSet) throws IOException;
 
-    public void writeImage(final BufferedImage src, final OutputStream os, final TiffImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, final TiffImagingParameters params) throws IOException {
         final TiffOutputSet userExif = params.getOutputSet();
 
         final String xmpXml = params.getXmpXml();

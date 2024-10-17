@@ -80,7 +80,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
         return null;
     }
 
-    public List<byte[]> collectRawImageData(final ByteSource byteSource, final TiffImagingParameters params) throws ImagingException, IOException {
+    public List<byte[]> collectRawImageData(final ByteSource byteSource, final TiffImagingParameters params) throws IOException {
         final FormatCompliance formatCompliance = FormatCompliance.getDefault();
         final TiffContents contents = new TiffReader(params != null && params.isStrict()).readDirectories(byteSource, true, formatCompliance);
 
@@ -97,7 +97,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         try {
             pw.println("tiff.dumpImageFile");
 
@@ -152,7 +152,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws ImagingException, IOException {
+    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws IOException {
         final FormatCompliance formatCompliance = FormatCompliance.getDefault();
         final TiffReader tiffReader = new TiffReader(true);
         final TiffContents contents = tiffReader.readDirectories(byteSource, true, formatCompliance);
@@ -204,7 +204,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
      * @throws IOException      In the event of unsuccessful read or access operation.
      */
     @Override
-    public BufferedImage getBufferedImage(final ByteSource byteSource, TiffImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getBufferedImage(final ByteSource byteSource, TiffImagingParameters params) throws IOException {
         if (params == null) {
             params = new TiffImagingParameters();
         }
@@ -221,7 +221,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     protected BufferedImage getBufferedImage(final TiffDirectory directory, final ByteOrder byteOrder, final TiffImagingParameters params)
-            throws ImagingException, IOException {
+            throws IOException {
         final short compressionFieldValue;
         if (directory.findField(TiffTagConstants.TIFF_TAG_COMPRESSION) != null) {
             compressionFieldValue = directory.getFieldValue(TiffTagConstants.TIFF_TAG_COMPRESSION);
@@ -356,7 +356,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws ImagingException, IOException {
+    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws IOException {
         final FormatCompliance formatCompliance = FormatCompliance.getDefault();
         final TiffImagingParameters params = new TiffImagingParameters();
         new TiffReader(params.isStrict()).readContents(byteSource, params, formatCompliance);
@@ -364,7 +364,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final TiffImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final TiffImagingParameters params) throws IOException {
         final FormatCompliance formatCompliance = FormatCompliance.getDefault();
         final TiffContents contents = new TiffReader(params != null && params.isStrict()).readFirstDirectory(byteSource, false, formatCompliance);
         final TiffDirectory directory = contents.directories.get(0);
@@ -373,7 +373,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final TiffImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final TiffImagingParameters params) throws IOException {
         final FormatCompliance formatCompliance = FormatCompliance.getDefault();
         final TiffContents contents = new TiffReader(params != null && params.isStrict()).readDirectories(byteSource, false, formatCompliance);
         final TiffDirectory directory = contents.directories.get(0);
@@ -559,7 +559,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final TiffImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final TiffImagingParameters params) throws IOException {
         final FormatCompliance formatCompliance = FormatCompliance.getDefault();
         final TiffContents contents = new TiffReader(params != null && params.isStrict()).readFirstDirectory(byteSource, false, formatCompliance);
         final TiffDirectory directory = contents.directories.get(0);
@@ -578,7 +578,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, TiffImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, TiffImagingParameters params) throws IOException {
         if (params == null) {
             params = getDefaultParameters();
         }
@@ -678,7 +678,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
      * @throws ImagingException in the event of incompatible or malformed data
      * @throws IOException      in the event of an I/O error
      */
-    TiffRasterData getRasterData(final TiffDirectory directory, final ByteOrder byteOrder, TiffImagingParameters params) throws ImagingException, IOException {
+    TiffRasterData getRasterData(final TiffDirectory directory, final ByteOrder byteOrder, TiffImagingParameters params) throws IOException {
         if (params == null) {
             params = getDefaultParameters();
         }
@@ -797,7 +797,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public String getXmpXml(final ByteSource byteSource, XmpImagingParameters<TiffImagingParameters> params) throws ImagingException, IOException {
+    public String getXmpXml(final ByteSource byteSource, XmpImagingParameters<TiffImagingParameters> params) throws IOException {
         if (params == null) {
             params = new XmpImagingParameters<>();
         }
@@ -815,7 +815,7 @@ public class TiffImageParser extends AbstractImageParser<TiffImagingParameters> 
     }
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, TiffImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, TiffImagingParameters params) throws IOException {
         if (params == null) {
             params = new TiffImagingParameters();
         }

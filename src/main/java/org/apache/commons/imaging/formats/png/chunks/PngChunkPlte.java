@@ -29,7 +29,7 @@ import org.apache.commons.imaging.formats.png.GammaCorrection;
 public class PngChunkPlte extends PngChunk {
     private final int[] rgb;
 
-    public PngChunkPlte(final int length, final int chunkType, final int crc, final byte[] bytes) throws ImagingException, IOException {
+    public PngChunkPlte(final int length, final int chunkType, final int crc, final byte[] bytes) throws IOException {
         super(length, chunkType, crc, bytes);
 
         final ByteArrayInputStream is = new ByteArrayInputStream(bytes);

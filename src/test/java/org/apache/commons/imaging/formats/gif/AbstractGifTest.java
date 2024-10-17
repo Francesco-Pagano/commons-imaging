@@ -39,15 +39,15 @@ public abstract class AbstractGifTest extends AbstractImagingTest {
 
     private static final ImageFilter SINGLE_IMAGE_FILTER = file -> isGif(file) && isSingleImage(file);
 
-    protected static List<File> getAnimatedGifImages() throws IOException, ImagingException {
+    protected static List<File> getAnimatedGifImages() throws IOException {
         return getTestImages(ANIMATED_IMAGE_FILTER);
     }
 
-    protected static List<File> getGifImages() throws IOException, ImagingException {
+    protected static List<File> getGifImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 
-    protected static List<File> getGifImagesWithSingleImage() throws IOException, ImagingException {
+    protected static List<File> getGifImagesWithSingleImage() throws IOException {
         return getTestImages(SINGLE_IMAGE_FILTER);
     }
 

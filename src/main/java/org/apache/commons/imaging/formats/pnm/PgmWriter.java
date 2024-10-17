@@ -32,7 +32,7 @@ final class PgmWriter implements PnmWriter {
     }
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, final PnmImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, final PnmImagingParameters params) throws IOException {
         // System.out.println
         // (b1 == 0x50 && b2 == 0x36)
         os.write(0x50);

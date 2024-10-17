@@ -43,7 +43,7 @@ public class PngChunkItxt extends AbstractPngTextChunk {
 
     private final String translatedKeyword;
 
-    public PngChunkItxt(final int length, final int chunkType, final int crc, final byte[] bytes) throws ImagingException, IOException {
+    public PngChunkItxt(final int length, final int chunkType, final int crc, final byte[] bytes) throws IOException {
         super(length, chunkType, crc, bytes);
         int terminator = BinaryFunctions.findNull(bytes, "PNG iTXt chunk keyword is not terminated.");
 

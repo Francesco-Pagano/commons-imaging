@@ -280,7 +280,7 @@ public class SurveyTiffFile {
         return sb.toString();
     }
 
-    public String surveyFile(final File file, final boolean csv) throws ImagingException, IOException {
+    public String surveyFile(final File file, final boolean csv) throws IOException {
         String delimiter = "  ";
         if (csv) {
             delimiter = ", ";

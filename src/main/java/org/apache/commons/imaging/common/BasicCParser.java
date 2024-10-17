@@ -159,7 +159,7 @@ public class BasicCParser {
     }
 
     public static ByteArrayOutputStream preprocess(final InputStream is, final StringBuilder firstComment, final Map<String, String> defines)
-            throws IOException, ImagingException {
+            throws IOException {
         boolean inSingleQuotes = false;
         boolean inString = false;
         boolean inComment = false;
@@ -388,7 +388,7 @@ public class BasicCParser {
         this.is = new PushbackInputStream(is);
     }
 
-    public String nextToken() throws IOException, ImagingException {
+    public String nextToken() throws IOException {
         // I don't know how complete the C parsing in an XPM file
         // is meant to be, this is just the very basics...
 

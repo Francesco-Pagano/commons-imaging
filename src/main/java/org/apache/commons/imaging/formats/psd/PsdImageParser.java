@@ -63,7 +63,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     public static final String BLOCK_NAME_XMP = "XMP";
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         pw.println("gif.dumpImageFile");
 
         final ImageInfo fImageData = getImageInfo(byteSource);
@@ -109,7 +109,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     }
 
     @Override
-    public BufferedImage getBufferedImage(final ByteSource byteSource, final PsdImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getBufferedImage(final ByteSource byteSource, final PsdImagingParameters params) throws IOException {
         final PsdImageContents imageContents = readImageContents(byteSource);
 
         final PsdHeaderInfo header = imageContents.header;
@@ -199,7 +199,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
         }
     }
 
-    private byte[] getData(final ByteSource byteSource, final int section) throws ImagingException, IOException {
+    private byte[] getData(final ByteSource byteSource, final int section) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             if (section == PSD_SECTION_HEADER) {
                 return BinaryFunctions.readBytes("Header", is, PSD_HEADER_LENGTH, "Not a Valid PSD File");
@@ -246,7 +246,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final PsdImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final PsdImagingParameters params) throws IOException {
         final List<ImageResourceBlock> blocks = readImageResourceBlocks(byteSource, new int[] { IMAGE_RESOURCE_ID_ICC_PROFILE, }, 1);
 
         if (blocks.isEmpty()) {
@@ -262,7 +262,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final PsdImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final PsdImagingParameters params) throws IOException {
         final PsdImageContents imageContents = readImageContents(byteSource);
 
         final PsdHeaderInfo header = imageContents.header;
@@ -316,14 +316,14 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final PsdImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final PsdImagingParameters params) throws IOException {
         final PsdHeaderInfo bhi = readHeader(byteSource);
 
         return new Dimension(bhi.columns, bhi.rows);
 
     }
 
-    private InputStream getInputStream(final ByteSource byteSource, final int section) throws ImagingException, IOException {
+    private InputStream getInputStream(final ByteSource byteSource, final int section) throws IOException {
         InputStream is = null;
         boolean notFound = false;
         try {
@@ -375,7 +375,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     }
 
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, final PsdImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, final PsdImagingParameters params) throws IOException {
         return null;
     }
 
@@ -392,7 +392,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
      * @return Xmp Xml as String, if present. Otherwise, returns null.
      */
     @Override
-    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters params) throws ImagingException, IOException {
+    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters params) throws IOException {
 
         final PsdImageContents imageContents = readImageContents(byteSource);
 
@@ -435,13 +435,13 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
         return false;
     }
 
-    private PsdHeaderInfo readHeader(final ByteSource byteSource) throws ImagingException, IOException {
+    private PsdHeaderInfo readHeader(final ByteSource byteSource) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             return readHeader(is);
         }
     }
 
-    private PsdHeaderInfo readHeader(final InputStream is) throws ImagingException, IOException {
+    private PsdHeaderInfo readHeader(final InputStream is) throws IOException {
         BinaryFunctions.readAndVerifyBytes(is, new byte[] { 56, 66, 80, 83 }, "Not a Valid PSD File");
 
         final int version = BinaryFunctions.read2Bytes("Version", is, "Not a Valid PSD File", getByteOrder());
@@ -455,13 +455,13 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
         return new PsdHeaderInfo(version, reserved, channels, rows, columns, depth, mode);
     }
 
-    private PsdImageContents readImageContents(final ByteSource byteSource) throws ImagingException, IOException {
+    private PsdImageContents readImageContents(final ByteSource byteSource) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             return readImageContents(is);
         }
     }
 
-    private PsdImageContents readImageContents(final InputStream is) throws ImagingException, IOException {
+    private PsdImageContents readImageContents(final InputStream is) throws IOException {
         final PsdHeaderInfo header = readHeader(is);
 
         final int colorModeDataLength = BinaryFunctions.read4Bytes("ColorModeDataLength", is, "Not a Valid PSD File", getByteOrder());
@@ -485,12 +485,12 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     }
 
     private List<ImageResourceBlock> readImageResourceBlocks(final byte[] bytes, final int[] imageResourceIDs, final int maxBlocksToRead)
-            throws ImagingException, IOException {
+            throws IOException {
         return readImageResourceBlocks(new ByteArrayInputStream(bytes), imageResourceIDs, maxBlocksToRead, bytes.length);
     }
 
     private List<ImageResourceBlock> readImageResourceBlocks(final ByteSource byteSource, final int[] imageResourceIDs, final int maxBlocksToRead)
-            throws ImagingException, IOException {
+            throws IOException {
         try (InputStream imageStream = byteSource.getInputStream();
                 InputStream resourceStream = getInputStream(byteSource, PSD_SECTION_IMAGE_RESOURCES)) {
             final PsdImageContents imageContents = readImageContents(imageStream);
@@ -501,7 +501,7 @@ public class PsdImageParser extends AbstractImageParser<PsdImagingParameters> im
     }
 
     private List<ImageResourceBlock> readImageResourceBlocks(final InputStream is, final int[] imageResourceIDs, final int maxBlocksToRead, int available)
-            throws ImagingException, IOException {
+            throws IOException {
         final List<ImageResourceBlock> result = new ArrayList<>();
 
         while (available > 0) {

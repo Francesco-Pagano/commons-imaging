@@ -52,7 +52,7 @@ import org.junit.jupiter.api.Test;
 public class ExifRewriteTest extends AbstractExifTest {
 
     private interface Rewriter {
-        void rewrite(ByteSource byteSource, OutputStream os, TiffOutputSet outputSet) throws ImagingException, IOException, ImagingException;
+        void rewrite(ByteSource byteSource, OutputStream os, TiffOutputSet outputSet) throws IOException;
     }
 
     private void compare(final File imageFile, final TiffImageMetadata oldExifMetadata, final TiffImageMetadata newExifMetadata) throws ImagingException {
@@ -183,7 +183,7 @@ public class ExifRewriteTest extends AbstractExifTest {
         return fieldMap;
     }
 
-    private void rewrite(final Rewriter rewriter, final String name) throws IOException, ImagingException {
+    private void rewrite(final Rewriter rewriter, final String name) throws IOException {
         final List<File> images = getImagesWithExifData();
         for (final File imageFile : images) {
 

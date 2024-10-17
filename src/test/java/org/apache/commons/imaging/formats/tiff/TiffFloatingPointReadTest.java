@@ -44,7 +44,7 @@ import org.junit.jupiter.api.Test;
 public class TiffFloatingPointReadTest {
 
     private void checkSubImage(final File target, final TiffRasterData fullRaster, final int x0, final int y0, final int width, final int height)
-            throws ImagingException, IOException {
+            throws IOException {
         final TiffImagingParameters params = new TiffImagingParameters();
         params.setSubImage(x0, y0, width, height);
         final TiffRasterData partRaster = readRasterFromTIFF(target, params);
@@ -84,7 +84,7 @@ public class TiffFloatingPointReadTest {
      * @throws IOException      in the event of an I/O error
      */
     private PhotometricInterpreterFloat readAndInterpretTIFF(final File target, final float f0, final float f1, final float fNot)
-            throws ImagingException, IOException {
+            throws IOException {
         final ByteSource byteSource = ByteSource.file(target);
         final TiffReader tiffReader = new TiffReader(true);
         final TiffContents contents = tiffReader.readDirectories(byteSource, true, // indicates that application should read image data, if present
@@ -116,7 +116,7 @@ public class TiffFloatingPointReadTest {
      * @throws ImagingException in the event of an unsupported or malformed file data element.
      * @throws IOException      in the event of an I/O error
      */
-    private TiffRasterData readRasterFromTIFF(final File target, final TiffImagingParameters params) throws ImagingException, IOException {
+    private TiffRasterData readRasterFromTIFF(final File target, final TiffImagingParameters params) throws IOException {
         final ByteSource byteSource = ByteSource.file(target);
         final TiffReader tiffReader = new TiffReader(true);
         final TiffContents contents = tiffReader.readDirectories(byteSource, true, // indicates that application should read image data, if present
@@ -126,7 +126,7 @@ public class TiffFloatingPointReadTest {
     }
 
     @Test
-    public void test() throws ImagingException, IOException {
+    public void test() throws IOException {
         // These TIFF sample data includes files that contain known
         // floating-point values in various formats. We know the range
         // of values from inspection using separate utilies. This

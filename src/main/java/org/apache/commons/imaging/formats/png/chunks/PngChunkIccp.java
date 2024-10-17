@@ -72,7 +72,7 @@ public class PngChunkIccp extends PngChunk {
      * @throws ImagingException when no profile name is present
      * @throws IOException      when an error happens while reading the profile data
      */
-    public PngChunkIccp(final int length, final int chunkType, final int crc, final byte[] bytes) throws ImagingException, IOException {
+    public PngChunkIccp(final int length, final int chunkType, final int crc, final byte[] bytes) throws IOException {
         super(length, chunkType, crc, bytes);
 
         final int index = BinaryFunctions.findNull(bytes, "PngChunkIccp: No Profile Name");

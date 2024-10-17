@@ -44,7 +44,7 @@ public class PhotometricInterpreterFloatTest {
     private static final Color green = new Color(22, 155, 98);
 
     @BeforeAll
-    public static void setUpClass() throws ImagingException, IOException {
+    public static void setUpClass() throws IOException {
         // the setup is to assign color (grayscale) values to the
         // pixels along the main diagonal at coordinates
         // (0, 0), (1, 1), ... (256, 256).
@@ -235,7 +235,7 @@ public class PhotometricInterpreterFloatTest {
      * Test of overlapping entries
      */
     @Test
-    public void testOverlappingEntriesEntry() throws ImagingException, IOException {
+    public void testOverlappingEntriesEntry() throws IOException {
         final Color c0 = new Color(0xff0000ff);
         final Color c1 = new Color(0xff00ff00);
         final List<PaletteEntry> overlapList = new ArrayList<>();

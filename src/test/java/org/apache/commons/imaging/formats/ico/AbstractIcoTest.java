@@ -28,7 +28,7 @@ public abstract class AbstractIcoTest extends AbstractImagingTest {
 
     private static final ImageFilter IMAGE_FILTER = AbstractIcoTest::isIco;
 
-    protected static List<File> getIcoImages() throws IOException, ImagingException {
+    protected static List<File> getIcoImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

@@ -32,14 +32,14 @@ import org.junit.jupiter.api.Test;
 public class App2SegmentTest {
 
     @Test
-    public void testCompareTo() throws IOException, ImagingException {
+    public void testCompareTo() throws IOException {
         final App2Segment app2Segment = new App2Segment(0, 0, null);
 
         assertEquals(0, app2Segment.compareTo(app2Segment));
     }
 
     @Test
-    public void testEqualsReturningFalse() throws IOException, ImagingException {
+    public void testEqualsReturningFalse() throws IOException {
         final byte[] byteArray = new byte[3];
         final App2Segment app2Segment = new App2Segment(65475, byteArray);
 
@@ -47,7 +47,7 @@ public class App2SegmentTest {
     }
 
     @Test
-    public void testEqualsReturningTrue() throws IOException, ImagingException {
+    public void testEqualsReturningTrue() throws IOException {
         final App2Segment app2Segment = new App2Segment(0, 0, null);
 
         assertEquals(app2Segment, app2Segment);

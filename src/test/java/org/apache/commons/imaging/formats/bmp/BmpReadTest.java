@@ -56,14 +56,14 @@ public class BmpReadTest extends AbstractBmpTest {
      * @throws ImagingException
      */
     @Test
-    public void testGetMaskShiftZeroMask() throws ImagingException, IOException {
+    public void testGetMaskShiftZeroMask() throws IOException {
         final File inputFile = new File(ImagingTestConstants.TEST_IMAGE_FOLDER + "/bmp/5/@broken/timeout-bd15dbfa26b4e88070de540c6603039e8a88626f");
         new BmpImageParser().dumpImageFile(ByteSource.file(inputFile));
     }
 
     @ParameterizedTest
     @MethodSource("data")
-    public void testImageInfo(final File imageFile) throws ImagingException, IOException {
+    public void testImageInfo(final File imageFile) throws IOException {
         final ImageInfo imageInfo = Imaging.getImageInfo(imageFile);
         assertNotNull(imageInfo);
         // TODO assert more

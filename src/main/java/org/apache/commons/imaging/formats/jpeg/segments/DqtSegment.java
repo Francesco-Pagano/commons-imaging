@@ -48,11 +48,11 @@ public class DqtSegment extends AbstractSegment {
 
     public final List<QuantizationTable> quantizationTables = new ArrayList<>();
 
-    public DqtSegment(final int marker, final byte[] segmentData) throws ImagingException, IOException {
+    public DqtSegment(final int marker, final byte[] segmentData) throws IOException {
         this(marker, segmentData.length, new ByteArrayInputStream(segmentData));
     }
 
-    public DqtSegment(final int marker, int length, final InputStream is) throws ImagingException, IOException {
+    public DqtSegment(final int marker, int length, final InputStream is) throws IOException {
         super(marker, length);
 
         while (length > 0) {

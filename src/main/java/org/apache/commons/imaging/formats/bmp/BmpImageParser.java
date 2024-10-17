@@ -67,7 +67,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         pw.println("bmp.dumpImageFile");
 
         final ImageInfo imageData = getImageInfo(byteSource, null);
@@ -113,13 +113,13 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
     }
 
     @Override
-    public BufferedImage getBufferedImage(final ByteSource byteSource, final BmpImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getBufferedImage(final ByteSource byteSource, final BmpImagingParameters params) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             return getBufferedImage(is, params);
         }
     }
 
-    public BufferedImage getBufferedImage(final InputStream inputStream, final BmpImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getBufferedImage(final InputStream inputStream, final BmpImagingParameters params) throws IOException {
         final BmpImageContents ic = readImageContents(inputStream, FormatCompliance.getDefault());
 
         final BmpHeaderInfo bhi = ic.bhi;
@@ -153,7 +153,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
     }
 
     @Override
-    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws ImagingException, IOException {
+    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws IOException {
         final FormatCompliance result = new FormatCompliance(byteSource.toString());
 
         try (InputStream is = byteSource.getInputStream()) {
@@ -169,7 +169,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final BmpImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final BmpImagingParameters params) throws IOException {
         BmpImageContents ic = null;
         try (InputStream is = byteSource.getInputStream()) {
             ic = readImageContents(is, FormatCompliance.getDefault());
@@ -215,7 +215,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final BmpImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final BmpImagingParameters params) throws IOException {
         final BmpHeaderInfo bhi = readBmpHeaderInfo(byteSource);
 
         return new Dimension(bhi.width, bhi.height);
@@ -276,13 +276,13 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
         return baos.toByteArray();
     }
 
-    private BmpHeaderInfo readBmpHeaderInfo(final ByteSource byteSource) throws ImagingException, IOException {
+    private BmpHeaderInfo readBmpHeaderInfo(final ByteSource byteSource) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             return readBmpHeaderInfo(is, null);
         }
     }
 
-    private BmpHeaderInfo readBmpHeaderInfo(final InputStream is, final FormatCompliance formatCompliance) throws ImagingException, IOException {
+    private BmpHeaderInfo readBmpHeaderInfo(final InputStream is, final FormatCompliance formatCompliance) throws IOException {
         final byte identifier1 = readByte("Identifier1", is, "Not a Valid BMP File");
         final byte identifier2 = readByte("Identifier2", is, "Not a Valid BMP File");
 
@@ -426,7 +426,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
                 colorSpace, gammaRed, gammaGreen, gammaBlue, intent, profileData, profileSize, reservedV5);
     }
 
-    private BmpImageContents readImageContents(final InputStream is, final FormatCompliance formatCompliance) throws ImagingException, IOException {
+    private BmpImageContents readImageContents(final InputStream is, final FormatCompliance formatCompliance) throws IOException {
         final BmpHeaderInfo bhi = readBmpHeaderInfo(is, formatCompliance);
 
         int colorTableSize = bhi.colorsUsed;
@@ -575,7 +575,7 @@ public class BmpImageParser extends AbstractImageParser<BmpImagingParameters> {
     }
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, BmpImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, BmpImagingParameters params) throws IOException {
         if (params == null) {
             params = new BmpImagingParameters();
         }

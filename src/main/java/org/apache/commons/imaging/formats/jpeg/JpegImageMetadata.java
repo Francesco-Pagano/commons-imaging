@@ -76,7 +76,7 @@ public class JpegImageMetadata implements ImageMetadata {
      * @throws ImagingException if it fails to read the image
      * @throws IOException      if it fails to get the thumbnail or to read the image data
      */
-    public BufferedImage getExifThumbnail() throws ImagingException, IOException {
+    public BufferedImage getExifThumbnail() throws IOException {
 
         if (exif == null) {
             return null;
@@ -149,7 +149,7 @@ public class JpegImageMetadata implements ImageMetadata {
      * @throws ImagingException if it fails to read the image
      * @throws IOException      if it fails to read the image size
      */
-    public Dimension getExifThumbnailSize() throws ImagingException, IOException {
+    public Dimension getExifThumbnailSize() throws IOException {
         final byte[] data = getExifThumbnailData();
 
         if (data != null) {

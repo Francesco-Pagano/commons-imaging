@@ -31,7 +31,7 @@ final class RleReader {
         this.isCompressed = isCompressed;
     }
 
-    void read(final InputStream is, final byte[] samples) throws IOException, ImagingException {
+    void read(final InputStream is, final byte[] samples) throws IOException {
         if (isCompressed) {
             final int prefill = Math.min(count, samples.length);
             Arrays.fill(samples, 0, prefill, sample);

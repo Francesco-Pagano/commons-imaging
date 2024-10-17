@@ -23,7 +23,7 @@ import org.apache.commons.imaging.ImagingException;
 public class ScanlineFilterUp implements ScanlineFilter {
 
     @Override
-    public void unfilter(final byte[] src, final byte[] dst, final byte[] up) throws ImagingException, IOException {
+    public void unfilter(final byte[] src, final byte[] dst, final byte[] up) throws IOException {
         for (int i = 0; i < src.length; i++) {
 
             if (up != null) {

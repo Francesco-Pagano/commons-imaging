@@ -91,7 +91,7 @@ public class TiffImageWriterLossless extends AbstractTiffImageWriter {
         this.exifBytes = exifBytes;
     }
 
-    private List<AbstractTiffElement> analyzeOldTiff(final Map<Integer, TiffOutputField> frozenFields) throws ImagingException, IOException {
+    private List<AbstractTiffElement> analyzeOldTiff(final Map<Integer, TiffOutputField> frozenFields) throws IOException {
         try {
             final ByteSource byteSource = ByteSource.array(exifBytes);
             final FormatCompliance formatCompliance = FormatCompliance.getDefault();
@@ -231,7 +231,7 @@ public class TiffImageWriterLossless extends AbstractTiffImageWriter {
     }
 
     @Override
-    public void write(final OutputStream os, final TiffOutputSet outputSet) throws IOException, ImagingException {
+    public void write(final OutputStream os, final TiffOutputSet outputSet) throws IOException {
         // There are some fields whose address in the file must not change,
         // unless of course their value is changed.
         final Map<Integer, TiffOutputField> frozenFields = new HashMap<>();
@@ -279,7 +279,7 @@ public class TiffImageWriterLossless extends AbstractTiffImageWriter {
     }
 
     private void writeStep(final OutputStream os, final TiffOutputSet outputSet, final List<AbstractTiffElement> analysis,
-            final List<AbstractTiffOutputItem> outputItems, final long outputLength) throws IOException, ImagingException {
+            final List<AbstractTiffOutputItem> outputItems, final long outputLength) throws IOException {
         final TiffOutputDirectory rootDirectory = outputSet.getRootDirectory();
 
         final byte[] output = Allocator.byteArray(outputLength);

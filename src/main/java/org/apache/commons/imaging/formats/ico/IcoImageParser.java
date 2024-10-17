@@ -233,7 +233,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         final ImageContents contents = readImage(byteSource);
         contents.fileHeader.dump(pw);
         for (final IconData iconData : contents.iconDatas) {
@@ -254,7 +254,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
     }
 
     @Override
-    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws ImagingException, IOException {
+    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws IOException {
         final ImageContents contents = readImage(byteSource);
 
         final FileHeader fileHeader = contents.fileHeader;
@@ -267,7 +267,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
     }
 
     @Override
-    public final BufferedImage getBufferedImage(final ByteSource byteSource, final IcoImagingParameters params) throws ImagingException, IOException {
+    public final BufferedImage getBufferedImage(final ByteSource byteSource, final IcoImagingParameters params) throws IOException {
         final ImageContents contents = readImage(byteSource);
         final FileHeader fileHeader = contents.fileHeader;
         if (fileHeader.iconCount > 0) {
@@ -288,25 +288,25 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
 
     // TODO should throw UOE
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final IcoImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final IcoImagingParameters params) throws IOException {
         return null;
     }
 
     // TODO should throw UOE
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final IcoImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final IcoImagingParameters params) throws IOException {
         return null;
     }
 
     // TODO should throw UOE
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final IcoImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final IcoImagingParameters params) throws IOException {
         return null;
     }
 
     // TODO should throw UOE
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, final IcoImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, final IcoImagingParameters params) throws IOException {
         return null;
     }
 
@@ -315,7 +315,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
         return "ico-Custom";
     }
 
-    private IconData readBitmapIconData(final byte[] iconData, final IconInfo fIconInfo) throws ImagingException, IOException {
+    private IconData readBitmapIconData(final byte[] iconData, final IconInfo fIconInfo) throws IOException {
         final ByteArrayInputStream is = new ByteArrayInputStream(iconData);
         final int size = read4Bytes("size", is, "Not a Valid ICO File", getByteOrder()); // Size (4
         // bytes),
@@ -502,7 +502,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
         return new BitmapIconData(fIconInfo, header, resultImage);
     }
 
-    private FileHeader readFileHeader(final InputStream is) throws ImagingException, IOException {
+    private FileHeader readFileHeader(final InputStream is) throws IOException {
         final int reserved = read2Bytes("Reserved", is, "Not a Valid ICO File", getByteOrder());
         final int iconType = read2Bytes("IconType", is, "Not a Valid ICO File", getByteOrder());
         final int iconCount = read2Bytes("IconCount", is, "Not a Valid ICO File", getByteOrder());
@@ -518,7 +518,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
 
     }
 
-    private IconData readIconData(final byte[] iconData, final IconInfo fIconInfo) throws ImagingException, IOException {
+    private IconData readIconData(final byte[] iconData, final IconInfo fIconInfo) throws IOException {
         final ImageFormat imageFormat = Imaging.guessFormat(iconData);
         if (imageFormat.equals(ImageFormats.PNG)) {
             final BufferedImage bufferedImage = Imaging.getBufferedImage(iconData);
@@ -552,7 +552,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
         return new IconInfo(width, height, colorCount, reserved, planes, bitCount, imageSize, imageOffset);
     }
 
-    private ImageContents readImage(final ByteSource byteSource) throws ImagingException, IOException {
+    private ImageContents readImage(final ByteSource byteSource) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             final FileHeader fileHeader = readFileHeader(is);
 
@@ -576,7 +576,7 @@ public class IcoImageParser extends AbstractImageParser<IcoImagingParameters> {
     // IOException, ImageWriteException
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, IcoImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, IcoImagingParameters params) throws IOException {
         if (params == null) {
             params = new IcoImagingParameters();
         }

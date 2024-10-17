@@ -31,7 +31,7 @@ public abstract class JpegBaseTest extends AbstractImagingTest {
 
     public static final ImageFilter imageFilter = JpegBaseTest::isJpeg;
 
-    protected static List<File> getJpegImages() throws IOException, ImagingException {
+    protected static List<File> getJpegImages() throws IOException {
         return getTestImages(imageFilter);
     }
 

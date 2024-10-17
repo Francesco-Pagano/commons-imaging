@@ -28,7 +28,7 @@ public abstract class WbmpBaseTest extends AbstractImagingTest {
         return file.getName().toLowerCase().endsWith(".wbmp");
     }
 
-    protected List<File> getWbmpImages() throws IOException, ImagingException {
+    protected List<File> getWbmpImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 }

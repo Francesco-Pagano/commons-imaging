@@ -39,7 +39,7 @@ public class TransparencyFilterTrueColor extends AbstractTransparencyFilter {
     }
 
     @Override
-    public int filter(final int rgb, final int sample) throws ImagingException, IOException {
+    public int filter(final int rgb, final int sample) throws IOException {
         if ((0x00ffffff & rgb) == transparentColor) {
             return 0x00;
         }

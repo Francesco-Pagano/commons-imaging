@@ -143,7 +143,7 @@ public class TiffShortIntRoundTripTest extends TiffBaseTest {
         }
     }
 
-    private File writeFile(final int bitsPerSample, final ByteOrder byteOrder, final boolean useTiles) throws IOException, ImagingException {
+    private File writeFile(final int bitsPerSample, final ByteOrder byteOrder, final boolean useTiles) throws IOException {
         final String name = String.format("ShortIntRoundTrip_%2d_%s_%s.tiff", bitsPerSample, byteOrder == ByteOrder.LITTLE_ENDIAN ? "LE" : "BE",
                 useTiles ? "Tiles" : "Strips");
         final File outputFile = new File(tempDir.toFile(), name);

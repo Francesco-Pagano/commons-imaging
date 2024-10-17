@@ -63,13 +63,13 @@ abstract class AbstractScanExpediter {
         this.abstractTransparencyFilter = abstractTransparencyFilter;
     }
 
-    public abstract void drive() throws ImagingException, IOException;
+    public abstract void drive() throws IOException;
 
     final int getBitsToBytesRoundingUp(final int bits) {
         return (bits + 7) / 8;
     }
 
-    byte[] getNextScanline(final InputStream is, final int length, final byte[] prev, final int bytesPerPixel) throws ImagingException, IOException {
+    byte[] getNextScanline(final InputStream is, final int length, final byte[] prev, final int bytesPerPixel) throws IOException {
         final int filterType = is.read();
         if (filterType < 0) {
             throw new ImagingException("PNG: missing filter type");
@@ -91,7 +91,7 @@ abstract class AbstractScanExpediter {
         return getPixelArgb(0xff, red, green, blue);
     }
 
-    int getRgb(final BitParser bitParser, final int pixelIndexInScanline) throws ImagingException, IOException {
+    int getRgb(final BitParser bitParser, final int pixelIndexInScanline) throws IOException {
 
         switch (pngColorType) {
         case GREYSCALE: {
@@ -199,7 +199,7 @@ abstract class AbstractScanExpediter {
         return null;
     }
 
-    byte[] unfilterScanline(final FilterType filterType, final byte[] src, final byte[] prev, final int bytesPerPixel) throws ImagingException, IOException {
+    byte[] unfilterScanline(final FilterType filterType, final byte[] src, final byte[] prev, final int bytesPerPixel) throws IOException {
         final ScanlineFilter filter = getScanlineFilter(filterType, bytesPerPixel);
 
         final byte[] dst = Allocator.byteArray(src.length);

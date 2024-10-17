@@ -32,7 +32,7 @@ import org.apache.commons.imaging.internal.Debug;
 public class TextFieldTest extends AbstractSpecificExifTagTest {
 
     @Override
-    protected void checkField(final File imageFile, final TiffField field) throws IOException, ImagingException, ImagingException {
+    protected void checkField(final File imageFile, final TiffField field) throws IOException {
         if (field.getTag() == ExifTagConstants.EXIF_TAG_USER_COMMENT.tag || field.getTag() == GpsTagConstants.GPS_TAG_GPS_PROCESSING_METHOD.tag
                 && field.getDirectoryType() == TiffDirectoryType.EXIF_DIRECTORY_GPS.directoryType) {
             // do nothing

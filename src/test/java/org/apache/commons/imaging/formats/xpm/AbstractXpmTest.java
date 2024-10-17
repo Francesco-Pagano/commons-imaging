@@ -29,7 +29,7 @@ public abstract class AbstractXpmTest extends AbstractImagingTest {
         return file.getName().toLowerCase().endsWith(".xpm");
     }
 
-    protected List<File> getXpmImages() throws IOException, ImagingException {
+    protected List<File> getXpmImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 }

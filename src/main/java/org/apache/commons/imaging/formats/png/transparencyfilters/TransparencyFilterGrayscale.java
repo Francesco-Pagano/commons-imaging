@@ -34,7 +34,7 @@ public class TransparencyFilterGrayscale extends AbstractTransparencyFilter {
     }
 
     @Override
-    public int filter(final int rgb, final int index) throws ImagingException, IOException {
+    public int filter(final int rgb, final int index) throws IOException {
         if (index != transparentColor) {
             return rgb;
         }

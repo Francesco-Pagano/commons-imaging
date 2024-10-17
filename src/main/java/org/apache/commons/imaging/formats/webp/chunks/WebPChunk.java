@@ -71,7 +71,7 @@ public abstract class WebPChunk extends BinaryFileParser {
      * @throws ImagingException if the image is invalid.
      * @throws IOException      if it fails to write to the given stream.
      */
-    public void dump(final PrintWriter pw, final int offset) throws ImagingException, IOException {
+    public void dump(final PrintWriter pw, final int offset) throws IOException {
         pw.printf("Chunk %s at offset %s, length %d%n, payload size %d%n", getTypeDescription(), offset >= 0 ? String.valueOf(offset) : "unknown",
                 getChunkSize(), getPayloadSize());
     }

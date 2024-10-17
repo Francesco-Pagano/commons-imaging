@@ -44,7 +44,7 @@ public class WriteExifMetadataExample {
      * @throws ImagingException
      * @throws ImagingException
      */
-    public void changeExifMetadata(final File jpegImageFile, final File dst) throws IOException, ImagingException, ImagingException {
+    public void changeExifMetadata(final File jpegImageFile, final File dst) throws IOException {
 
         try (FileOutputStream fos = new FileOutputStream(dst);
                 OutputStream os = new BufferedOutputStream(fos)) {
@@ -113,7 +113,7 @@ public class WriteExifMetadataExample {
         }
     }
 
-    public void removeExifMetadata(final File jpegImageFile, final File dst) throws IOException, ImagingException, ImagingException {
+    public void removeExifMetadata(final File jpegImageFile, final File dst) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(dst);
                 OutputStream os = new BufferedOutputStream(fos)) {
             new ExifRewriter().removeExifMetadata(jpegImageFile, os);
@@ -131,7 +131,7 @@ public class WriteExifMetadataExample {
      * @throws ImagingException
      * @throws ImagingException
      */
-    public void removeExifTag(final File jpegImageFile, final File dst) throws IOException, ImagingException, ImagingException {
+    public void removeExifTag(final File jpegImageFile, final File dst) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(dst);
                 OutputStream os = new BufferedOutputStream(fos)) {
             TiffOutputSet outputSet = null;
@@ -200,7 +200,7 @@ public class WriteExifMetadataExample {
      * @throws ImagingException
      * @throws ImagingException
      */
-    public void setExifGPSTag(final File jpegImageFile, final File dst) throws IOException, ImagingException, ImagingException {
+    public void setExifGPSTag(final File jpegImageFile, final File dst) throws IOException {
         try (FileOutputStream fos = new FileOutputStream(dst);
                 OutputStream os = new BufferedOutputStream(fos)) {
             TiffOutputSet outputSet = null;

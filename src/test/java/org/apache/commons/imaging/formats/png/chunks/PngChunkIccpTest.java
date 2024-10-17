@@ -46,7 +46,7 @@ public class PngChunkIccpTest {
     }
 
     @Test
-    public void testParsingIccpChunk() throws ImagingException, IOException {
+    public void testParsingIccpChunk() throws IOException {
         final List<Byte> bytes = new ArrayList<>();
         final String profileName = "my-profile-01";
         for (final byte b : profileName.getBytes(StandardCharsets.ISO_8859_1)) {

@@ -164,7 +164,7 @@ public class IptcUpdateTest extends IptcBaseTest {
     }
 
     public byte[] writeIptc(final ByteSource byteSource, final PhotoshopApp13Data newData, final File imageFile)
-            throws IOException, ImagingException, ImagingException {
+            throws IOException {
         try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
             new JpegIptcRewriter().writeIptc(byteSource, os, newData);
             return os.toByteArray();

@@ -37,7 +37,7 @@ final class ScanExpediterInterlaced extends AbstractScanExpediter {
     }
 
     @Override
-    public void drive() throws ImagingException, IOException {
+    public void drive() throws IOException {
 
         int pass = 1;
         while (pass <= 7) {
@@ -75,7 +75,7 @@ final class ScanExpediterInterlaced extends AbstractScanExpediter {
     }
 
     private void visit(final int x, final int y, final BufferedImage bi, final BitParser fBitParser, final int pixelIndexInScanline)
-            throws ImagingException, IOException {
+            throws IOException {
         final int rgb = getRgb(fBitParser, pixelIndexInScanline);
         bi.setRGB(x, y, rgb);
     }

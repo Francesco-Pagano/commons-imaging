@@ -33,7 +33,7 @@ public class PngChunkZtxt extends AbstractPngTextChunk {
     private final String keyword;
     private final String text;
 
-    public PngChunkZtxt(final int length, final int chunkType, final int crc, final byte[] bytes) throws ImagingException, IOException {
+    public PngChunkZtxt(final int length, final int chunkType, final int crc, final byte[] bytes) throws IOException {
         super(length, chunkType, crc, bytes);
 
         int index = BinaryFunctions.findNull(bytes, "PNG zTXt chunk keyword is unterminated.");

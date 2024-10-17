@@ -35,7 +35,7 @@ final class PixelParserRgb extends AbstractPixelParserSimple {
     }
 
     @Override
-    public int getNextRgb() throws ImagingException, IOException {
+    public int getNextRgb() throws IOException {
 
         switch (bhi.bitsPerPixel) {
         case 1:
@@ -97,7 +97,7 @@ final class PixelParserRgb extends AbstractPixelParserSimple {
     }
 
     @Override
-    public void newline() throws ImagingException, IOException {
+    public void newline() throws IOException {
         cachedBitCount = 0;
 
         while (byteCount % 4 != 0) {

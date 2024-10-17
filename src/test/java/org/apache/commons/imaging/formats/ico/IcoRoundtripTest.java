@@ -38,12 +38,12 @@ import org.junit.jupiter.api.Test;
 
 public class IcoRoundtripTest extends AbstractIcoTest {
     private interface BitmapGenerator {
-        byte[] generateBitmap(int foreground, int background, int paletteSize) throws IOException, ImagingException;
+        byte[] generateBitmap(int foreground, int background, int paletteSize) throws IOException;
     }
 
     private static final class GeneratorFor16BitBitmaps implements BitmapGenerator {
         @Override
-        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException, ImagingException {
+        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException {
             try (final ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
                     final BinaryOutputStream bos = BinaryOutputStream.littleEndian(byteArrayStream)) {
                 // Palette
@@ -76,7 +76,7 @@ public class IcoRoundtripTest extends AbstractIcoTest {
 
     private static final class GeneratorFor1BitBitmaps implements BitmapGenerator {
         @Override
-        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException, ImagingException {
+        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException {
             try (final ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
                     final BinaryOutputStream bos = BinaryOutputStream.littleEndian(byteArrayStream)) {
                 // Palette
@@ -113,7 +113,7 @@ public class IcoRoundtripTest extends AbstractIcoTest {
 
     private static final class GeneratorFor24BitBitmaps implements BitmapGenerator {
         @Override
-        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException, ImagingException {
+        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException {
             try (final ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
                     final BinaryOutputStream bos = BinaryOutputStream.littleEndian(byteArrayStream)) {
                 // Palette
@@ -178,14 +178,14 @@ public class IcoRoundtripTest extends AbstractIcoTest {
         }
 
         @Override
-        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException, ImagingException {
+        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException {
             return generate32bitRGBABitmap(foreground, background, paletteSize, true);
         }
     }
 
     private static final class GeneratorFor4BitBitmaps implements BitmapGenerator {
         @Override
-        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException, ImagingException {
+        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException {
             try (final ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
                     final BinaryOutputStream bos = BinaryOutputStream.littleEndian(byteArrayStream)) {
                 // Palette
@@ -218,7 +218,7 @@ public class IcoRoundtripTest extends AbstractIcoTest {
 
     private static final class GeneratorFor8BitBitmaps implements BitmapGenerator {
         @Override
-        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException, ImagingException {
+        public byte[] generateBitmap(final int foreground, final int background, final int paletteSize) throws IOException {
             try (final ByteArrayOutputStream byteArrayStream = new ByteArrayOutputStream();
                     final BinaryOutputStream bos = BinaryOutputStream.littleEndian(byteArrayStream)) {
                 // Palette
@@ -450,7 +450,7 @@ public class IcoRoundtripTest extends AbstractIcoTest {
     }
 
     private void writeAndReadImageData(final String description, final byte[] rawData, final int foreground, final int background)
-            throws IOException, ImagingException {
+            throws IOException {
 
         final File tempFile = Files.createTempFile("temp", ".ico").toFile();
         FileUtils.writeByteArrayToFile(tempFile, rawData);

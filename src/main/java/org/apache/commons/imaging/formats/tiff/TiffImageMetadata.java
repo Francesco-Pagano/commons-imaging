@@ -115,7 +115,7 @@ public class TiffImageMetadata extends GenericImageMetadata {
             }
         }
 
-        public BufferedImage getThumbnail() throws ImagingException, IOException {
+        public BufferedImage getThumbnail() throws IOException {
             return directory.getTiffImage(byteOrder);
         }
 

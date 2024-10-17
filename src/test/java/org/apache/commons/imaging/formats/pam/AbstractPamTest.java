@@ -36,7 +36,7 @@ public abstract class AbstractPamTest extends AbstractImagingTest {
         return format == ImageFormats.PAM;
     }
 
-    protected List<File> getPamImages() throws IOException, ImagingException {
+    protected List<File> getPamImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 }

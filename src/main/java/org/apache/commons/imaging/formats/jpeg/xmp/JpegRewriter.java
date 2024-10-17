@@ -166,7 +166,7 @@ public class JpegRewriter extends BinaryFileParser {
         super(JPEG_BYTE_ORDER);
     }
 
-    protected JFIFPieces analyzeJfif(final ByteSource byteSource) throws ImagingException, IOException {
+    protected JFIFPieces analyzeJfif(final ByteSource byteSource) throws IOException {
         final List<JFIFPiece> pieces = new ArrayList<>();
         final List<JFIFPiece> segmentPieces = new ArrayList<>();
 
@@ -180,7 +180,7 @@ public class JpegRewriter extends BinaryFileParser {
             // return false to exit traversal.
             @Override
             public boolean visitSegment(final int marker, final byte[] markerBytes, final int segmentLength, final byte[] segmentLengthBytes,
-                    final byte[] segmentData) throws ImagingException, IOException {
+                    final byte[] segmentData) throws IOException {
                 final JFIFPiece piece = new JFIFPieceSegment(marker, markerBytes, segmentLengthBytes, segmentData);
                 pieces.add(piece);
                 segmentPieces.add(piece);

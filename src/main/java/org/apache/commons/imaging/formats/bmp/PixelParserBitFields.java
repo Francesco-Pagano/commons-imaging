@@ -77,7 +77,7 @@ final class PixelParserBitFields extends AbstractPixelParserSimple {
     }
 
     @Override
-    public int getNextRgb() throws ImagingException, IOException {
+    public int getNextRgb() throws IOException {
         int data;
 
         switch (bhi.bitsPerPixel) {
@@ -115,7 +115,7 @@ final class PixelParserBitFields extends AbstractPixelParserSimple {
     }
 
     @Override
-    public void newline() throws ImagingException, IOException {
+    public void newline() throws IOException {
         while (byteCount % 4 != 0) {
             readByte("Pixel", is, "BMP Image Data");
             byteCount++;

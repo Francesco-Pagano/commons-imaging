@@ -29,7 +29,7 @@ public abstract class XbmBaseTest extends AbstractImagingTest {
         return file.getName().toLowerCase().endsWith(".xbm");
     }
 
-    protected List<File> getXbmImages() throws IOException, ImagingException {
+    protected List<File> getXbmImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 }

@@ -32,11 +32,11 @@ public abstract class AbstractExifTest extends AbstractImagingTest {
 
     private static final ImageFilter JPEG_IMAGE_FILTER = file -> file.getName().toLowerCase().endsWith(".jpg");
 
-    protected static List<File> getImagesWithExifData() throws IOException, ImagingException {
+    protected static List<File> getImagesWithExifData() throws IOException {
         return getTestImages(HAS_EXIF_IMAGE_FILTER);
     }
 
-    protected static List<File> getJpegImages() throws IOException, ImagingException {
+    protected static List<File> getJpegImages() throws IOException {
         return getTestImages(JPEG_IMAGE_FILTER);
     }
 
@@ -62,7 +62,7 @@ public abstract class AbstractExifTest extends AbstractImagingTest {
         }
     }
 
-    protected File getImageWithExifData() throws IOException, ImagingException {
+    protected File getImageWithExifData() throws IOException {
         return getTestImage(HAS_EXIF_IMAGE_FILTER);
     }
 

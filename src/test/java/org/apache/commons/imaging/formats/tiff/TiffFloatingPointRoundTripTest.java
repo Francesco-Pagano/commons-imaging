@@ -58,7 +58,7 @@ public class TiffFloatingPointRoundTripTest extends TiffBaseTest {
     float[] f = new float[width * height];
     int[] argb = new int[width * height];
 
-    public TiffFloatingPointRoundTripTest() throws ImagingException, IOException {
+    public TiffFloatingPointRoundTripTest() throws IOException {
         // populate the image data
         for (int iCol = 0; iCol < width; iCol++) {
             final float s = iCol / (float) (width - 1);
@@ -239,7 +239,7 @@ public class TiffFloatingPointRoundTripTest extends TiffBaseTest {
         }
     }
 
-    private File writeFile(final int bitsPerSample, final ByteOrder byteOrder, final boolean useTiles) throws IOException, ImagingException {
+    private File writeFile(final int bitsPerSample, final ByteOrder byteOrder, final boolean useTiles) throws IOException {
         final String name = String.format("FpRoundTrip_%2d_%s_%s.tiff", bitsPerSample, byteOrder == ByteOrder.LITTLE_ENDIAN ? "LE" : "BE",
                 useTiles ? "Tiles" : "Strips");
         final File outputFile = new File(tempDir.toFile(), name);

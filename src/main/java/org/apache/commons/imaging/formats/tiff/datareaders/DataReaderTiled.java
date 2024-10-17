@@ -74,7 +74,7 @@ public final class DataReaderTiled extends ImageDataReader {
     }
 
     private void interpretTile(final ImageBuilder imageBuilder, final byte[] bytes, final int startX, final int startY, final int xLimit, final int yLimit)
-            throws ImagingException, IOException {
+            throws IOException {
 
         // March 2020 change to handle floating-point with compression
         // for the compressed floating-point, there is a standard that allows
@@ -203,7 +203,7 @@ public final class DataReaderTiled extends ImageDataReader {
 
     @Override
     public ImageBuilder readImageData(final Rectangle subImageSpecification, final boolean hasAlpha, final boolean isAlphaPreMultiplied)
-            throws IOException, ImagingException {
+            throws IOException {
 
         final Rectangle subImage;
         if (subImageSpecification == null) {
@@ -271,7 +271,7 @@ public final class DataReaderTiled extends ImageDataReader {
     }
 
     @Override
-    public TiffRasterData readRasterData(final Rectangle subImage) throws ImagingException, IOException {
+    public TiffRasterData readRasterData(final Rectangle subImage) throws IOException {
         switch (sampleFormat) {
         case TiffTagConstants.SAMPLE_FORMAT_VALUE_IEEE_FLOATING_POINT:
             return readRasterDataFloat(subImage);
@@ -282,7 +282,7 @@ public final class DataReaderTiled extends ImageDataReader {
         }
     }
 
-    private TiffRasterData readRasterDataFloat(final Rectangle subImage) throws ImagingException, IOException {
+    private TiffRasterData readRasterDataFloat(final Rectangle subImage) throws IOException {
         final int bitsPerRow = tileWidth * bitsPerPixel;
         final int bytesPerRow = (bitsPerRow + 7) / 8;
         final int bytesPerTile = bytesPerRow * tileLength;
@@ -328,7 +328,7 @@ public final class DataReaderTiled extends ImageDataReader {
         return new TiffRasterDataFloat(rasterWidth, rasterHeight, samplesPerPixel, rasterDataFloat);
     }
 
-    private TiffRasterData readRasterDataInt(final Rectangle subImage) throws ImagingException, IOException {
+    private TiffRasterData readRasterDataInt(final Rectangle subImage) throws IOException {
         final int bitsPerRow = tileWidth * bitsPerPixel;
         final int bytesPerRow = (bitsPerRow + 7) / 8;
         final int bytesPerTile = bytesPerRow * tileLength;

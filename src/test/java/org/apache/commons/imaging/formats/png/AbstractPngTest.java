@@ -36,7 +36,7 @@ public abstract class AbstractPngTest extends AbstractImagingTest {
         return format == ImageFormats.PNG;
     }
 
-    protected List<File> getPngImages() throws IOException, ImagingException {
+    protected List<File> getPngImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

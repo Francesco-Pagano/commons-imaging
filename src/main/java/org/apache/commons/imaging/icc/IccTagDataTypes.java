@@ -30,7 +30,7 @@ import org.apache.commons.imaging.ImagingException;
 public enum IccTagDataTypes implements IccTagDataType {
     DESC_TYPE("descType", 0x64657363) {
         @Override
-        public void dump(final String prefix, final byte[] bytes) throws ImagingException, IOException {
+        public void dump(final String prefix, final byte[] bytes) throws IOException {
             try (InputStream bis = new ByteArrayInputStream(bytes)) {
                 read4Bytes("type_signature", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);
 
@@ -46,7 +46,7 @@ public enum IccTagDataTypes implements IccTagDataType {
 
     DATA_TYPE("dataType", 0x64617461) {
         @Override
-        public void dump(final String prefix, final byte[] bytes) throws ImagingException, IOException {
+        public void dump(final String prefix, final byte[] bytes) throws IOException {
             try (InputStream bis = new ByteArrayInputStream(bytes)) {
                 read4Bytes("type_signature", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);
             }
@@ -56,7 +56,7 @@ public enum IccTagDataTypes implements IccTagDataType {
 
     MULTI_LOCALIZED_UNICODE_TYPE("multiLocalizedUnicodeType", 0x6D6C7563) {
         @Override
-        public void dump(final String prefix, final byte[] bytes) throws ImagingException, IOException {
+        public void dump(final String prefix, final byte[] bytes) throws IOException {
             try (InputStream bis = new ByteArrayInputStream(bytes)) {
                 read4Bytes("type_signature", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);
             }
@@ -66,7 +66,7 @@ public enum IccTagDataTypes implements IccTagDataType {
 
     SIGNATURE_TYPE("signatureType", 0x73696720) {
         @Override
-        public void dump(final String prefix, final byte[] bytes) throws ImagingException, IOException {
+        public void dump(final String prefix, final byte[] bytes) throws IOException {
             try (InputStream bis = new ByteArrayInputStream(bytes)) {
                 read4Bytes("type_signature", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);
                 read4Bytes("ignore", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);
@@ -82,7 +82,7 @@ public enum IccTagDataTypes implements IccTagDataType {
 
     TEXT_TYPE("textType", 0x74657874) {
         @Override
-        public void dump(final String prefix, final byte[] bytes) throws ImagingException, IOException {
+        public void dump(final String prefix, final byte[] bytes) throws IOException {
             try (InputStream bis = new ByteArrayInputStream(bytes)) {
                 read4Bytes("type_signature", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);
                 read4Bytes("ignore", bis, "ICC: corrupt tag data", ByteOrder.BIG_ENDIAN);

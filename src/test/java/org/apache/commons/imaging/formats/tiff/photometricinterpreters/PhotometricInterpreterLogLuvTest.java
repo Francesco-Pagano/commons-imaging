@@ -88,7 +88,7 @@ public class PhotometricInterpreterLogLuvTest {
     }
 
     @Test
-    public void testInterpretPixel() throws ImagingException, IOException {
+    public void testInterpretPixel() throws IOException {
         final ImageBuilder imgBuilder = new ImageBuilder(600, 400, /* alpha */ true);
         final int x = 10;
         final int y = 20;

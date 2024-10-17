@@ -31,7 +31,7 @@ public abstract class AbstractDcxTest extends AbstractImagingTest {
 
     private static final ImageFilter IMAGE_FILTER = AbstractDcxTest::isDcx;
 
-    protected static List<File> getDcxImages() throws IOException, ImagingException {
+    protected static List<File> getDcxImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

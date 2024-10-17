@@ -46,7 +46,7 @@ public class ImageReadExample {
         }
     }
 
-    public static BufferedImage imageReadExample(final File file) throws ImagingException, IOException {
+    public static BufferedImage imageReadExample(final File file) throws IOException {
         final TiffImagingParameters params = new TiffImagingParameters();
 
         // set optional parameters if you like

@@ -36,7 +36,7 @@ public class PngChunkIhdr extends PngChunk {
     private final int filterMethod;
     private final InterlaceMethod interlaceMethod;
 
-    public PngChunkIhdr(final int length, final int chunkType, final int crc, final byte[] bytes) throws ImagingException, IOException {
+    public PngChunkIhdr(final int length, final int chunkType, final int crc, final byte[] bytes) throws IOException {
         super(length, chunkType, crc, bytes);
 
         final ByteArrayInputStream is = new ByteArrayInputStream(bytes);

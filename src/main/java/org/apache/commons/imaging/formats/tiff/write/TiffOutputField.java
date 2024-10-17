@@ -131,7 +131,7 @@ public class TiffOutputField {
         return result.toString();
     }
 
-    protected void writeField(final BinaryOutputStream bos) throws IOException, ImagingException {
+    protected void writeField(final BinaryOutputStream bos) throws IOException {
         bos.write2Bytes(tag);
         bos.write2Bytes(abstractFieldType.getType());
         bos.write4Bytes(count);

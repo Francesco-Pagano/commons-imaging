@@ -93,7 +93,7 @@ public class PhotometricInterpreterPalette extends PhotometricInterpreter {
     }
 
     @Override
-    public void interpretPixel(final ImageBuilder imageBuilder, final int[] samples, final int x, final int y) throws ImagingException, IOException {
+    public void interpretPixel(final ImageBuilder imageBuilder, final int[] samples, final int x, final int y) throws IOException {
         imageBuilder.setRgb(x, y, indexColorMap[samples[0] & bitsPerPixelMask]);
     }
 }

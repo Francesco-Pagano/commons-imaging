@@ -32,7 +32,7 @@ final class ScanExpediterSimple extends AbstractScanExpediter {
     }
 
     @Override
-    public void drive() throws ImagingException, IOException {
+    public void drive() throws IOException {
         final int bitsPerScanLine = bitsPerPixel * width;
         final int pixelBytesPerScanLine = getBitsToBytesRoundingUp(bitsPerScanLine);
         byte[] prev = null;

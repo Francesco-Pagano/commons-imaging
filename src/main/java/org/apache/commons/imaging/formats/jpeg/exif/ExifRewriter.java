@@ -130,7 +130,7 @@ public class ExifRewriter extends BinaryFileParser {
         super(byteOrder);
     }
 
-    private JFIFPieces analyzeJfif(final ByteSource byteSource) throws ImagingException, IOException {
+    private JFIFPieces analyzeJfif(final ByteSource byteSource) throws IOException {
         final List<JFIFPiece> pieces = new ArrayList<>();
         final List<JFIFPiece> exifPieces = new ArrayList<>();
 
@@ -177,7 +177,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws IOException      if it fails to read the image data
      * @throws ImagingException if it fails to write the updated data
      */
-    public void removeExifMetadata(final byte[] src, final OutputStream os) throws ImagingException, IOException, ImagingException {
+    public void removeExifMetadata(final byte[] src, final OutputStream os) throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.array(src);
         removeExifMetadata(byteSource, os);
     }
@@ -191,7 +191,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws IOException      if it fails to read the image data
      * @throws ImagingException if it fails to write the updated data
      */
-    public void removeExifMetadata(final ByteSource byteSource, final OutputStream os) throws ImagingException, IOException, ImagingException {
+    public void removeExifMetadata(final ByteSource byteSource, final OutputStream os) throws IOException, ImagingException {
         final JFIFPieces jfifPieces = analyzeJfif(byteSource);
         final List<JFIFPiece> pieces = jfifPieces.pieces;
 
@@ -213,7 +213,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @see java.io.File
      * @see java.io.OutputStream
      */
-    public void removeExifMetadata(final File src, final OutputStream os) throws ImagingException, IOException, ImagingException {
+    public void removeExifMetadata(final File src, final OutputStream os) throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.file(src);
         removeExifMetadata(byteSource, os);
     }
@@ -227,7 +227,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws IOException      if it fails to read the image data
      * @throws ImagingException if it fails to write the updated data
      */
-    public void removeExifMetadata(final InputStream src, final OutputStream os) throws ImagingException, IOException, ImagingException {
+    public void removeExifMetadata(final InputStream src, final OutputStream os) throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.inputStream(src, null);
         removeExifMetadata(byteSource, os);
     }
@@ -249,7 +249,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossless(final byte[] src, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.array(src);
         updateExifMetadataLossless(byteSource, os, outputSet);
     }
@@ -271,7 +271,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossless(final ByteSource byteSource, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final JFIFPieces jfifPieces = analyzeJfif(byteSource);
         final List<JFIFPiece> pieces = jfifPieces.pieces;
 
@@ -313,7 +313,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossless(final File src, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.file(src);
         updateExifMetadataLossless(byteSource, os, outputSet);
     }
@@ -335,7 +335,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossless(final InputStream src, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.inputStream(src, null);
         updateExifMetadataLossless(byteSource, os, outputSet);
     }
@@ -356,7 +356,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossy(final byte[] src, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.array(src);
         updateExifMetadataLossy(byteSource, os, outputSet);
     }
@@ -377,7 +377,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossy(final ByteSource byteSource, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final JFIFPieces jfifPieces = analyzeJfif(byteSource);
         final List<JFIFPiece> pieces = jfifPieces.pieces;
 
@@ -405,7 +405,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossy(final File src, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.file(src);
         updateExifMetadataLossy(byteSource, os, outputSet);
     }
@@ -426,7 +426,7 @@ public class ExifRewriter extends BinaryFileParser {
      * @throws ImagingException if it fails to write the updated data
      */
     public void updateExifMetadataLossy(final InputStream src, final OutputStream os, final TiffOutputSet outputSet)
-            throws ImagingException, IOException, ImagingException {
+            throws IOException, ImagingException {
         final ByteSource byteSource = ByteSource.inputStream(src, null);
         updateExifMetadataLossy(byteSource, os, outputSet);
     }
@@ -447,7 +447,7 @@ public class ExifRewriter extends BinaryFileParser {
     }
 
     private void writeSegmentsReplacingExif(final OutputStream outputStream, final List<JFIFPiece> segments, final byte[] newBytes)
-            throws ImagingException, IOException {
+            throws IOException {
 
         try (DataOutputStream os = new DataOutputStream(outputStream)) {
             JpegConstants.SOI.writeTo(os);

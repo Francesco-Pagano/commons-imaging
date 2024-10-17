@@ -32,7 +32,7 @@ public abstract class AbstractPcxTest extends AbstractImagingTest {
         return file.getName().toLowerCase().endsWith(".pcx");
     }
 
-    protected List<File> getPcxImages() throws IOException, ImagingException {
+    protected List<File> getPcxImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 }

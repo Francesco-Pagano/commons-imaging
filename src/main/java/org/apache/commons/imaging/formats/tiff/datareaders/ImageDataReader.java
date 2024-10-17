@@ -185,7 +185,7 @@ public abstract class ImageDataReader {
     }
 
     protected byte[] decompress(final byte[] compressedInput, final int compression, final int expectedSize, final int tileWidth, final int tileHeight)
-            throws ImagingException, IOException {
+            throws IOException {
         final TiffField fillOrderField = directory.findField(TiffTagConstants.TIFF_TAG_FILL_ORDER);
         int fillOrder = TiffTagConstants.FILL_ORDER_VALUE_NORMAL;
         if (fillOrderField != null) {
@@ -311,7 +311,7 @@ public abstract class ImageDataReader {
      * @throws ImagingException TODO
      */
     public abstract ImageBuilder readImageData(Rectangle subImageSpecification, boolean hasAlpha, boolean isAlphaPremultiplied)
-            throws IOException, ImagingException;
+            throws IOException;
 
     /**
      * Defines a method for accessing the floating-point raster data in a TIFF image. These implementations of this method in DataReaderStrips and
@@ -322,7 +322,7 @@ public abstract class ImageDataReader {
      * @throws ImagingException in the event of an incompatible data form.
      * @throws IOException      in the event of I/O error.
      */
-    public abstract TiffRasterData readRasterData(Rectangle subImage) throws ImagingException, IOException;
+    public abstract TiffRasterData readRasterData(Rectangle subImage) throws IOException;
 
     protected void resetPredictor() {
         Arrays.fill(last, 0);

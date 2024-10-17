@@ -28,7 +28,7 @@ public class ScanlineFilterSub implements ScanlineFilter {
     }
 
     @Override
-    public void unfilter(final byte[] src, final byte[] dst, final byte[] up) throws ImagingException, IOException {
+    public void unfilter(final byte[] src, final byte[] dst, final byte[] up) throws IOException {
         for (int i = 0; i < src.length; i++) {
             final int prevIndex = i - bytesPerPixel;
             if (prevIndex >= 0) {

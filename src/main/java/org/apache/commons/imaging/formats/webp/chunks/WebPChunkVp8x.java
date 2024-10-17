@@ -86,7 +86,7 @@ public final class WebPChunkVp8x extends WebPChunk {
     }
 
     @Override
-    public void dump(final PrintWriter pw, final int offset) throws ImagingException, IOException {
+    public void dump(final PrintWriter pw, final int offset) throws IOException {
         super.dump(pw, offset);
         pw.println("  ICCP: " + hasIcc());
         pw.println("  Alpha: " + hasAlpha());

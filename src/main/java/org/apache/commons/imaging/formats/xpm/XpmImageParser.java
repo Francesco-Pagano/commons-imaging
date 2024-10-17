@@ -170,7 +170,7 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         readXpmHeader(byteSource).dump(pw);
         return true;
     }
@@ -187,7 +187,7 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
     }
 
     @Override
-    public final BufferedImage getBufferedImage(final ByteSource byteSource, final XpmImagingParameters params) throws ImagingException, IOException {
+    public final BufferedImage getBufferedImage(final ByteSource byteSource, final XpmImagingParameters params) throws IOException {
         final XpmParseResult result = parseXpmHeader(byteSource);
         return readXpmImage(result.xpmHeader, result.cParser);
     }
@@ -203,12 +203,12 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final XpmImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final XpmImagingParameters params) throws IOException {
         return null;
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final XpmImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final XpmImagingParameters params) throws IOException {
         final XpmHeader xpmHeader = readXpmHeader(byteSource);
         boolean transparent = false;
         ImageInfo.ColorType colorType = ImageInfo.ColorType.BW;
@@ -228,13 +228,13 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final XpmImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final XpmImagingParameters params) throws IOException {
         final XpmHeader xpmHeader = readXpmHeader(byteSource);
         return new Dimension(xpmHeader.width, xpmHeader.height);
     }
 
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, final XpmImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, final XpmImagingParameters params) throws IOException {
         return null;
     }
 
@@ -286,7 +286,7 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
         return colorNames.getOrDefault(colorLowercase, 0x00000000);
     }
 
-    private boolean parseNextString(final BasicCParser cParser, final StringBuilder stringBuilder) throws IOException, ImagingException {
+    private boolean parseNextString(final BasicCParser cParser, final StringBuilder stringBuilder) throws IOException {
         stringBuilder.setLength(0);
         String token = cParser.nextToken();
         if (token.charAt(0) != '"') {
@@ -305,7 +305,7 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
         throw new ImagingException("Parsing XPM file failed, " + "no ',' or '}' found where expected");
     }
 
-    private void parsePaletteEntries(final XpmHeader xpmHeader, final BasicCParser cParser) throws IOException, ImagingException {
+    private void parsePaletteEntries(final XpmHeader xpmHeader, final BasicCParser cParser) throws IOException {
         final StringBuilder row = new StringBuilder();
         for (int i = 0; i < xpmHeader.numColors; i++) {
             row.setLength(0);
@@ -353,7 +353,7 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
         }
     }
 
-    private XpmHeader parseXpmHeader(final BasicCParser cParser) throws ImagingException, IOException {
+    private XpmHeader parseXpmHeader(final BasicCParser cParser) throws IOException {
         String name;
         String token;
         token = cParser.nextToken();
@@ -408,7 +408,7 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
         return xpmHeader;
     }
 
-    private XpmParseResult parseXpmHeader(final ByteSource byteSource) throws ImagingException, IOException {
+    private XpmParseResult parseXpmHeader(final ByteSource byteSource) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             final StringBuilder firstComment = new StringBuilder();
             final ByteArrayOutputStream preprocessedFile = BasicCParser.preprocess(is, firstComment, null);
@@ -506,11 +506,11 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
         return stringBuilder.toString();
     }
 
-    private XpmHeader readXpmHeader(final ByteSource byteSource) throws ImagingException, IOException {
+    private XpmHeader readXpmHeader(final ByteSource byteSource) throws IOException {
         return parseXpmHeader(byteSource).xpmHeader;
     }
 
-    private BufferedImage readXpmImage(final XpmHeader xpmHeader, final BasicCParser cParser) throws ImagingException, IOException {
+    private BufferedImage readXpmImage(final XpmHeader xpmHeader, final BasicCParser cParser) throws IOException {
         ColorModel colorModel;
         WritableRaster raster;
         int bpp;
@@ -603,7 +603,7 @@ public class XpmImageParser extends AbstractImageParser<XpmImagingParameters> {
     }
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, final XpmImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, final XpmImagingParameters params) throws IOException {
         final PaletteFactory paletteFactory = new PaletteFactory();
         final boolean hasTransparency = paletteFactory.hasTransparency(src, 1);
         SimplePalette palette = null;

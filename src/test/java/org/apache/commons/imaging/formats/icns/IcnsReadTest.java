@@ -73,7 +73,7 @@ public class IcnsReadTest extends IcnsBaseTest {
      */
     @ParameterizedTest()
     @MethodSource("provideIcnsImagesWithMonoAndJpegPngData")
-    public void testIcnsElementMonoPngJpeg(final String file, final int numberOfImages) throws ImagingException, IOException {
+    public void testIcnsElementMonoPngJpeg(final String file, final int numberOfImages) throws IOException {
         final File testFile = TestResources.resourceToFile(file);
         final List<BufferedImage> images = new IcnsImageParser().getAllBufferedImages(testFile);
         assertEquals(numberOfImages, images.size());

@@ -67,7 +67,7 @@ public final class DataReaderStrips extends ImageDataReader {
     }
 
     private void interpretStrip(final ImageBuilder imageBuilder, final byte[] bytes, final int pixelsPerStrip, final int yLimit)
-            throws ImagingException, IOException {
+            throws IOException {
         if (y >= yLimit) {
             return;
         }
@@ -228,7 +228,7 @@ public final class DataReaderStrips extends ImageDataReader {
 
     @Override
     public ImageBuilder readImageData(final Rectangle subImageSpecification, final boolean hasAlpha, final boolean isAlphaPreMultiplied)
-            throws IOException, ImagingException {
+            throws IOException {
 
         final Rectangle subImage;
         if (subImageSpecification == null) {
@@ -335,7 +335,7 @@ public final class DataReaderStrips extends ImageDataReader {
     }
 
     @Override
-    public TiffRasterData readRasterData(final Rectangle subImage) throws ImagingException, IOException {
+    public TiffRasterData readRasterData(final Rectangle subImage) throws IOException {
         switch (sampleFormat) {
         case TiffTagConstants.SAMPLE_FORMAT_VALUE_IEEE_FLOATING_POINT:
             return readRasterDataFloat(subImage);
@@ -346,7 +346,7 @@ public final class DataReaderStrips extends ImageDataReader {
         }
     }
 
-    private TiffRasterData readRasterDataFloat(final Rectangle subImage) throws ImagingException, IOException {
+    private TiffRasterData readRasterDataFloat(final Rectangle subImage) throws IOException {
         int xRaster;
         int yRaster;
         int rasterWidth;
@@ -391,7 +391,7 @@ public final class DataReaderStrips extends ImageDataReader {
         return new TiffRasterDataFloat(rasterWidth, rasterHeight, samplesPerPixel, rasterDataFloat);
     }
 
-    private TiffRasterData readRasterDataInt(final Rectangle subImage) throws ImagingException, IOException {
+    private TiffRasterData readRasterDataInt(final Rectangle subImage) throws IOException {
         int xRaster;
         int yRaster;
         int rasterWidth;

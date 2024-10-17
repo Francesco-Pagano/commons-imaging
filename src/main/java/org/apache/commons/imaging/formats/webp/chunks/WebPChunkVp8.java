@@ -116,7 +116,7 @@ public final class WebPChunkVp8 extends WebPChunk {
     }
 
     @Override
-    public void dump(final PrintWriter pw, final int offset) throws ImagingException, IOException {
+    public void dump(final PrintWriter pw, final int offset) throws IOException {
         super.dump(pw, offset);
         pw.println("  Version Number: " + getVersionNumber());
         pw.println("  Width: " + getWidth());

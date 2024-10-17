@@ -32,7 +32,7 @@ public abstract class WebPBaseTest extends AbstractImagingTest {
 
     private static final ImageFilter IMAGE_FILTER = WebPBaseTest::isWebP;
 
-    protected static List<File> getWebPImages() throws IOException, ImagingException {
+    protected static List<File> getWebPImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

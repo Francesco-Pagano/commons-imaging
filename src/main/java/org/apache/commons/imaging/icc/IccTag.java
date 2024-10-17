@@ -49,7 +49,7 @@ public class IccTag {
         this.fIccTagType = fIccTagType;
     }
 
-    public void dump(final PrintWriter pw, final String prefix) throws ImagingException, IOException {
+    public void dump(final PrintWriter pw, final String prefix) throws IOException {
         pw.println(prefix + "tag signature: " + Integer.toHexString(signature) + " (" + new String(new byte[] { (byte) (0xff & signature >> 24),
                 (byte) (0xff & signature >> 16), (byte) (0xff & signature >> 8), (byte) (0xff & signature >> 0), }, StandardCharsets.US_ASCII) + ")");
 
@@ -77,7 +77,7 @@ public class IccTag {
 
     }
 
-    public void dump(final String prefix) throws ImagingException, IOException {
+    public void dump(final String prefix) throws IOException {
         try (StringWriter sw = new StringWriter();
                 PrintWriter pw = new PrintWriter(sw)) {
             dump(pw, prefix);

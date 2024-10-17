@@ -126,7 +126,7 @@ public class PngWriter {
         writeChunk(os, ChunkType.IHDR, baos.toByteArray());
     }
 
-    private void writeChunkiTXt(final OutputStream os, final AbstractPngText.Itxt text) throws IOException, ImagingException {
+    private void writeChunkiTXt(final OutputStream os, final AbstractPngText.Itxt text) throws IOException {
         if (!isValidISO_8859_1(text.keyword)) {
             throw new ImagingException("PNG tEXt chunk keyword is not ISO-8859-1: " + text.keyword);
         }
@@ -200,7 +200,7 @@ public class PngWriter {
         writeChunk(os, ChunkType.sCAL, baos.toByteArray());
     }
 
-    private void writeChunktEXt(final OutputStream os, final AbstractPngText.Text text) throws IOException, ImagingException {
+    private void writeChunktEXt(final OutputStream os, final AbstractPngText.Text text) throws IOException {
         if (!isValidISO_8859_1(text.keyword)) {
             throw new ImagingException("PNG tEXt chunk keyword is not ISO-8859-1: " + text.keyword);
         }
@@ -295,7 +295,7 @@ public class PngWriter {
      * @throws IOException      When IO problems occur.
      */
     public void writeImage(final BufferedImage src, final OutputStream os, PngImagingParameters params, PaletteFactory paletteFactory)
-            throws ImagingException, IOException {
+            throws IOException {
         if (params == null) {
             params = new PngImagingParameters();
         }

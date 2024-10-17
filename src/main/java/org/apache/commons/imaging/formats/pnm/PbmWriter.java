@@ -32,7 +32,7 @@ final class PbmWriter implements PnmWriter {
     }
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, final PnmImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, final PnmImagingParameters params) throws IOException {
         os.write(PnmConstants.PNM_PREFIX_BYTE);
         os.write(rawBits ? PnmConstants.PBM_RAW_CODE : PnmConstants.PBM_TEXT_CODE);
         os.write(PnmConstants.PNM_SEPARATOR);

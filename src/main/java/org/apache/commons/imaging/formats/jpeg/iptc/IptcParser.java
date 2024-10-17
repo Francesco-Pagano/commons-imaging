@@ -101,7 +101,7 @@ public class IptcParser extends BinaryFileParser {
         return index + 4 <= segmentData.length && ByteConversions.toInt(segmentData, index, APP13_BYTE_ORDER) == JpegConstants.CONST_8BIM;
     }
 
-    protected List<IptcBlock> parseAllBlocks(final byte[] bytes, final boolean strict) throws ImagingException, IOException {
+    protected List<IptcBlock> parseAllBlocks(final byte[] bytes, final boolean strict) throws IOException {
         final List<IptcBlock> blocks = new ArrayList<>();
 
         try (InputStream bis = new ByteArrayInputStream(bytes)) {
@@ -259,7 +259,7 @@ public class IptcParser extends BinaryFileParser {
         return elements;
     }
 
-    public PhotoshopApp13Data parsePhotoshopSegment(final byte[] bytes, final boolean strict) throws ImagingException, IOException {
+    public PhotoshopApp13Data parsePhotoshopSegment(final byte[] bytes, final boolean strict) throws IOException {
         final List<IptcRecord> records = new ArrayList<>();
 
         final List<IptcBlock> blocks = parseAllBlocks(bytes, strict);
@@ -306,13 +306,13 @@ public class IptcParser extends BinaryFileParser {
      * Some IPTC blocks are missing this first "record version" record, so we don't require it.
      */
     public PhotoshopApp13Data parsePhotoshopSegment(final byte[] bytes, final ImagingParameters<JpegImagingParameters> params)
-            throws ImagingException, IOException {
+            throws IOException {
         final boolean strict = params != null && params.isStrict();
 
         return parsePhotoshopSegment(bytes, strict);
     }
 
-    public byte[] writeIptcBlock(List<IptcRecord> elements) throws ImagingException, IOException {
+    public byte[] writeIptcBlock(List<IptcRecord> elements) throws IOException {
         Charset charset = DEFAULT_CHARSET;
         for (final IptcRecord element : elements) {
             final byte[] recordData = element.getValue().getBytes(charset);
@@ -371,7 +371,7 @@ public class IptcParser extends BinaryFileParser {
         return baos.toByteArray();
     }
 
-    public byte[] writePhotoshopApp13Segment(final PhotoshopApp13Data data) throws IOException, ImagingException {
+    public byte[] writePhotoshopApp13Segment(final PhotoshopApp13Data data) throws IOException {
         try (ByteArrayOutputStream os = new ByteArrayOutputStream();
                 BinaryOutputStream bos = BinaryOutputStream.bigEndian(os)) {
 

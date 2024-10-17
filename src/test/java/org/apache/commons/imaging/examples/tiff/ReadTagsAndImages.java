@@ -324,7 +324,7 @@ public class ReadTagsAndImages {
      * @throws org.apache.commons.imaging.ImagingException in the event of an internal data format or version compatibility error reading the image.
      * @throws IOException                                 in the event of an I/O error.
      */
-    public static void main(final String[] args) throws ImagingException, IOException {
+    public static void main(final String[] args) throws IOException {
         if (args.length == 0) {
             // Print usage and exit
             for (final String s : USAGE) {

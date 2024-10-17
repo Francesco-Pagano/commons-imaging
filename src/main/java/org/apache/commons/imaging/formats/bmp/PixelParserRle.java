@@ -79,7 +79,7 @@ final class PixelParserRle extends AbstractPixelParser {
     }
 
     @Override
-    public void processImage(final ImageBuilder imageBuilder) throws ImagingException, IOException {
+    public void processImage(final ImageBuilder imageBuilder) throws IOException {
         final int width = bhi.width;
         final int height = bhi.height;
         int x = 0;

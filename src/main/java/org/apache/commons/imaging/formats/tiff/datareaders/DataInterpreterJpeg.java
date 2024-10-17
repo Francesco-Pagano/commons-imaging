@@ -57,7 +57,7 @@ final class DataInterpreterJpeg {
      * @throws IOException      in the event of an unrecoverable I/O error
      */
     static void intepretBlock(final TiffDirectory directory, final ImageBuilder workingBuilder, final int xBlock, final int yBlock, final int blockWidth,
-            final int blockHeight, final byte[] compressed) throws ImagingException, IOException {
+            final int blockHeight, final byte[] compressed) throws IOException {
         // the data for the block. The TIFF format can store some
         // of the internal JPEG tables in a separate TIFF field (tag) called
         // "JPEG Tables" which are used for all of the tiles in the file.

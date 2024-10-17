@@ -52,7 +52,7 @@ abstract class AbstractTiffOutputItem {
         }
 
         @Override
-        public void writeItem(final BinaryOutputStream bos) throws IOException, ImagingException {
+        public void writeItem(final BinaryOutputStream bos) throws IOException {
             bos.write(bytes);
         }
     }
@@ -73,5 +73,5 @@ abstract class AbstractTiffOutputItem {
         this.offset = offset;
     }
 
-    public abstract void writeItem(BinaryOutputStream bos) throws IOException, ImagingException;
+    public abstract void writeItem(BinaryOutputStream bos) throws IOException;
 }

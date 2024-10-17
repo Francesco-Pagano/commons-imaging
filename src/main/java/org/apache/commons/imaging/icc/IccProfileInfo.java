@@ -101,7 +101,7 @@ public class IccProfileInfo {
         }
     }
 
-    public String toString(final String prefix) throws ImagingException, IOException {
+    public String toString(final String prefix) throws IOException {
         final StringWriter sw = new StringWriter();
         final PrintWriter pw = new PrintWriter(sw);
 

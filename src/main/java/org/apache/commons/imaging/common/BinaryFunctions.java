@@ -202,7 +202,7 @@ public final class BinaryFunctions {
         return result;
     }
 
-    public static void readAndVerifyBytes(final InputStream is, final BinaryConstant expected, final String exception) throws ImagingException, IOException {
+    public static void readAndVerifyBytes(final InputStream is, final BinaryConstant expected, final String exception) throws IOException {
         for (int i = 0; i < expected.size(); i++) {
             final int data = is.read();
             final byte b = (byte) (0xff & data);
@@ -217,7 +217,7 @@ public final class BinaryFunctions {
         }
     }
 
-    public static void readAndVerifyBytes(final InputStream is, final byte[] expected, final String exception) throws ImagingException, IOException {
+    public static void readAndVerifyBytes(final InputStream is, final byte[] expected, final String exception) throws IOException {
         for (final byte element : expected) {
             final int data = is.read();
             final byte b = (byte) (0xff & data);

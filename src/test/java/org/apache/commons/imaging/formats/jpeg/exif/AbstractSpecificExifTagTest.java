@@ -38,9 +38,9 @@ public abstract class AbstractSpecificExifTagTest extends AbstractExifTest {
         return getImagesWithExifData().stream();
     }
 
-    protected abstract void checkField(File imageFile, TiffField field) throws IOException, ImagingException, ImagingException;
+    protected abstract void checkField(File imageFile, TiffField field) throws IOException;
 
-    private void checkImage(final File imageFile) throws IOException, ImagingException, ImagingException {
+    private void checkImage(final File imageFile) throws IOException {
 
         final JpegImagingParameters params = new JpegImagingParameters();
 

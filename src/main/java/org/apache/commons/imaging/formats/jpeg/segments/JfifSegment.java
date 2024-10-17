@@ -39,11 +39,11 @@ public class JfifSegment extends AbstractSegment {
     public final int yThumbnail;
     public final int thumbnailSize;
 
-    public JfifSegment(final int marker, final byte[] segmentData) throws ImagingException, IOException {
+    public JfifSegment(final int marker, final byte[] segmentData) throws IOException {
         this(marker, segmentData.length, new ByteArrayInputStream(segmentData));
     }
 
-    public JfifSegment(final int marker, final int markerLength, final InputStream is) throws ImagingException, IOException {
+    public JfifSegment(final int marker, final int markerLength, final InputStream is) throws IOException {
         super(marker, markerLength);
 
         final byte[] signature = readBytes(is, JpegConstants.JFIF0_SIGNATURE.size());

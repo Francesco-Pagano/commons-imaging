@@ -30,7 +30,7 @@ public abstract class AbstractBmpTest extends AbstractImagingTest {
 
     private static final ImageFilter IMAGE_FILTER = AbstractBmpTest::isBmp;
 
-    protected static List<File> getBmpImages() throws IOException, ImagingException {
+    protected static List<File> getBmpImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

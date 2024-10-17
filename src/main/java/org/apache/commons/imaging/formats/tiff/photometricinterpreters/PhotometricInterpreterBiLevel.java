@@ -32,7 +32,7 @@ public class PhotometricInterpreterBiLevel extends PhotometricInterpreter {
     }
 
     @Override
-    public void interpretPixel(final ImageBuilder imageBuilder, final int[] samples, final int x, final int y) throws ImagingException, IOException {
+    public void interpretPixel(final ImageBuilder imageBuilder, final int[] samples, final int x, final int y) throws IOException {
         int sample = samples[0];
 
         if (invert) {

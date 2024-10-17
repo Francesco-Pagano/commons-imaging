@@ -169,7 +169,7 @@ public class PngWriteReadTest extends AbstractImagingTest {
         assertTrue(Imaging.getImageInfo(pngBytes).isTransparent());
     }
 
-    private void writeAndReadImageData(final int[][] rawData) throws IOException, ImagingException, ImagingException {
+    private void writeAndReadImageData(final int[][] rawData) throws IOException {
         final BufferedImage srcImage = imageDataToBufferedImage(rawData);
 
         final byte[] bytes = Imaging.writeImageToBytes(srcImage, ImageFormats.PNG);
@@ -184,7 +184,7 @@ public class PngWriteReadTest extends AbstractImagingTest {
         assertArrayEquals(rawData, dstData);
     }
 
-    private void writeAndReadMultipleEXt(final int[][] rawData) throws IOException, ImagingException, ImagingException {
+    private void writeAndReadMultipleEXt(final int[][] rawData) throws IOException {
         final BufferedImage srcImage = imageDataToBufferedImage(rawData);
 
         final List<AbstractPngText.Text> textChunks = new LinkedList<>();

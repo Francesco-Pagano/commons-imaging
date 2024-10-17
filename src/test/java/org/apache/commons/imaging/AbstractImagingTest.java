@@ -31,7 +31,7 @@ import org.apache.commons.imaging.test.FileSystemTraversal;
 public abstract class AbstractImagingTest {
 
     public interface ImageFilter {
-        boolean accept(File file) throws IOException, ImagingException;
+        boolean accept(File file) throws IOException;
     }
 
     private static final List<File> ALL_IMAGES = new ArrayList<>();
@@ -54,15 +54,15 @@ public abstract class AbstractImagingTest {
         new FileSystemTraversal().traverseFiles(imagesFolder, visitor);
     }
 
-    protected static List<File> getTestImages() throws IOException, ImagingException {
+    protected static List<File> getTestImages() throws IOException {
         return getTestImages(null, -1);
     }
 
-    protected static List<File> getTestImages(final ImageFilter filter) throws IOException, ImagingException {
+    protected static List<File> getTestImages(final ImageFilter filter) throws IOException {
         return getTestImages(filter, -1);
     }
 
-    protected static List<File> getTestImages(final ImageFilter filter, final int max) throws IOException, ImagingException {
+    protected static List<File> getTestImages(final ImageFilter filter, final int max) throws IOException {
         final List<File> images = new ArrayList<>();
 
         for (final File file : ALL_IMAGES) {
@@ -90,11 +90,11 @@ public abstract class AbstractImagingTest {
         return images;
     }
 
-    protected File getTestImage() throws IOException, ImagingException {
+    protected File getTestImage() throws IOException {
         return getTestImage(null);
     }
 
-    protected File getTestImage(final ImageFilter filter) throws IOException, ImagingException {
+    protected File getTestImage(final ImageFilter filter) throws IOException {
         final List<File> images = getTestImages(filter, 1);
 
         assertFalse(images.isEmpty());
@@ -102,7 +102,7 @@ public abstract class AbstractImagingTest {
         return images.get(0);
     }
 
-    protected File getTestImageByName(final String fileName) throws IOException, ImagingException {
+    protected File getTestImageByName(final String fileName) throws IOException {
         return getTestImage(file -> file.getName().equals(fileName));
     }
 

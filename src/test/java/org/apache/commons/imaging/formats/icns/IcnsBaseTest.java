@@ -31,7 +31,7 @@ public abstract class IcnsBaseTest extends AbstractImagingTest {
 
     private static final ImageFilter IMAGE_FILTER = IcnsBaseTest::isIcns;
 
-    protected static List<File> getIcnsImages() throws IOException, ImagingException {
+    protected static List<File> getIcnsImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

@@ -129,7 +129,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         pw.println("jpeg.dumpImageFile");
 
         {
@@ -203,7 +203,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
     }
 
     @Override
-    public final BufferedImage getBufferedImage(final ByteSource byteSource, final JpegImagingParameters params) throws ImagingException, IOException {
+    public final BufferedImage getBufferedImage(final ByteSource byteSource, final JpegImagingParameters params) throws IOException {
         final JpegDecoder jpegDecoder = new JpegDecoder();
         return jpegDecoder.decode(byteSource);
     }
@@ -218,7 +218,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
         return new JpegImagingParameters();
     }
 
-    public TiffImageMetadata getExifMetadata(final ByteSource byteSource, TiffImagingParameters params) throws ImagingException, IOException {
+    public TiffImageMetadata getExifMetadata(final ByteSource byteSource, TiffImagingParameters params) throws IOException {
         final byte[] bytes = getExifRawData(byteSource);
         if (null == bytes) {
             return null;
@@ -232,7 +232,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
         return (TiffImageMetadata) new TiffImageParser().getMetadata(bytes, params);
     }
 
-    public byte[] getExifRawData(final ByteSource byteSource) throws ImagingException, IOException {
+    public byte[] getExifRawData(final ByteSource byteSource) throws IOException {
         final List<AbstractSegment> abstractSegments = readSegments(byteSource, new int[] { JpegConstants.JPEG_APP1_MARKER, }, false);
 
         if (abstractSegments == null || abstractSegments.isEmpty()) {
@@ -260,7 +260,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final JpegImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final JpegImagingParameters params) throws IOException {
         final List<AbstractSegment> abstractSegments = readSegments(byteSource, new int[] { JpegConstants.JPEG_APP2_MARKER, }, false);
 
         final List<App2Segment> filtered = new ArrayList<>();
@@ -288,7 +288,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final JpegImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final JpegImagingParameters params) throws IOException {
 
         final List<AbstractSegment> SOF_segments = readSegments(byteSource, new int[] {
                 // kJFIFMarker,
@@ -591,7 +591,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final JpegImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final JpegImagingParameters params) throws IOException {
         final List<AbstractSegment> abstractSegments = readSegments(byteSource, new int[] {
                 // kJFIFMarker,
                 JpegConstants.SOF0_MARKER, JpegConstants.SOF1_MARKER, JpegConstants.SOF2_MARKER, JpegConstants.SOF3_MARKER, JpegConstants.SOF5_MARKER,
@@ -614,7 +614,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
     }
 
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, JpegImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, JpegImagingParameters params) throws IOException {
         if (params == null) {
             params = new JpegImagingParameters();
         }
@@ -634,7 +634,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
         return "Jpeg-Custom";
     }
 
-    public JpegPhotoshopMetadata getPhotoshopMetadata(final ByteSource byteSource, final JpegImagingParameters params) throws ImagingException, IOException {
+    public JpegPhotoshopMetadata getPhotoshopMetadata(final ByteSource byteSource, final JpegImagingParameters params) throws IOException {
         final List<AbstractSegment> abstractSegments = readSegments(byteSource, new int[] { JpegConstants.JPEG_APP13_MARKER, }, false);
 
         if (abstractSegments == null || abstractSegments.isEmpty()) {
@@ -670,7 +670,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
      * @return Xmp Xml as String, if present. Otherwise, returns null.
      */
     @Override
-    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters<JpegImagingParameters> params) throws ImagingException, IOException {
+    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters<JpegImagingParameters> params) throws IOException {
 
         final List<String> result = new ArrayList<>();
 
@@ -713,7 +713,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
         return result.get(0);
     }
 
-    public boolean hasExifSegment(final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean hasExifSegment(final ByteSource byteSource) throws IOException {
         final boolean[] result = { false, };
 
         final JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
@@ -750,7 +750,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
         return result[0];
     }
 
-    public boolean hasIptcSegment(final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean hasIptcSegment(final ByteSource byteSource) throws IOException {
         final boolean[] result = { false, };
 
         final JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
@@ -787,7 +787,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
         return result[0];
     }
 
-    public boolean hasXmpSegment(final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean hasXmpSegment(final ByteSource byteSource) throws IOException {
         final boolean[] result = { false, };
 
         final JpegUtils.Visitor visitor = new JpegUtils.Visitor() {
@@ -838,7 +838,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
     }
 
     public List<AbstractSegment> readSegments(final ByteSource byteSource, final int[] markers, final boolean returnAfterFirst)
-            throws ImagingException, IOException {
+            throws IOException {
         final List<AbstractSegment> result = new ArrayList<>();
         final int[] sofnSegments = {
                 // kJFIFMarker,
@@ -856,7 +856,7 @@ public class JpegImageParser extends AbstractImageParser<JpegImagingParameters> 
             // return false to exit traversal.
             @Override
             public boolean visitSegment(final int marker, final byte[] markerBytes, final int markerLength, final byte[] markerLengthBytes,
-                    final byte[] segmentData) throws ImagingException, IOException {
+                    final byte[] segmentData) throws IOException {
                 if (marker == JpegConstants.EOI_MARKER) {
                     return false;
                 }

@@ -26,12 +26,12 @@ abstract class AbstractPixelParserSimple extends AbstractPixelParser {
         super(bhi, colorTable, imageData);
     }
 
-    public abstract int getNextRgb() throws ImagingException, IOException;
+    public abstract int getNextRgb() throws IOException;
 
-    public abstract void newline() throws ImagingException, IOException;
+    public abstract void newline() throws IOException;
 
     @Override
-    public void processImage(final ImageBuilder imageBuilder) throws ImagingException, IOException {
+    public void processImage(final ImageBuilder imageBuilder) throws IOException {
         for (int y = bhi.height - 1; y >= 0; y--) {
             for (int x = 0; x < bhi.width; x++) {
                 final int rgb = getNextRgb();

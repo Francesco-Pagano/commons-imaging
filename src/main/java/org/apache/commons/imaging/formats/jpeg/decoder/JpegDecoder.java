@@ -169,7 +169,7 @@ public class JpegDecoder extends BinaryFileParser implements JpegUtils.Visitor {
         return true;
     }
 
-    public BufferedImage decode(final ByteSource byteSource) throws IOException, ImagingException {
+    public BufferedImage decode(final ByteSource byteSource) throws IOException {
         final JpegUtils jpegUtils = new JpegUtils();
         jpegUtils.traverseJfif(byteSource, this);
         if (imageReadException != null) {
@@ -343,7 +343,7 @@ public class JpegDecoder extends BinaryFileParser implements JpegUtils.Visitor {
 
     @Override
     public boolean visitSegment(final int marker, final byte[] markerBytes, final int segmentLength, final byte[] segmentLengthBytes, final byte[] segmentData)
-            throws ImagingException, IOException {
+            throws IOException {
         final int[] sofnSegments = { JpegConstants.SOF0_MARKER, JpegConstants.SOF1_MARKER, JpegConstants.SOF2_MARKER, JpegConstants.SOF3_MARKER,
                 JpegConstants.SOF5_MARKER, JpegConstants.SOF6_MARKER, JpegConstants.SOF7_MARKER, JpegConstants.SOF9_MARKER, JpegConstants.SOF10_MARKER,
                 JpegConstants.SOF11_MARKER, JpegConstants.SOF13_MARKER, JpegConstants.SOF14_MARKER, JpegConstants.SOF15_MARKER, };

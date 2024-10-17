@@ -34,7 +34,7 @@ public abstract class AbstractPsdTest extends AbstractImagingTest {
         return format == ImageFormats.PSD;
     }
 
-    protected List<File> getPsdImages() throws IOException, ImagingException {
+    protected List<File> getPsdImages() throws IOException {
         return getTestImages(IMAGE_FILTER);
     }
 

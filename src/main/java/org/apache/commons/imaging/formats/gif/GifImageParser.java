@@ -114,7 +114,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws ImagingException, IOException {
+    public boolean dumpImageFile(final PrintWriter pw, final ByteSource byteSource) throws IOException {
         pw.println("gif.dumpImageFile");
 
         final ImageInfo imageData = getImageInfo(byteSource);
@@ -213,7 +213,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws ImagingException, IOException {
+    public List<BufferedImage> getAllBufferedImages(final ByteSource byteSource) throws IOException {
         final GifImageContents imageContents = readFile(byteSource, false);
 
         final GifHeaderInfo ghi = imageContents.gifHeaderInfo;
@@ -230,7 +230,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public BufferedImage getBufferedImage(final ByteSource byteSource, final GifImagingParameters params) throws ImagingException, IOException {
+    public BufferedImage getBufferedImage(final ByteSource byteSource, final GifImagingParameters params) throws IOException {
         final GifImageContents imageContents = readFile(byteSource, false);
 
         final GifHeaderInfo ghi = imageContents.gifHeaderInfo;
@@ -375,7 +375,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws ImagingException, IOException {
+    public FormatCompliance getFormatCompliance(final ByteSource byteSource) throws IOException {
         final FormatCompliance result = new FormatCompliance(byteSource.toString());
 
         readFile(byteSource, false, result);
@@ -384,12 +384,12 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public byte[] getIccProfileBytes(final ByteSource byteSource, final GifImagingParameters params) throws ImagingException, IOException {
+    public byte[] getIccProfileBytes(final ByteSource byteSource, final GifImagingParameters params) throws IOException {
         return null;
     }
 
     @Override
-    public ImageInfo getImageInfo(final ByteSource byteSource, final GifImagingParameters params) throws ImagingException, IOException {
+    public ImageInfo getImageInfo(final ByteSource byteSource, final GifImagingParameters params) throws IOException {
         final GifImageContents blocks = readFile(byteSource, GifImagingParameters.getStopReadingBeforeImageData(params));
 
         final GifHeaderInfo bhi = blocks.gifHeaderInfo;
@@ -439,7 +439,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public Dimension getImageSize(final ByteSource byteSource, final GifImagingParameters params) throws ImagingException, IOException {
+    public Dimension getImageSize(final ByteSource byteSource, final GifImagingParameters params) throws IOException {
         final GifImageContents blocks = readFile(byteSource, false);
 
         final GifHeaderInfo bhi = blocks.gifHeaderInfo;
@@ -456,7 +456,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public ImageMetadata getMetadata(final ByteSource byteSource, final GifImagingParameters params) throws ImagingException, IOException {
+    public ImageMetadata getMetadata(final ByteSource byteSource, final GifImagingParameters params) throws IOException {
         final GifImageContents imageContents = readFile(byteSource, GifImagingParameters.getStopReadingBeforeImageData(params));
 
         final GifHeaderInfo bhi = imageContents.gifHeaderInfo;
@@ -487,7 +487,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
      * @return Xmp Xml as String, if present. Otherwise, returns null.
      */
     @Override
-    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters<GifImagingParameters> params) throws ImagingException, IOException {
+    public String getXmpXml(final ByteSource byteSource, final XmpImagingParameters<GifImagingParameters> params) throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             final GifHeaderInfo ghi = readHeader(is, null);
 
@@ -543,7 +543,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     private List<GifBlock> readBlocks(final GifHeaderInfo ghi, final InputStream is, final boolean stopBeforeImageData, final FormatCompliance formatCompliance)
-            throws ImagingException, IOException {
+            throws IOException {
         final List<GifBlock> result = new ArrayList<>();
 
         while (true) {
@@ -624,12 +624,12 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
         return BinaryFunctions.readBytes("block", is, actualSize, "GIF: corrupt Color Table");
     }
 
-    private GifImageContents readFile(final ByteSource byteSource, final boolean stopBeforeImageData) throws ImagingException, IOException {
+    private GifImageContents readFile(final ByteSource byteSource, final boolean stopBeforeImageData) throws IOException {
         return readFile(byteSource, stopBeforeImageData, FormatCompliance.getDefault());
     }
 
     private GifImageContents readFile(final ByteSource byteSource, final boolean stopBeforeImageData, final FormatCompliance formatCompliance)
-            throws ImagingException, IOException {
+            throws IOException {
         try (InputStream is = byteSource.getInputStream()) {
             final GifHeaderInfo ghi = readHeader(is, formatCompliance);
 
@@ -680,7 +680,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
         return new GraphicControlExtension(code, packed, dispose, transparency, delay, transparentColorIndex);
     }
 
-    private GifHeaderInfo readHeader(final InputStream is, final FormatCompliance formatCompliance) throws ImagingException, IOException {
+    private GifHeaderInfo readHeader(final InputStream is, final FormatCompliance formatCompliance) throws IOException {
         final byte identifier1 = BinaryFunctions.readByte("identifier1", is, "Not a Valid GIF File");
         final byte identifier2 = BinaryFunctions.readByte("identifier2", is, "Not a Valid GIF File");
         final byte identifier3 = BinaryFunctions.readByte("identifier3", is, "Not a Valid GIF File");
@@ -743,7 +743,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     private ImageDescriptor readImageDescriptor(final GifHeaderInfo ghi, final int blockCode, final InputStream is, final boolean stopBeforeImageData,
-            final FormatCompliance formatCompliance) throws ImagingException, IOException {
+            final FormatCompliance formatCompliance) throws IOException {
         final int imageLeftPosition = BinaryFunctions.read2Bytes("Image Left Position", is, "Not a Valid GIF File", getByteOrder());
         final int imageTopPosition = BinaryFunctions.read2Bytes("Image Top Position", is, "Not a Valid GIF File", getByteOrder());
         final int imageWidth = BinaryFunctions.read2Bytes("Image Width", is, "Not a Valid GIF File", getByteOrder());
@@ -837,7 +837,7 @@ public class GifImageParser extends AbstractImageParser<GifImagingParameters> im
     }
 
     @Override
-    public void writeImage(final BufferedImage src, final OutputStream os, GifImagingParameters params) throws ImagingException, IOException {
+    public void writeImage(final BufferedImage src, final OutputStream os, GifImagingParameters params) throws IOException {
         if (params == null) {
             params = new GifImagingParameters();
         }

@@ -31,11 +31,11 @@ public abstract class IptcBaseTest extends AbstractImagingTest {
 
     private static final ImageFilter JPEG_IMAGE_FILTER = file -> file.getName().toLowerCase().endsWith(".jpg");
 
-    protected static List<File> getImagesWithIptcData() throws IOException, ImagingException {
+    protected static List<File> getImagesWithIptcData() throws IOException {
         return getTestImages(HAS_IPTC_IMAGE_FILTER);
     }
 
-    protected static List<File> getJpegImages() throws IOException, ImagingException {
+    protected static List<File> getJpegImages() throws IOException {
         return getTestImages(JPEG_IMAGE_FILTER);
     }
 
@@ -53,19 +53,19 @@ public abstract class IptcBaseTest extends AbstractImagingTest {
         }
     }
 
-    protected List<File> getImagesWithIptcData(final int max) throws IOException, ImagingException {
+    protected List<File> getImagesWithIptcData(final int max) throws IOException {
         return getTestImages(HAS_IPTC_IMAGE_FILTER, max);
     }
 
-    protected File getImageWithIptcData() throws IOException, ImagingException {
+    protected File getImageWithIptcData() throws IOException {
         return getTestImage(HAS_IPTC_IMAGE_FILTER);
     }
 
-    protected File getJpegImage() throws IOException, ImagingException {
+    protected File getJpegImage() throws IOException {
         return getTestImage(JPEG_IMAGE_FILTER);
     }
 
-    protected List<File> getJpegImages(final int max) throws IOException, ImagingException {
+    protected List<File> getJpegImages(final int max) throws IOException {
         return getTestImages(JPEG_IMAGE_FILTER, max);
     }
 

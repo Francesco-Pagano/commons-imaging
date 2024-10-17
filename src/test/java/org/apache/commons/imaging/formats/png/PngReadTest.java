@@ -76,7 +76,7 @@ public class PngReadTest extends AbstractPngTest {
      * @throws ImagingException if it fails to read the test image
      */
     @Test
-    public void testReadMetadataFromItxtChunk() throws IOException, ImagingException {
+    public void testReadMetadataFromItxtChunk() throws IOException {
         final File file = TestResources.resourceToFile("/images/png/IMAGING-342/utf8-comment.png");
         final PngImageParser parser = new PngImageParser();
 
