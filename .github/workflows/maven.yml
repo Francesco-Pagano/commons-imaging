@@ -33,9 +33,9 @@ jobs:
             - java: 23
               os: ubuntu-latest
               experimental: false
-            - java: 24-ea
-              os: ubuntu-latest
-              experimental: true
+            #- java: 24-ea
+            #  os: ubuntu-latest
+            #  experimental: true
         
     steps:
     # https://github.com/actions/checkout/issues/226#issuecomment-854736025
