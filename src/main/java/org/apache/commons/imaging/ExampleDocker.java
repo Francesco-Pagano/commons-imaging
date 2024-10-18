@@ -36,7 +36,7 @@ public class ExampleDocker {
     static class MyHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange t) throws IOException {
-            String response = "<h1> Hello World!!!! I just Dockerized a Maven Project </h1>";
+            String response = "<h1> I just Dockerized a Maven Project </h1>";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes(Charset.forName("UTF-8")));
