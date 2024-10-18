@@ -87,6 +87,9 @@
   </issueManagement>
   <inceptionYear>2007</inceptionYear>
   <build>
+
+    <finalName>example-docker</finalName>
+
     <defaultGoal>clean verify apache-rat:check checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
     <plugins>
       <plugin>
@@ -128,6 +131,23 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.0</version>
+            <configuration>
+              <archive>
+                <manifest>
+                  <addClasspath>true</addClasspath>
+                    <classpathPrefix>lib/</classpathPrefix>
+                    <mainClass>org.apache.commons.imaging.ExampleDocker</mainClass>
+                </manifest>
+              </archive>
+              <!--
+              <archive combine.children="append">
+                <manifestEntries>
+                  <Automatic-Module-Name>${commons.module.name}</Automatic-Module-Name>
+                </manifestEntries>
+              </archive>
+              -->
+            </configuration>
         <executions>
           <execution>
             <goals>
@@ -135,13 +155,6 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <archive combine.children="append">
-            <manifestEntries>
-              <Automatic-Module-Name>${commons.module.name}</Automatic-Module-Name>
-            </manifestEntries>
-          </archive>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
