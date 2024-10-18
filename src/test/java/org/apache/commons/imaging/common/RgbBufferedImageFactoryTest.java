@@ -23,10 +23,10 @@ import java.awt.image.DirectColorModel;
 
 import org.junit.jupiter.api.Test;
 
-public class RgbBufferedImageFactoryTest {
+class RgbBufferedImageFactoryTest {
 
     @Test
-    public void testGetColorBufferedImageThrowsIllegalArgumentException() {
+    void testGetColorBufferedImageThrowsIllegalArgumentException() {
         final RgbBufferedImageFactory rgbBufferedImageFactory = new RgbBufferedImageFactory();
 
         try {

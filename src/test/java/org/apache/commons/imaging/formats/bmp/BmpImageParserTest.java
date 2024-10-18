@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for the {@link BmpImageParser}.
  */
-public class BmpImageParserTest {
+class BmpImageParserTest {
 
     /**
      * For https://issues.apache.org/jira/browse/IMAGING-279.
@@ -39,7 +39,7 @@ public class BmpImageParserTest {
      * @throws ImagingException
      */
     @Test
-    public void testImageForNegativeArraySizeException() throws IOException {
+    void testImageForNegativeArraySizeException() throws IOException {
         final File bmp = TestResources.resourceToFile("/images/bmp/IMAGING-279/negative_array_size_exception.bmp");
         final BmpImageParser parser = new BmpImageParser();
         assertThrows(IllegalArgumentException.class, () -> parser.getImageInfo(bmp, new BmpImagingParameters()));
@@ -52,7 +52,7 @@ public class BmpImageParserTest {
      * @throws ImagingException
      */
     @Test
-    public void testImageWidthRounding() throws IOException {
+    void testImageWidthRounding() throws IOException {
         final File bmp = TestResources.resourceToFile("/images/bmp/IMAGING-264/test-72_6-dpi.bmp");
         final BmpImageParser parser = new BmpImageParser();
         final ImageInfo imageInfo = parser.getImageInfo(bmp, new BmpImagingParameters());

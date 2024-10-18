@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ColorHslTest {
+class ColorHslTest {
 
     private ColorHsl color;
     private ColorHsl colorCopy;
@@ -35,7 +35,7 @@ public class ColorHslTest {
     }
 
     @Test
-    public void testCreatesColorHslOne() {
+    void testCreatesColorHslOne() {
         final ColorHsl colorHsl = ColorHsl.BLUE;
         final ColorHsl colorHslTwo = new ColorHsl(100.0, 667.226, -687.72287636);
 
@@ -46,28 +46,28 @@ public class ColorHslTest {
     }
 
     @Test
-    public void testHashCodeAndEquals() {
+    void testHashCodeAndEquals() {
         assertTrue(color.equals(colorCopy) && colorCopy.equals(color));
         assertEquals(colorCopy.hashCode(), color.hashCode());
     }
 
     @Test
-    public void testHAssignment() {
+    void testHAssignment() {
         assertEquals(1.0, color.h, 0.0);
     }
 
     @Test
-    public void testLAssignment() {
+    void testLAssignment() {
         assertEquals(3.0, color.l, 0.0);
     }
 
     @Test
-    public void testSAssignment() {
+    void testSAssignment() {
         assertEquals(2.0, color.s, 0.0);
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         assertEquals("{H: 1.0, S: 2.0, L: 3.0}", color.toString());
     }
 

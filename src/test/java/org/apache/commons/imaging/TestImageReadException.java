@@ -25,17 +25,17 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link ImagingException}.
  */
-public class TestImageReadException {
+class TestImageReadException {
 
     @Test
-    public void testCreateExceptionWithMessage() {
+    void testCreateExceptionWithMessage() {
         final ImagingException exception = new ImagingException("imaging");
         assertEquals("imaging", exception.getMessage());
         assertNull(exception.getCause());
     }
 
     @Test
-    public void testCreateExceptionWithMessageAndCause() {
+    void testCreateExceptionWithMessageAndCause() {
         final ImagingException exception = new ImagingException("imaging", new Exception("cause"));
         assertEquals("imaging", exception.getMessage());
         assertNotNull(exception.getCause());

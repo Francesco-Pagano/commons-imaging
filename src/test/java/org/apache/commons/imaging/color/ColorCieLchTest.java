@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ColorCieLchTest {
+class ColorCieLchTest {
 
     private ColorCieLch color;
     private ColorCieLch colorCopy;
@@ -34,28 +34,28 @@ public class ColorCieLchTest {
     }
 
     @Test
-    public void testCAssignment() {
+    void testCAssignment() {
         assertEquals(2.0, color.c, 0.0);
     }
 
     @Test
-    public void testHashCodeAndEquals() {
+    void testHashCodeAndEquals() {
         assertTrue(color.equals(colorCopy) && colorCopy.equals(color));
         assertEquals(colorCopy.hashCode(), color.hashCode());
     }
 
     @Test
-    public void testHAssignment() {
+    void testHAssignment() {
         assertEquals(3.0, color.h, 0.0);
     }
 
     @Test
-    public void testLAssignment() {
+    void testLAssignment() {
         assertEquals(1.0, color.l, 0.0);
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         assertEquals("{L: 1.0, C: 2.0, h: 3.0}", color.toString());
     }
 }
