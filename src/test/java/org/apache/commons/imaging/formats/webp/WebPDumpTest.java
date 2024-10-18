@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 /**
  * Test the methods that dump data into streams.
  */
-public class WebPDumpTest extends WebPBaseTest {
+class WebPDumpTest extends WebPBaseTest {
 
     /**
      * @param imageFile parameterized test image.
@@ -40,7 +40,7 @@ public class WebPDumpTest extends WebPBaseTest {
      */
     @ParameterizedTest
     @MethodSource("images")
-    public void testDump(final File imageFile) throws Exception {
+    void testDump(final File imageFile) throws Exception {
         Debug.debug("imageFile", imageFile);
         Debug.debug();
 

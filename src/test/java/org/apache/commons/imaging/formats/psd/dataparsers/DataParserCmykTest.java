@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class DataParserCmykTest {
+class DataParserCmykTest {
 
     @Test
-    public void testGetBasicChannelsCount() {
+    void testGetBasicChannelsCount() {
         final DataParserCmyk dataParserCmyk = new DataParserCmyk();
 
         assertEquals(4, dataParserCmyk.getBasicChannelsCount());

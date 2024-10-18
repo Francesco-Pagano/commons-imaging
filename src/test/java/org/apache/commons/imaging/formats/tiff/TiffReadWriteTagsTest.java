@@ -35,10 +35,10 @@ import org.apache.commons.imaging.formats.tiff.write.TiffOutputDirectory;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.junit.jupiter.api.Test;
 
-public class TiffReadWriteTagsTest extends TiffBaseTest {
+class TiffReadWriteTagsTest extends TiffBaseTest {
 
     @Test
-    public void testReadWriteTags() throws IOException {
+    void testReadWriteTags() throws IOException {
         final String description = "A pretty picture";
         final short page = 1;
         final RationalNumber twoThirds = new RationalNumber(2, 3);

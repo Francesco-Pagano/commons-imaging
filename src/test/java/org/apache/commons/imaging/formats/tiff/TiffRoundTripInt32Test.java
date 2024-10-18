@@ -41,7 +41,7 @@ import org.junit.jupiter.api.io.TempDir;
  * matches the original values. The primary purpose of this test is to verify that the TIFF data reader classes behave correctly when reading raster data in
  * various formats.
  */
-public class TiffRoundTripInt32Test extends TiffBaseTest {
+class TiffRoundTripInt32Test extends TiffBaseTest {
 
     @TempDir
     Path tempDir;
@@ -111,7 +111,7 @@ public class TiffRoundTripInt32Test extends TiffBaseTest {
     }
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         final File[] testFile = new File[4];
         testFile[0] = writeFile(32, ByteOrder.LITTLE_ENDIAN, false);
         testFile[1] = writeFile(32, ByteOrder.BIG_ENDIAN, false);

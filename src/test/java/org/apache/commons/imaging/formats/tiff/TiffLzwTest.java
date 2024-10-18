@@ -35,7 +35,7 @@ import org.apache.commons.imaging.mylzw.MyLzwDecompressor;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-public class TiffLzwTest extends TiffBaseTest {
+class TiffLzwTest extends TiffBaseTest {
 
     private void compressRoundtripAndValidate(final byte[] src) throws IOException {
         final boolean DEBUG = false;
@@ -202,7 +202,7 @@ public class TiffLzwTest extends TiffBaseTest {
     }
 
     @Test
-    public void testMedium() throws Exception {
+    void testMedium() throws Exception {
         final int LENGTH = 1024 * 32;
         final byte[] bytes = new byte[LENGTH];
         for (int modulator = 1; modulator < 255; modulator += 3) {
@@ -216,7 +216,7 @@ public class TiffLzwTest extends TiffBaseTest {
 
     @Disabled // FIXME fails with java.io.IOException: Bad Code: -1 codes: 258 code_size: 9, table: 4096
     @Test
-    public void testTiffImageData() throws IOException {
+    void testTiffImageData() throws IOException {
         final List<File> images = getTiffImages();
         for (final File image : images) {
 
@@ -232,7 +232,7 @@ public class TiffLzwTest extends TiffBaseTest {
     }
 
     @Test
-    public void testTrivial() throws Exception {
+    void testTrivial() throws Exception {
         final byte[] bytes = { 0, };
         compressRoundtripAndValidate(bytes);
     }

@@ -23,10 +23,10 @@ import java.nio.ByteOrder;
 import org.apache.commons.imaging.formats.tiff.constants.TiffDirectoryType;
 import org.junit.jupiter.api.Test;
 
-public class TagInfoSShortsTest {
+class TagInfoSShortsTest {
 
     @Test
-    public void testEncodeValue() {
+    void testEncodeValue() {
         final TiffDirectoryType tiffDirectoryType = TiffDirectoryType.TIFF_DIRECTORY_IFD0;
         final TagInfoSShorts tagInfoSShorts = new TagInfoSShorts("", 2269, 2269, tiffDirectoryType);
         final ByteOrder byteOrder = ByteOrder.nativeOrder();

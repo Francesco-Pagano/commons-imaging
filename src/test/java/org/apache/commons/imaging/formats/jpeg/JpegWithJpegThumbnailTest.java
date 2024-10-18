@@ -27,10 +27,10 @@ import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.junit.jupiter.api.Test;
 
-public class JpegWithJpegThumbnailTest extends AbstractImagingTest {
+class JpegWithJpegThumbnailTest extends AbstractImagingTest {
 
     @Test
-    public void testSingleImage() throws Exception {
+    void testSingleImage() throws Exception {
         final File imageFile = getTestImageByName("img_F028c_small.jpg");
 
         final ImageMetadata metadata = Imaging.getMetadata(imageFile);

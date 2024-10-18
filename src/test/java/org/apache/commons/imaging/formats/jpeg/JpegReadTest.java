@@ -45,7 +45,7 @@ public class JpegReadTest extends JpegBaseTest {
 
     @ParameterizedTest
     @MethodSource("data")
-    public void test(final File imageFile) throws Exception {
+    void test(final File imageFile) throws Exception {
         final JpegImageParser jpegImageParser = new JpegImageParser();
         final ImageMetadata metadata = jpegImageParser.getExifMetadata(ByteSource.file(imageFile), new TiffImagingParameters());
         // TODO only run this tests with images that have metadata...
@@ -76,7 +76,7 @@ public class JpegReadTest extends JpegBaseTest {
      * </p>
      */
     @Test
-    public void testUncaughtExceptionOssFuzz33458() {
+    void testUncaughtExceptionOssFuzz33458() {
         final File file = TestResources.resourceToFile("/images/jpeg/oss-fuzz-33458/clusterfuzz-testcase-minimized-ImagingJpegFuzzer-4548690447564800");
         final JpegImageParser parser = new JpegImageParser();
         assertThrows(ImagingException.class, () -> parser.getBufferedImage(ByteSource.file(file), new JpegImagingParameters()));

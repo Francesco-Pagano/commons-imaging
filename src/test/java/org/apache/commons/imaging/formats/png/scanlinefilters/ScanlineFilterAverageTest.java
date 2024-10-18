@@ -23,10 +23,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-public class ScanlineFilterAverageTest {
+class ScanlineFilterAverageTest {
 
     @Test
-    public void testUnfilterWithNull() throws IOException {
+    void testUnfilterWithNull() throws IOException {
         final ScanlineFilterAverage scanlineFilterAverage = new ScanlineFilterAverage(2);
         final byte[] byteArray = new byte[9];
         scanlineFilterAverage.unfilter(byteArray, byteArray, null);

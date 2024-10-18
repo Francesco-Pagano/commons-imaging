@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Performs tests that access the content of TIFF files containing floating point data.
  */
-public class TiffFloatingPointReadTest {
+class TiffFloatingPointReadTest {
 
     private void checkSubImage(final File target, final TiffRasterData fullRaster, final int x0, final int y0, final int width, final int height)
             throws IOException {
@@ -126,7 +126,7 @@ public class TiffFloatingPointReadTest {
     }
 
     @Test
-    public void test() throws IOException {
+    void test() throws IOException {
         // These TIFF sample data includes files that contain known
         // floating-point values in various formats. We know the range
         // of values from inspection using separate utilies. This

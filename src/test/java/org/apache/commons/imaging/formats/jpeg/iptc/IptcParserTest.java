@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for the {#link {@link IptcParser} class.
  */
-public class IptcParserTest {
+class IptcParserTest {
 
     /**
      * Tests for IptcParser encoding support. See IMAGING-168 and pull request #124 for more.
@@ -48,7 +48,7 @@ public class IptcParserTest {
      * @throws ImagingException when parsing file
      */
     @Test
-    public void testEncodingSupport() throws IOException {
+    void testEncodingSupport() throws IOException {
         // NOTE: We use the JpegParser, so it will send only the block/segment that IptcParser needs for the test image
         final File file = TestResources.resourceToFile("/images/jpeg/iptc/IMAGING-168/111083453-c07f1880-851e-11eb-8b61-2757f7d934bf.jpg");
         final JpegImageParser parser = new JpegImageParser();
@@ -76,7 +76,7 @@ public class IptcParserTest {
      * @see <a href="https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/">Adobe Photoshop File Formats Specification</a>
      */
     @Test
-    public void testSkipBlockTypes() throws IOException {
+    void testSkipBlockTypes() throws IOException {
         final File imageFile = TestResources.resourceToFile("/images/jpeg/photoshop/IMAGING-246/FallHarvestKitKat_07610.jpg");
         final JpegImageMetadata metadata = (JpegImageMetadata) new JpegImageParser().getMetadata(ByteSource.file(imageFile), new JpegImagingParameters());
         final JpegPhotoshopMetadata photoshopMetadata = metadata.getPhotoshop();

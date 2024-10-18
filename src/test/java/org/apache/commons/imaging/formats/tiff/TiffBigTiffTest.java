@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Reads files in the BigTIFF samples folder and compares the BigTIFF files against the standard "classic" tiff image.
  */
-public class TiffBigTiffTest extends TiffBaseTest {
+class TiffBigTiffTest extends TiffBaseTest {
 
     private boolean doImagesMatch(final int w, final int h, final int[] classicRgb, final BufferedImage image) {
         final int iW = image.getWidth();
@@ -49,7 +49,7 @@ public class TiffBigTiffTest extends TiffBaseTest {
     }
 
     @Test
-    public void test() throws IOException {
+    void test() throws IOException {
         final File tiffFolder = new File(ImagingTestConstants.TEST_IMAGE_FOLDER, "tiff");
         final File bigTiffFolder = new File(tiffFolder, "13");
 

@@ -23,10 +23,10 @@ import java.nio.ByteOrder;
 
 import org.junit.jupiter.api.Test;
 
-public class FieldTypeLongTest {
+class FieldTypeLongTest {
 
     @Test
-    public void testWriteDataWithNonNull() {
+    void testWriteDataWithNonNull() {
         final FieldTypeLong fieldTypeLong = AbstractFieldType.IFD;
         final ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
 

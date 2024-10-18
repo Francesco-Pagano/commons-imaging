@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Basic tests for JpegImageParser.
  */
-public class JpegImageParserTest {
+class JpegImageParserTest {
     /**
      * Image created with The Gimp 2.8
      *
@@ -39,7 +39,7 @@ public class JpegImageParserTest {
      * @throws IOException
      */
     @Test
-    public void testGetBufferedImage10() throws IOException {
+    void testGetBufferedImage10() throws IOException {
         final File imageFile = TestResources.resourceToFile("/IMAGING-136/1402522741337.jpg");
         final JpegImageParser parser = new JpegImageParser();
         final BufferedImage image = parser.getBufferedImage(ByteSource.file(imageFile), null);

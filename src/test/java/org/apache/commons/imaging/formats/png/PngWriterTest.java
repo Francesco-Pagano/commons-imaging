@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for class {@link PngWriter}.
  */
-public class PngWriterTest extends AbstractPngTest {
+class PngWriterTest extends AbstractPngTest {
 
     // The form of the test set is
     // 0. target file name
@@ -61,7 +61,7 @@ public class PngWriterTest extends AbstractPngTest {
     }
 
     @Test
-    public void testNullParameters() throws IOException {
+    void testNullParameters() throws IOException {
         for (final String[] testTarget : testSet) {
             final String filePath = testTarget[0];
             final File imageFile = getPngFile(filePath);
@@ -78,7 +78,7 @@ public class PngWriterTest extends AbstractPngTest {
     }
 
     @Test
-    public void testPaletteFactory() throws IOException {
+    void testPaletteFactory() throws IOException {
         for (final String[] testTarget : testSet) {
             final String filePath = testTarget[0];
             final File imageFile = getPngFile(filePath);

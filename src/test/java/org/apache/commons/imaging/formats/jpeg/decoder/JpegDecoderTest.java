@@ -29,13 +29,13 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for the JpegDecoder.
  */
-public class JpegDecoderTest {
+class JpegDecoderTest {
 
     /**
      * Test that a bad file does not hang or take too long to be processed.
      */
     @Test
-    public void testDecodeBadFile() {
+    void testDecodeBadFile() {
         // From IMAGING-220
         final File inputFile = TestResources.resourceToFile("/IMAGING-220/timeout-48eb4251935b4ca8b26d1859ea525c1b42ae0c78.jpeg");
         final ByteSource byteSourceFile = ByteSource.file(inputFile);

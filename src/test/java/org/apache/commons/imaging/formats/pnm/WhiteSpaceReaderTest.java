@@ -24,10 +24,10 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-public class WhiteSpaceReaderTest {
+class WhiteSpaceReaderTest {
 
     @Test
-    public void testReadLineReturningNonEmptyString() throws IOException {
+    void testReadLineReturningNonEmptyString() throws IOException {
         final byte[] byteArray = new byte[6];
         byteArray[4] = (byte) 13;
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);

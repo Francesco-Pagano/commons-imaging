@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
  * Performs a test on the ImageInfo returned from TIFF to confirm that it contains the specified value for a particular target. This test is used to confirm
  * that the TiffImageParser is correctly interpreting the ImageInfo values.
  */
-public class TiffReadImageInfoTest extends TiffBaseTest {
+class TiffReadImageInfoTest extends TiffBaseTest {
 
     // The form of the test set is
     // 0. target file name
@@ -70,7 +70,7 @@ public class TiffReadImageInfoTest extends TiffBaseTest {
     }
 
     @Test
-    public void testImageInfoElements() throws Exception {
+    void testImageInfoElements() throws Exception {
         for (final String[] testTarget : testSet) {
             final File targetFile = getTiffFile(testTarget[0]);
             final ImageInfo info = Imaging.getImageInfo(targetFile);

@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class JpegImageDataTest {
+class JpegImageDataTest {
 
     @Test
-    public void testCreatesJpegImageDataAndCallsGetElementDescription() {
+    void testCreatesJpegImageDataAndCallsGetElementDescription() {
         final byte[] byteArray = new byte[5];
         final JpegImageData jpegImageData = new JpegImageData(-1L, 1, byteArray);
         final String string = jpegImageData.getElementDescription();

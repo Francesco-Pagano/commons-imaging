@@ -23,10 +23,10 @@ import java.nio.ByteOrder;
 import org.apache.commons.imaging.formats.tiff.constants.TiffDirectoryType;
 import org.junit.jupiter.api.Test;
 
-public class TagInfoSByteTest {
+class TagInfoSByteTest {
 
     @Test
-    public void testCreatesTagInfoSByteAndCallsEncodeValue() {
+    void testCreatesTagInfoSByteAndCallsEncodeValue() {
         final TiffDirectoryType tiffDirectoryType = TiffDirectoryType.EXIF_DIRECTORY_GPS;
         final TagInfoSByte tagInfoSByte = new TagInfoSByte("", 0, tiffDirectoryType);
         final ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;

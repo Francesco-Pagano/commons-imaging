@@ -33,10 +33,10 @@ import org.apache.commons.imaging.internal.Debug;
 import org.apache.commons.imaging.test.TestResources;
 import org.junit.jupiter.api.Test;
 
-public class RgbeReadTest extends RgbeBaseTest {
+class RgbeReadTest extends RgbeBaseTest {
 
     @Test
-    public void test() throws IOException {
+    void test() throws IOException {
         Debug.debug("start");
 
         final List<File> images = getRgbeImages();
@@ -60,7 +60,7 @@ public class RgbeReadTest extends RgbeBaseTest {
      * Test that a bad file does not gets the RgbeImageParser stuck reading it.
      */
     @Test
-    public void testErrorDecompressingInvalidFile() {
+    void testErrorDecompressingInvalidFile() {
         // From IMAGING-219
         final File inputFile = TestResources.resourceToFile("/IMAGING-219/timeout-9713502c9c371f1654b493650c16ab17c0444369.hdr");
         final ByteSource byteSourceFile = ByteSource.file(inputFile);

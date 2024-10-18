@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.apache.commons.imaging.ImagingException;
 import org.junit.jupiter.api.Test;
 
-public class HuffmanTreeExceptionTest {
+class HuffmanTreeExceptionTest {
 
     @Test
-    public void testCreatesHuffmanTreeExceptionTakingString() {
+    void testCreatesHuffmanTreeExceptionTakingString() {
         final ImagingException huffmanTreeException = new ImagingException("");
         final ImagingException huffmanTreeExceptionTwo = new ImagingException("", huffmanTreeException);
 

@@ -22,10 +22,10 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
 
-public class ImageResourceBlockTest {
+class ImageResourceBlockTest {
 
     @Test
-    public void testCreatesImageResourceBlockAndCallsGetName() {
+    void testCreatesImageResourceBlockAndCallsGetName() {
         final byte[] byteArray = new byte[3];
         final ImageResourceBlock imageResourceBlock = new ImageResourceBlock(0, byteArray, byteArray);
 

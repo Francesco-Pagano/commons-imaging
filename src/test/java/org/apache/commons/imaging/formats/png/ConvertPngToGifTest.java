@@ -29,10 +29,10 @@ import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.internal.Debug;
 import org.junit.jupiter.api.Test;
 
-public class ConvertPngToGifTest extends AbstractPngTest {
+class ConvertPngToGifTest extends AbstractPngTest {
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
 
         final List<File> images = getPngImages();
         for (final File imageFile : images) {

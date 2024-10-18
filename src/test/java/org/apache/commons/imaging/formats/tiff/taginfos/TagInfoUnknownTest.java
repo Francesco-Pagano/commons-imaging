@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.apache.commons.imaging.formats.tiff.constants.TiffDirectoryType;
 import org.junit.jupiter.api.Test;
 
-public class TagInfoUnknownTest {
+class TagInfoUnknownTest {
 
     @Test
-    public void testCreatesTagInfoUnknown() {
+    void testCreatesTagInfoUnknown() {
         final TiffDirectoryType tiffDirectoryType = TiffDirectoryType.EXIF_DIRECTORY_EXIF_IFD;
         new TagInfoUnknown("", 2670, tiffDirectoryType);
 

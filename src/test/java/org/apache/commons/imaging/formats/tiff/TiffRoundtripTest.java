@@ -31,10 +31,10 @@ import org.apache.commons.imaging.formats.tiff.constants.TiffConstants;
 import org.apache.commons.imaging.internal.Debug;
 import org.junit.jupiter.api.Test;
 
-public class TiffRoundtripTest extends TiffBaseTest {
+class TiffRoundtripTest extends TiffBaseTest {
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         final List<File> images = getTiffImages();
         for (final File imageFile : images) {
 

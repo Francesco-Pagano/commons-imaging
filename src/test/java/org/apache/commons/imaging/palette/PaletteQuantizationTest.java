@@ -24,7 +24,7 @@ import org.apache.commons.imaging.AbstractImagingTest;
 import org.apache.commons.imaging.ImagingException;
 import org.junit.jupiter.api.Test;
 
-public class PaletteQuantizationTest extends AbstractImagingTest {
+class PaletteQuantizationTest extends AbstractImagingTest {
 
     private void checkPaletteDetails(final BufferedImage image, final int limit, final int expectedSize) throws ImagingException {
         final PaletteFactory paletteFactory = new PaletteFactory();
@@ -81,7 +81,7 @@ public class PaletteQuantizationTest extends AbstractImagingTest {
     }
 
     @Test
-    public void testPaletteQuantization() throws ImagingException {
+    void testPaletteQuantization() throws ImagingException {
         final BufferedImage whiteImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         for (int y = 0; y < whiteImage.getHeight(); y++) {
             for (int x = 0; x < whiteImage.getWidth(); x++) {

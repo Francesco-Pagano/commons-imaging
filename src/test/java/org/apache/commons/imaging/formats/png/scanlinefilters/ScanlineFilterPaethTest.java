@@ -23,10 +23,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-public class ScanlineFilterPaethTest {
+class ScanlineFilterPaethTest {
 
     @Test
-    public void testUnfilter() throws IOException {
+    void testUnfilter() throws IOException {
         final ScanlineFilterPaeth scanlineFilterPaeth = new ScanlineFilterPaeth(0);
         final byte[] byteArray = new byte[5];
         scanlineFilterPaeth.unfilter(byteArray, byteArray, null);

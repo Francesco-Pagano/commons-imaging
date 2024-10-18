@@ -22,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-public class DataParserIndexedTest {
+class DataParserIndexedTest {
 
     @Test
-    public void testFailsToCreateDataParserIndexedThrowsArrayIndexOutOfBoundsException() {
+    void testFailsToCreateDataParserIndexedThrowsArrayIndexOutOfBoundsException() {
         final byte[] byteArray = new byte[24];
         try {
             new DataParserIndexed(byteArray);

@@ -26,7 +26,7 @@ import org.apache.commons.imaging.formats.tiff.constants.TiffDirectoryConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class TiffOutputDirectoryTest {
+class TiffOutputDirectoryTest {
 
     private TiffOutputDirectory directory;
 
@@ -36,7 +36,7 @@ public class TiffOutputDirectoryTest {
     }
 
     @Test
-    public void testFindField() throws Exception {
+    void testFindField() throws Exception {
         directory.add(TIFF_TAG_DOCUMENT_NAME, "Test.tiff");
 
         final TiffOutputField field = directory.findField(TIFF_TAG_DOCUMENT_NAME);

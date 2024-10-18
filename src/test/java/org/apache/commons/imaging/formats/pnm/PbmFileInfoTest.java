@@ -25,10 +25,10 @@ import java.io.InputStream;
 
 import org.junit.jupiter.api.Test;
 
-public class PbmFileInfoTest {
+class PbmFileInfoTest {
 
     @Test
-    public void testGetRGBThrowsIOException() throws IOException {
+    void testGetRGBThrowsIOException() throws IOException {
         final PbmFileInfo pbmFileInfo = new PbmFileInfo(2764, 354, true);
         final byte[] byteArray = new byte[2];
         final InputStream inputStream = new ByteArrayInputStream(byteArray);

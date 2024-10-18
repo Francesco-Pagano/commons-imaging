@@ -41,7 +41,7 @@ import org.apache.commons.imaging.formats.tiff.write.TiffOutputDirectory;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.junit.jupiter.api.Test;
 
-public class MicrosoftTagTest extends AbstractExifTest {
+class MicrosoftTagTest extends AbstractExifTest {
     private static final String AUTHOR = "author";
     private static final String COMMENT = "comment";
     private static final String SUBJECT = "subject";
@@ -78,7 +78,7 @@ public class MicrosoftTagTest extends AbstractExifTest {
     }
 
     @Test
-    public void testRewrite() throws Exception {
+    void testRewrite() throws Exception {
         final byte[] imageWithExif = cleanImage(getImageWithExifData());
 
         final TiffImageMetadata metadata = toTiffMetadata(Imaging.getMetadata(imageWithExif));
@@ -109,7 +109,7 @@ public class MicrosoftTagTest extends AbstractExifTest {
     }
 
     @Test
-    public void testWrite() throws Exception {
+    void testWrite() throws Exception {
         final BufferedImage image = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
         final TiffOutputSet exifSet = new TiffOutputSet();
         final TiffOutputDirectory root = exifSet.getOrCreateRootDirectory();

@@ -29,7 +29,7 @@ import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.ImagingException;
 import org.junit.jupiter.api.Test;
 
-public class TiffSubImageTest extends TiffBaseTest {
+class TiffSubImageTest extends TiffBaseTest {
     final List<File> imageFileList;
 
     TiffSubImageTest() throws IOException {
@@ -49,7 +49,7 @@ public class TiffSubImageTest extends TiffBaseTest {
     }
 
     @Test
-    public void testBadSubImage() throws IOException {
+    void testBadSubImage() throws IOException {
         final TiffImageParser tiffImageParser = new TiffImageParser();
         final File target = imageFileList.get(0);
         final BufferedImage referenceImage = Imaging.getBufferedImage(target);
@@ -72,7 +72,7 @@ public class TiffSubImageTest extends TiffBaseTest {
     }
 
     @Test
-    public void testSubImage() throws IOException {
+    void testSubImage() throws IOException {
         final TiffImageParser tiffImageParser = new TiffImageParser();
         final BufferedImage src = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB);
         final TiffImagingParameters params = new TiffImagingParameters();
@@ -89,7 +89,7 @@ public class TiffSubImageTest extends TiffBaseTest {
     }
 
     @Test
-    public void testSubImageCorrectness() throws IOException {
+    void testSubImageCorrectness() throws IOException {
         final TiffImageParser tiffImageParser = new TiffImageParser();
         for (final File target : imageFileList) {
             final BufferedImage referenceImage = Imaging.getBufferedImage(target);

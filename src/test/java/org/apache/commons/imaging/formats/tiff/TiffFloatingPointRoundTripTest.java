@@ -46,7 +46,7 @@ import org.junit.jupiter.api.io.TempDir;
  * At this time, Commons Imaging does not fully implement the floating-point specification. Currently, this class only tests the use of uncompressed floating
  * point values in the Strips format. The Tiles format is not exercised.
  */
-public class TiffFloatingPointRoundTripTest extends TiffBaseTest {
+class TiffFloatingPointRoundTripTest extends TiffBaseTest {
 
     @TempDir
     Path tempDir;
@@ -201,7 +201,7 @@ public class TiffFloatingPointRoundTripTest extends TiffBaseTest {
     }
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         // we set up the 32 and 64 bit test cases. At this time,
         // the Tile format is not supported for floating-point samples by the
         // TIFF datareaders classes. So that format is not yet exercised.

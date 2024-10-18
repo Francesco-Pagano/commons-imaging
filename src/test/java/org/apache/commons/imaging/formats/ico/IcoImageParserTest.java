@@ -24,14 +24,14 @@ import org.apache.commons.imaging.ImagingException;
 import org.apache.commons.imaging.test.TestResources;
 import org.junit.jupiter.api.Test;
 
-public class IcoImageParserTest {
+class IcoImageParserTest {
 
     /**
      * For <a href="https://issues.apache.org/jira/browse/IMAGING-373">IMAGING-373</a>.
      * <p>There is a problem with loading bitmap stored in given ICO file, so the exception is originally thrown by BmpImageParser.</p>
      */
     @Test
-    public void testImageWithInvalidBmpHeaders() {
+    void testImageWithInvalidBmpHeaders() {
         final File ico = TestResources.resourceToFile("/IMAGING-373/OutOfMemory_epine.ico");
         final IcoImageParser parser = new IcoImageParser();
         assertThrows(ImagingException.class, () -> parser.getAllBufferedImages(ico));

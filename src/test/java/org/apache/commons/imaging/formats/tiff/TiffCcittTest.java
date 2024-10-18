@@ -31,7 +31,7 @@ import org.apache.commons.imaging.formats.tiff.itu_t4.T4AndT6Compression;
 import org.apache.commons.imaging.internal.Debug;
 import org.junit.jupiter.api.Test;
 
-public class TiffCcittTest extends TiffBaseTest {
+class TiffCcittTest extends TiffBaseTest {
 
     /**
      * Generates the next combination of elements in the sequence array, with each element having a maximum value of max. Initially, the sequence should be set
@@ -75,7 +75,7 @@ public class TiffCcittTest extends TiffBaseTest {
     }
 
     @Test
-    public void testAll5x2Compressions() {
+    void testAll5x2Compressions() {
         final byte[] uncompressed = new byte[2];
         final int[] combinations = new int[10];
         do {
@@ -165,7 +165,7 @@ public class TiffCcittTest extends TiffBaseTest {
     }
 
     @Test
-    public void testAll5x2Images() {
+    void testAll5x2Images() {
         final int[] combinations = new int[10];
         final BufferedImage image = new BufferedImage(5, 2, BufferedImage.TYPE_INT_RGB);
         do {

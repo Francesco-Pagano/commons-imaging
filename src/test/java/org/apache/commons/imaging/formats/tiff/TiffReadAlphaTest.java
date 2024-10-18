@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Performs tests that access the content of TIFF files containing non-opaque alpha-channel pixels
  */
-public class TiffReadAlphaTest {
+class TiffReadAlphaTest {
 
     private final static String[] names = { "TransparencyTestStripAssociated.tif", "TransparencyTestStripUnassociated.tif",
             "TransparencyTestTileAssociated.tif", "TransparencyTestTileUnassociated.tif" };
@@ -52,7 +52,7 @@ public class TiffReadAlphaTest {
     }
 
     @Test
-    public void test() throws IOException {
+    void test() throws IOException {
         for (final String name : names) {
             final File subject = getTiffFile(name);
             final BufferedImage overlay = Imaging.getBufferedImage(subject);

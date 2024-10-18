@@ -22,10 +22,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-public class SosSegmentTest {
+class SosSegmentTest {
 
     @Test
-    public void testCreatesSosSegmentTakingThreeArguments() throws IOException {
+    void testCreatesSosSegmentTakingThreeArguments() throws IOException {
         final byte[] byteArray = new byte[5];
         final SosSegment sosSegment = new SosSegment(-1044, byteArray);
 
@@ -36,7 +36,7 @@ public class SosSegmentTest {
     }
 
     @Test
-    public void testGetComponentsTakingNoArguments() throws IOException {
+    void testGetComponentsTakingNoArguments() throws IOException {
         final byte[] byteArray = new byte[5];
         final SosSegment sosSegment = new SosSegment(-1044, byteArray);
         sosSegment.getComponents();

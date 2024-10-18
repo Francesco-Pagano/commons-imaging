@@ -22,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.apache.commons.imaging.ImagingConstants;
 import org.junit.jupiter.api.Test;
 
-public class TransparencyFilterIndexedColorTest {
+class TransparencyFilterIndexedColorTest {
 
     @Test
-    public void testFilterWithNegativeAndNegative() {
+    void testFilterWithNegativeAndNegative() {
         final byte[] byteArray = ImagingConstants.EMPTY_BYTE_ARRAY;
         final TransparencyFilterIndexedColor transparencyFilterIndexedColor = new TransparencyFilterIndexedColor(byteArray);
 

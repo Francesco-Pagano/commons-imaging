@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class DctTest {
+class DctTest {
 
     private static double[] REFERENCE_forwardDCT(final float[] vector) {
         final double[] ret = new double[8];
@@ -86,7 +86,7 @@ public class DctTest {
     }
 
     @Test
-    public void testMatrices() {
+    void testMatrices() {
         final float[] originalData = new float[8 * 8];
         final float[][] originalData8x8 = new float[8][8];
         for (int y = 0; y < 8; y++) {
@@ -124,7 +124,7 @@ public class DctTest {
     }
 
     @Test
-    public void testVectors() {
+    void testVectors() {
         final float[] originalData = new float[8];
         for (int i = 0; i < 8; i++) {
             originalData[i] = i;

@@ -23,10 +23,10 @@ import org.apache.commons.imaging.ImagingConstants;
 import org.apache.commons.imaging.common.BinaryFunctions;
 import org.junit.jupiter.api.Test;
 
-public class PngChunkTextTest {
+class PngChunkTextTest {
 
     @Test
-    public void testCreatesPngChunkText() {
+    void testCreatesPngChunkText() {
         final byte[] byteArray = ImagingConstants.EMPTY_BYTE_ARRAY;
         try {
             new PngChunkText(1214, 1214, 0, byteArray);

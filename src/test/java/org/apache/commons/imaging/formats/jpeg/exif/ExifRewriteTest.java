@@ -49,7 +49,7 @@ import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.apache.commons.imaging.internal.Debug;
 import org.junit.jupiter.api.Test;
 
-public class ExifRewriteTest extends AbstractExifTest {
+class ExifRewriteTest extends AbstractExifTest {
 
     private interface Rewriter {
         void rewrite(ByteSource byteSource, OutputStream os, TiffOutputSet outputSet) throws IOException;
@@ -238,7 +238,7 @@ public class ExifRewriteTest extends AbstractExifTest {
     }
 
     @Test
-    public void testInsert() throws Exception {
+    void testInsert() throws Exception {
         final List<File> images = getImagesWithExifData();
         for (final File imageFile : images) {
 
@@ -296,7 +296,7 @@ public class ExifRewriteTest extends AbstractExifTest {
     }
 
     @Test
-    public void testRemove() throws Exception {
+    void testRemove() throws Exception {
         final List<File> images = getImagesWithExifData();
         for (final File imageFile : images) {
 
@@ -330,14 +330,14 @@ public class ExifRewriteTest extends AbstractExifTest {
     }
 
     @Test
-    public void testRewriteLossless() throws Exception {
+    void testRewriteLossless() throws Exception {
         final Rewriter rewriter = (byteSource, os, outputSet) -> new ExifRewriter().updateExifMetadataLossless(byteSource, os, outputSet);
 
         rewrite(rewriter, "lossless");
     }
 
     @Test
-    public void testRewriteLossy() throws Exception {
+    void testRewriteLossy() throws Exception {
         final Rewriter rewriter = (byteSource, os, outputSet) -> new ExifRewriter().updateExifMetadataLossy(byteSource, os, outputSet);
 
         rewrite(rewriter, "lossy");

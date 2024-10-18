@@ -28,10 +28,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests Google oss-fuzz issue 53669.
  */
-public class TiffImageParserTest {
+class TiffImageParserTest {
 
     @Test
-    public void testOssFuzzIssue53669() {
+    void testOssFuzzIssue53669() {
         assertThrows(ImagingFormatException.class,
                 () -> new TiffImageParser().getBufferedImage(
                         ByteSource.file(new File(

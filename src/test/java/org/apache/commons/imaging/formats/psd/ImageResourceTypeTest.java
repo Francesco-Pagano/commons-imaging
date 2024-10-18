@@ -20,17 +20,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class ImageResourceTypeTest {
+class ImageResourceTypeTest {
 
     @Test
-    public void testGetDescriptionWithPositive() {
+    void testGetDescriptionWithPositive() {
         final String string = ImageResourceType.getDescription(2309);
 
         assertEquals("Path Information (saved paths).", string);
     }
 
     @Test
-    public void testGetDescriptionWithZero() {
+    void testGetDescriptionWithZero() {
         final String string = ImageResourceType.getDescription(0);
 
         assertEquals("Unknown", string);

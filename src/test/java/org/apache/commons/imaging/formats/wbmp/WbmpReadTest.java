@@ -27,10 +27,10 @@ import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.internal.Debug;
 import org.junit.jupiter.api.Test;
 
-public class WbmpReadTest extends WbmpBaseTest {
+class WbmpReadTest extends WbmpBaseTest {
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         Debug.debug("start");
 
         final List<File> images = getWbmpImages();

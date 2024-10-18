@@ -212,7 +212,7 @@ public class ExifRewriterRoundtripTest extends AbstractExifTest {
      */
     @ParameterizedTest
     @MethodSource("data")
-    public void updateExifMetadataLossless_copyWithoutChanges_TiffOutputSetsAreIdentical(final File sourceFile) throws Exception {
+    void updateExifMetadataLossless_copyWithoutChanges_TiffOutputSetsAreIdentical(final File sourceFile) throws Exception {
         /*
          * Load EXIF data from source file, skipping over any test images without any EXIF data
          */

@@ -25,7 +25,7 @@ import org.apache.commons.imaging.common.ImageBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PhotometricInterpreterRgbTest {
+class PhotometricInterpreterRgbTest {
 
     private PhotometricInterpreterRgb p;
 
@@ -41,7 +41,7 @@ public class PhotometricInterpreterRgbTest {
     }
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         assertEquals(samplesPerPixel, p.samplesPerPixel);
         for (int i = 0; i < bitsPerSample.length; i++) {
             assertEquals(bitsPerSample[i], p.getBitsPerSample(i));
@@ -52,7 +52,7 @@ public class PhotometricInterpreterRgbTest {
     }
 
     @Test
-    public void testInterpretPixel() throws IOException {
+    void testInterpretPixel() throws IOException {
         final ImageBuilder imgBuilder = new ImageBuilder(600, 400, /* alpha */ true);
         final int x = 10;
         final int y = 20;
