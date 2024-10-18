@@ -19,6 +19,7 @@ package org.apache.commons.imaging;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -38,7 +39,7 @@ public class ExampleDocker {
             String response = "<h1> Hello World!!!! I just Dockerized a Maven Project </h1>";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
+            os.write(response.getBytes(Charset.forName("UTF-8")));
             os.close();
         }
     }
