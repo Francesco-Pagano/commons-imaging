@@ -137,7 +137,7 @@
                 <manifest>
                   <addClasspath>true</addClasspath>
                     <classpathPrefix>lib/</classpathPrefix>
-                    <mainClass>org.apache.commons.imaging.ExampleDocker</mainClass>
+                    <mainClass>org.apache.commons.imaging.exampleDocker.ExampleDocker</mainClass>
                 </manifest>
               </archive>
               <!--
