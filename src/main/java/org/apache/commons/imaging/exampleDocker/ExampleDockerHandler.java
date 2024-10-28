@@ -16,8 +16,16 @@
  */
 package org.apache.commons.imaging.exampleDocker;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.common.RationalNumber;
@@ -29,14 +37,8 @@ import org.apache.commons.imaging.formats.tiff.constants.GpsTagConstants;
 import org.apache.commons.imaging.formats.tiff.constants.TiffTagConstants;
 import org.apache.commons.imaging.formats.tiff.taginfos.TagInfo;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.List;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
 public class ExampleDockerHandler implements HttpHandler {
 
@@ -51,7 +53,7 @@ public class ExampleDockerHandler implements HttpHandler {
             File file2 = new File("src/main/java/org/apache/commons/imaging/exampleDocker/ExampleDockerImage_withMetadata.jpg");
 
             ExampleDockerTagHandler setTag = new ExampleDockerTagHandler();
-            setTag.setExifGPSTag(file,file2);
+            setTag.setExifGPSTag(file, file2);
             metadataExample(file2);
 
             String json = metadataExample(file2);

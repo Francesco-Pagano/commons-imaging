@@ -16,13 +16,13 @@
  */
 package org.apache.commons.imaging.exampleDocker;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
 public class ExampleDockerImageHandler implements HttpHandler {
 
@@ -30,17 +30,17 @@ public class ExampleDockerImageHandler implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
 
         File file = new File("src/main/java/org/apache/commons/imaging/exampleDocker/ExampleDockerImage_withMetadata.jpg");
-        t.getResponseHeaders().set("Content-Type", "image/jpg");
-        t.sendResponseHeaders(200, file.length());
-        OutputStream outputStream=t.getResponseBody();
 
-        FileInputStream fs = new FileInputStream(file);
-        byte[] buffer = new byte[1024];
-        int count;
-        while ((count = fs.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, count);
+        try (FileInputStream fs = new FileInputStream(file);
+             OutputStream outputStream = t.getResponseBody()) {
+            t.getResponseHeaders().set("Content-Type", "image/jpg");
+            t.sendResponseHeaders(200, file.length());
+
+            byte[] buffer = new byte[1024];
+            int count;
+            while ((count = fs.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, count);
+            }
         }
-        outputStream.close();
-        fs.close();
     }
 }

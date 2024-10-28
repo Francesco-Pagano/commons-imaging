@@ -16,14 +16,18 @@
  */
 package org.apache.commons.imaging.exampleDocker;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
-
-import java.io.*;
 
 public class ExampleDockerTagHandler {
 
@@ -46,15 +50,9 @@ public class ExampleDockerTagHandler {
                 outputSet = new TiffOutputSet();
             }
 
-            {
-                // New York City
-                final double longitude = -74.0;
-                final double latitude = 40 + 43 / 60.0;
+            outputSet.setGpsInDegrees(-74.0, 40 + 43 / 60.0);
 
-                outputSet.setGpsInDegrees(longitude, latitude);
-            }
             new ExifRewriter().updateExifMetadataLossless(jpegImageFile, os, outputSet);
         }
     }
-
 }

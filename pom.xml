@@ -92,6 +92,42 @@
 
     <defaultGoal>clean verify apache-rat:check checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
     <plugins>
+
+      <!-- JACOCO -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.4</version>
+        <configuration>
+          <excludes>
+            <exclude>org/apache/commons/imaging/exampleDocker/ExampleDocker.class</exclude>
+            <exclude>org/apache/commons/imaging/exampleDocker/ExampleDockerHandler.class</exclude>
+            <exclude>org/apache/commons/imaging/exampleDocker/ExampleDockerImageHandler.class</exclude>
+            <exclude>org/apache/commons/imaging/exampleDocker/ExampleDockerTagHandler.class</exclude>
+            <exclude>**/*target/example-docker.jar</exclude>
+            <exclude>**/*target/example-docker-sources.jar</exclude>
+            <exclude>**/*target/example-docker-test-sources.jar</exclude>
+            <exclude>**/*target/example-docker-tests.jar</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <!-- prepare agent for measuring integration tests -->
+          <execution>
+            <id>jacoco-initialize</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-site</id>
+            <phase>package</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
