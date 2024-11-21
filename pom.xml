@@ -92,7 +92,27 @@
 
     <defaultGoal>clean verify apache-rat:check checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
     <plugins>
-
+      <!--PITest-->
+      <plugin>
+      <groupId>org.pitest</groupId>
+      <artifactId>pitest-maven</artifactId>
+      <version>1.15.3</version>
+      <configuration>
+        <targetClasses>
+          <param>org.apache.commons.imaging.color.*</param>
+        </targetClasses>
+        <targetTests>
+          <param>org.apache.commons.imaging.color.*</param>
+        </targetTests>
+      </configuration>
+      <dependencies>
+        <dependency>
+          <groupId>org.pitest</groupId>
+          <artifactId>pitest-junit5-plugin</artifactId>
+          <version>1.2.1</version>
+        </dependency>
+      </dependencies>
+      </plugin>
       <!-- JACOCO -->
       <plugin>
         <groupId>org.jacoco</groupId>
