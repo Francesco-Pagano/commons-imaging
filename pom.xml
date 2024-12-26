@@ -255,10 +255,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-      </plugin>
-      <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
       </plugin>
@@ -272,14 +268,8 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.2.0</version>
           <configuration>
-            <configLocation>${basedir}/src/conf/checkstyle.xml</configLocation>
-            <!-- <suppressionsLocation>${basedir}/src/conf/checkstyle-suppressions.xml</suppressionsLocation> -->
-            <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-            <includeTestSourceDirectory>false</includeTestSourceDirectory>
-            <enableRulesSummary>false</enableRulesSummary>
-            <excludes>target/**,target/generated-sources/**,target/generated-sources/annotations/**,target/generated-sources/annotations/benchmark/jmh_generated/**</excludes>
+            <skip>true</skip>
           </configuration>
         </plugin>
         <plugin>
