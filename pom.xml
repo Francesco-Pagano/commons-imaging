@@ -93,7 +93,7 @@
 
     <finalName>example-docker</finalName>
 
-    <defaultGoal>clean verify apache-rat:check</defaultGoal>
+    <defaultGoal>clean verify apache-rat:check checkstyle:check spotbugs:check javadoc:javadoc</defaultGoal>
     <plugins>
       <!-- Plugin per JMH -->
       <plugin>
@@ -165,7 +165,7 @@
             <exclude>org/apache/commons/imaging/exampleDocker/ExampleDockerHandler.class</exclude>
             <exclude>org/apache/commons/imaging/exampleDocker/ExampleDockerImageHandler.class</exclude>
             <exclude>org/apache/commons/imaging/exampleDocker/ExampleDockerTagHandler.class</exclude>
-            <exclude>src/main/java/benchmark/BenchmarkRunner.java</exclude>
+            <exclude>benchmark/BenchmarkRunner.java</exclude>
             <exclude>**/*target/example-docker.jar</exclude>
             <exclude>**/*target/example-docker-sources.jar</exclude>
             <exclude>**/*target/example-docker-test-sources.jar</exclude>
@@ -272,12 +272,8 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.1.2</version>
           <configuration>
-            <configLocation>${basedir}/src/conf/checkstyle.xml</configLocation>
-            <!-- <suppressionsLocation>${basedir}/src/conf/checkstyle-suppressions.xml</suppressionsLocation> -->
-            <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-            <includeTestSourceDirectory>false</includeTestSourceDirectory>
-            <enableRulesSummary>false</enableRulesSummary>
             <excludes>target/**</excludes>
           </configuration>
         </plugin>
