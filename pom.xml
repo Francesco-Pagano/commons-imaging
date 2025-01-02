@@ -272,8 +272,12 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.1.2</version>
           <configuration>
+            <configLocation>${basedir}/src/conf/checkstyle.xml</configLocation>
+            <!-- <suppressionsLocation>${basedir}/src/conf/checkstyle-suppressions.xml</suppressionsLocation> -->
+            <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+            <includeTestSourceDirectory>false</includeTestSourceDirectory>
+            <enableRulesSummary>false</enableRulesSummary>
             <excludes>target/**</excludes>
           </configuration>
         </plugin>
